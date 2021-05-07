@@ -11,11 +11,10 @@ Tech stack
 Directory Structure
 ------
     .
-    ├── API                 # Web API written with ASP.Net 5.0
-    ├── Application         
-    ├── Domain              
-    ├── Persistence         
-    ├── clinet              
-    └── selfdrive           
+    ├── API             # Web API written with ASP.Net 5.0
+    ├── Application     # Application business rules
+    ├── Domain          # Enterprise business rules    
+    ├── Persistence     # DbContext & Migrations
+    └── client          # Front-end     
         ├── public          
         └── src              
