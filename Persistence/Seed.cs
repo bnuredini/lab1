@@ -43,7 +43,28 @@ namespace Persistence
                 },
             };
 
+            var countries = new List<Country> 
+            {
+                new Country {
+                    Id = 1,
+                    Name = "Australia",
+                    Deaths = 9000000,
+                    Infections = 322414123,
+                    Vaccinated = 2414123,
+                    Recoveries = 3418890,
+                },
+                new Country {
+                    Id = 2,
+                    Name = "Albania",
+                    Deaths = 2800,
+                    Infections = 303123,
+                    Vaccinated = 314123,
+                    Recoveries = 48890,
+                }
+            };
+
             await context.Tests.AddRangeAsync(tests);
+            await context.Countries.AddRangeAsync(countries);
             await context.SaveChangesAsync();
         }
     }
