@@ -10,5 +10,6 @@ namespace Persistence
         }
 
         public DbSet<Test> Tests { get; set; }
+        public DbSet<Country> Countries { get; set; }
     }
 }
