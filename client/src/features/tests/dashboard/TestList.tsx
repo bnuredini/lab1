@@ -1,26 +1,23 @@
 import React, { SyntheticEvent, useState } from "react";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 import { Test } from "../../../app/models/test";
+import { useStore } from "../../../app/stores/store";
 
 interface Props {
   tests: Test[];
-  selectTest: (id: string) => void;
   deleteTest: (id: string) => void;
   submitting: boolean;
 }
 
-export default function TestList({
-  tests,
-  selectTest,
-  deleteTest,
-  submitting,
-}: Props) {
+export default function TestList({ tests, deleteTest, submitting }: Props) {
   const [target, setTarget] = useState("");
 
   function handleTestDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
     setTarget(e.currentTarget.name);
     deleteTest(id);
   }
+
+  const { testStore } = useStore();
 
   return (
     <Segment>
@@ -38,7 +35,7 @@ export default function TestList({
               </Item.Description>
               <Item.Extra>
                 <Button
-                  onClick={() => selectTest(test.id)}
+                  onClick={() => testStore.selectTest(test.id)}
                   floated="right"
                   content="View"
                   color="blue"

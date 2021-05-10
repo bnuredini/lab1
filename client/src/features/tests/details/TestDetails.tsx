@@ -1,18 +1,14 @@
 import React from "react";
 import { Button, Card, Image } from "semantic-ui-react";
-import { Test } from "../../../app/models/test";
+import LoadingComponent from "../../../app/layout/LoadingComponent";
+import { useStore } from "../../../app/stores/store";
 
-interface Props {
-  test: Test;
-  cancelSelectTest: () => void;
-  openForm: (id: string) => void;
-}
+export default function TestDetails() {
+  const { testStore } = useStore();
+  const { selectedTest: test, openForm, cancelSelectedTest } = testStore;
 
-export default function TestDetails({
-  test,
-  cancelSelectTest,
-  openForm,
-}: Props) {
+  if (!test) return <LoadingComponent />;
+
   return (
     <Card fluid>
       <Image src={`/assets/categoryImages/${test.variation}.jpg`} />
@@ -32,7 +28,7 @@ export default function TestDetails({
             content="Edit"
           />
           <Button
-            onClick={cancelSelectTest}
+            onClick={cancelSelectedTest}
             basic
             color="grey"
             content="Cancel"
