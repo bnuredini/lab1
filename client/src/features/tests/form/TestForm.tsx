@@ -1,20 +1,19 @@
+import { observer } from "mobx-react-lite";
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
 import { Test } from "../../../app/models/test";
+import { useStore } from "../../../app/stores/store";
 
-interface Props {
-  test: Test | undefined;
-  closeForm: () => void;
-  createOrEdit: (test: Test) => void;
-  submitting: boolean;
-}
+export default observer(function TestForm() {
+  const { testStore } = useStore();
+  const {
+    selectedTest,
+    closeForm,
+    createTest,
+    updateTest,
+    loading,
+  } = testStore;
 
-export default function TestForm({
-  test: selectedTest,
-  closeForm,
-  createOrEdit,
-  submitting,
-}: Props) {
   const initialState = selectedTest ?? {
     id: "",
     patientId: 0,
@@ -28,7 +27,7 @@ export default function TestForm({
   const [test, setTest] = useState(initialState);
 
   function handleSubmit() {
-    createOrEdit(test);
+    test.id ? updateTest(test) : createTest(test);
   }
 
   function handleInputChange(
@@ -79,7 +78,7 @@ export default function TestForm({
           onChange={handleInputChange}
         />
         <Button
-          loading={submitting}
+          loading={loading}
           floated="right"
           positive
           type="submit"
@@ -94,4 +93,4 @@ export default function TestForm({
       </Form>
     </Segment>
   );
-}
+});
