@@ -1,18 +1,12 @@
 import { observer } from "mobx-react-lite";
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
-import { Test } from "../../../app/models/test";
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function TestForm() {
   const { testStore } = useStore();
-  const {
-    selectedTest,
-    closeForm,
-    createTest,
-    updateTest,
-    loading,
-  } = testStore;
+  const { selectedTest, closeForm, createTest, updateTest, loading } =
+    testStore;
 
   const initialState = selectedTest ?? {
     id: "",

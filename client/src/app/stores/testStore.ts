@@ -81,8 +81,7 @@ export default class TestStore {
       await agent.Tests.update(test);
 
       runInAction(() => {
-        this.tests.filter((t) => t.id !== test.id);
-        this.tests.push(test);
+        this.tests = [...this.tests.filter((t) => t.id !== test.id), test];
         this.selectedTest = test;
         this.editMode = false;
         this.loading = false;
@@ -90,6 +89,24 @@ export default class TestStore {
     } catch (err) {
       console.log(err);
 
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  };
+
+  deleteTest = async (id: string) => {
+    this.loading = true;
+
+    try {
+      await agent.Tests.delete(id);
+      runInAction(() => {
+        this.tests = [...this.tests.filter((t) => t.id !== id)];
+        if (this.selectedTest?.id === id) this.cancelSelectedTest();
+        this.loading = false;
+      });
+    } catch (err) {
+      console.log(err);
       runInAction(() => {
         this.loading = false;
       });

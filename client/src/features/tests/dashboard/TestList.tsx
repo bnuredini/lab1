@@ -1,23 +1,17 @@
+import { observer } from "mobx-react-lite";
 import React, { SyntheticEvent, useState } from "react";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
-import { Test } from "../../../app/models/test";
 import { useStore } from "../../../app/stores/store";
 
-interface Props {
-  tests: Test[];
-  deleteTest: (id: string) => void;
-  submitting: boolean;
-}
-
-export default function TestList({ tests, deleteTest, submitting }: Props) {
+export default observer(function TestList() {
+  const { testStore } = useStore();
+  const { deleteTest, loading, tests } = testStore;
   const [target, setTarget] = useState("");
 
   function handleTestDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
     setTarget(e.currentTarget.name);
     deleteTest(id);
   }
-
-  const { testStore } = useStore();
 
   return (
     <Segment>
@@ -42,7 +36,7 @@ export default function TestList({ tests, deleteTest, submitting }: Props) {
                 />
                 <Button
                   name={test.id}
-                  loading={submitting && target === test.id}
+                  loading={loading && target === test.id}
                   onClick={(e) => handleTestDelete(e, test.id)}
                   floated="right"
                   content="Delete"
@@ -56,4 +50,4 @@ export default function TestList({ tests, deleteTest, submitting }: Props) {
       </Item.Group>
     </Segment>
   );
-}
+});
