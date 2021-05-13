@@ -1,4 +1,6 @@
 import axios, { AxiosResponse } from "axios";
+import { count } from "console";
+import { Country } from "../models/country";
 import { Test } from "../models/test";
 
 const sleep = (delay: number) => {
@@ -11,7 +13,7 @@ axios.defaults.baseURL = "http://localhost:5000/api";
 
 axios.interceptors.response.use(async (response) => {
   try {
-    await sleep(1000);
+    await sleep(700);
     return response;
   } catch (error) {
     console.log(error);
@@ -37,8 +39,18 @@ const Tests = {
   delete: (id: string) => axios.delete<void>(`/tests/${id}`),
 };
 
+const Countries = {
+  list: () => requests.get<Country[]>("/countries"),
+  details: (id: string) => requests.get<Country>(`/countries/${id}`),
+  create: (country: Country) => axios.post<void>("/countries", country),
+  update: (country: Country) =>
+    axios.put<void>(`/countries/${country.id}`, test),
+  delete: (id: string) => axios.delete<void>(`/countries/${id}`),
+};
+
 const agent = {
   Tests,
+  Countries,
 };
 
 export default agent;

@@ -1,26 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container } from "semantic-ui-react";
 import NavBar from "./NavBar";
 import TestDashboard from "../../features/tests/dashboard/TestDashboard";
-import LoadingComponent from "./LoadingComponent";
-import { useStore } from "../stores/store";
 import { observer } from "mobx-react-lite";
+import { Route } from "react-router-dom";
+import HomePage from "../../features/home/HomePage";
+import CountryDashboard from "../../features/stats/CountryDashboard";
 
 function App() {
-  const { testStore } = useStore();
-
-  useEffect(() => {
-    testStore.loadTests();
-  }, [testStore]); // side-effect runs when any dependecy values changes
-
-  if (testStore.loadingIntial)
-    return <LoadingComponent content="Loading app" />;
-
   return (
     <>
       <NavBar />
       <Container style={{ marginTop: "7em" }}>
-        <TestDashboard />
+        <Route exact path="/" component={HomePage} />
+        <Route path="/tests" component={TestDashboard} />
+        <Route path="/countries" component={CountryDashboard} />
       </Container>
     </>
   );
