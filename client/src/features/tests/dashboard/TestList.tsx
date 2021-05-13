@@ -5,7 +5,7 @@ import { useStore } from "../../../app/stores/store";
 
 export default observer(function TestList() {
   const { testStore } = useStore();
-  const { deleteTest, loading, tests } = testStore;
+  const { deleteTest, loading, testsByDate } = testStore;
   const [target, setTarget] = useState("");
 
   function handleTestDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
@@ -16,7 +16,7 @@ export default observer(function TestList() {
   return (
     <Segment>
       <Item.Group divided>
-        {tests.map((test) => (
+        {testsByDate.map((test) => (
           <Item key={test.id}>
             <Item.Content>
               <Item.Header as="a">{test.description}</Item.Header>

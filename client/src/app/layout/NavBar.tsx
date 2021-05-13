@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { Button, Container, Menu } from "semantic-ui-react";
 import { useStore } from "../stores/store";
 
@@ -8,23 +9,16 @@ export default function NavBar() {
   return (
     <Menu pointing widths={10}>
       <Container>
-        <Menu.Item>
+        <Menu.Item as={NavLink} to="/" exact>
           <img
             src="/assets/logo.png"
             alt="logo"
             style={{ marginRight: "5px" }}
           />
         </Menu.Item>
-        <Menu.Item name="Tests" />
-        <Menu.Item name="Statistics" />
+        <Menu.Item as={NavLink} to="/tests" name="Tests" exact />
+        <Menu.Item as={NavLink} to="/countries" name="Statistics" />
         <Menu.Item name="Profile" />
-        <Menu.Item>
-          <Button
-            onClick={() => testStore.openForm()}
-            primary
-            content="Create a Test"
-          />
-        </Menu.Item>
         <Menu.Item position={"right"}>
           <Button content="Login" />
         </Menu.Item>

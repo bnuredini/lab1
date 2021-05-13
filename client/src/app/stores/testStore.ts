@@ -4,25 +4,30 @@ import { Test } from "../models/test";
 import { v4 as uuid } from "uuid";
 
 export default class TestStore {
-  tests: Test[] = [];
+  testRegistry = new Map<string, Test>();
   selectedTest: Test | undefined = undefined;
   editMode = false;
   loading = false;
-  loadingIntial = false;
+  loadingIntial = true;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  loadTests = async () => {
-    this.setLoadingInitial(true);
+  get testsByDate() {
+    return Array.from(this.testRegistry.values()).sort(
+      (a, b) => Date.parse(a.date) - Date.parse(b.date)
+    );
+  }
 
+  loadTests = async () => {
     try {
       const tests = await agent.Tests.list();
 
       tests.forEach((test) => {
         test.date = test.date.split("T")[0];
-        this.tests.push(test);
+        // this.tests.push(test);
+        this.testRegistry.set(test.id, test);
       });
       this.setLoadingInitial(false);
     } catch (err) {
@@ -36,7 +41,8 @@ export default class TestStore {
   };
 
   selectTest = (id: string) => {
-    this.selectedTest = this.tests.find((t) => t.id === id);
+    // this.selectedTest = this.tests.find((t) => t.id === id);
+    this.selectedTest = this.testRegistry.get(id);
   };
 
   cancelSelectedTest = () => {
@@ -60,7 +66,7 @@ export default class TestStore {
       await agent.Tests.create(test);
 
       runInAction(() => {
-        this.tests.push(test);
+        this.testRegistry.set(test.id, test);
         this.selectedTest = test;
         this.editMode = false;
         this.loading = false;
@@ -81,7 +87,7 @@ export default class TestStore {
       await agent.Tests.update(test);
 
       runInAction(() => {
-        this.tests = [...this.tests.filter((t) => t.id !== test.id), test];
+        this.testRegistry.set(test.id, test);
         this.selectedTest = test;
         this.editMode = false;
         this.loading = false;
@@ -100,8 +106,9 @@ export default class TestStore {
 
     try {
       await agent.Tests.delete(id);
+
       runInAction(() => {
-        this.tests = [...this.tests.filter((t) => t.id !== id)];
+        this.testRegistry.delete(id);
         if (this.selectedTest?.id === id) this.cancelSelectedTest();
         this.loading = false;
       });
