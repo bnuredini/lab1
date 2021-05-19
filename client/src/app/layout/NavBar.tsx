@@ -16,8 +16,9 @@ export default function NavBar() {
             style={{ marginRight: "5px" }}
           />
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/tests" name="Tests" exact />
-        <Menu.Item as={NavLink} to="/countries" name="Statistics" />
+        <Menu.Item as={NavLink} to="/tests" name="Testet" exact />
+        <Menu.Item as={NavLink} to="/countries" name="Statistikat" />
+        <Menu.Item as={NavLink} to="/patients" name="Pacientet" />
         <Menu.Item name="Profile" />
         <Menu.Item position={"right"}>
           <Button content="Login" />

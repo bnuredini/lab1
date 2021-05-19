@@ -1,31 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "D:\\UBT\\viti II\\semestri 4\\lab kurs\\Project\\lab1\\Domain\\Domain.csproj": {}
+    "/home/bleart/projects/lab1/Domain/Domain.csproj": {}
   },
   "projects": {
-    "D:\\UBT\\viti II\\semestri 4\\lab kurs\\Project\\lab1\\Domain\\Domain.csproj": {
+    "/home/bleart/projects/lab1/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UBT\\viti II\\semestri 4\\lab kurs\\Project\\lab1\\Domain\\Domain.csproj",
+        "projectUniqueName": "/home/bleart/projects/lab1/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\UBT\\viti II\\semestri 4\\lab kurs\\Project\\lab1\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\qendr\\.nuget\\packages\\",
-        "outputPath": "D:\\UBT\\viti II\\semestri 4\\lab kurs\\Project\\lab1\\Domain\\obj\\",
+        "projectPath": "/home/bleart/projects/lab1/Domain/Domain.csproj",
+        "packagesPath": "/home/bleart/.nuget/packages/",
+        "outputPath": "/home/bleart/projects/lab1/Domain/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\qendr\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/home/bleart/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -64,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -21,27 +21,25 @@ export default function CountryList() {
   }, []);
 
   return (
-    <Segment>
-      <Item.Group divided>
-        {countries.map((country) => (
-          <Item key={country.id}>
-            <Item.Content>
-              <Item.Header as="a">{country.name}</Item.Header>
-              {/* <Item.Meta>{country.deaths}</Item.Meta> */}
-              <Item.Description>
-                <div>Infections: {country.infections}</div>
-                <div>Deaths: {country.deaths}</div>
-                <div>Recoveries: {country.recoveries}</div>
-                <div>Vaccinated: {country.vaccinated}</div>
-              </Item.Description>
-              <Item.Extra>
-                {/* <Button floated="right" content="View" color="blue" />
+    <Item.Group divided>
+      {countries.map((country) => (
+        <Item key={country.id}>
+          <Item.Content>
+            <Item.Header as="a">{country.name}</Item.Header>
+            {/* <Item.Meta>{country.deaths}</Item.Meta> */}
+            <Item.Description>
+              <div>Infections: {country.infections}</div>
+              <div>Deaths: {country.deaths}</div>
+              <div>Recoveries: {country.recoveries}</div>
+              <div>Vaccinated: {country.vaccinated}</div>
+            </Item.Description>
+            <Item.Extra>
+              {/* <Button floated="right" content="View" color="blue" />
                 <Button floated="right" content="Delete" color="red" /> */}
-              </Item.Extra>
-            </Item.Content>
-          </Item>
-        ))}
-      </Item.Group>
-    </Segment>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      ))}
+    </Item.Group>
   );
 }

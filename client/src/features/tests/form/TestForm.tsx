@@ -10,11 +10,11 @@ export default observer(function TestForm() {
 
   const initialState = selectedTest ?? {
     id: "",
-    patientId: 0,
+    patientId: "",
     date: "",
     description: "",
-    hospitalId: 0,
-    vaccineId: 0,
+    hospitalId: "",
+    vaccineId: "",
     variation: "",
   };
 
@@ -34,12 +34,6 @@ export default observer(function TestForm() {
   return (
     <Segment clearing>
       <Form onSubmit={handleSubmit}>
-        <Form.Input
-          placeholder="Patient ID"
-          value={test.patientId}
-          name="title"
-          onChange={handleInputChange}
-        />
         <Form.Input
           type="date"
           placeholder="Date"

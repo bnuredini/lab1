@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite";
 import { Route } from "react-router-dom";
 import HomePage from "../../features/home/HomePage";
 import CountryDashboard from "../../features/stats/CountryDashboard";
+import PatientDashboard from "../../features/patients/dashboard/PatientDashboard";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route path="/tests" component={TestDashboard} />
         <Route path="/countries" component={CountryDashboard} />
+        <Route path="/patients" component={PatientDashboard} />
       </Container>
     </>
   );
