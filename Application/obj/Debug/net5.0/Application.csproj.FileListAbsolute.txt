@@ -66,3 +66,20 @@
 /home/bleart/projects/lab1/Application/obj/Debug/net5.0/Application.dll
 /home/bleart/projects/lab1/Application/obj/Debug/net5.0/ref/Application.dll
 /home/bleart/projects/lab1/Application/obj/Debug/net5.0/Application.pdb
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\bin\Debug\net5.0\Application.deps.json
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\bin\Debug\net5.0\Application.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\bin\Debug\net5.0\ref\Application.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\bin\Debug\net5.0\Application.pdb
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\bin\Debug\net5.0\Domain.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\bin\Debug\net5.0\Persistence.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\bin\Debug\net5.0\Domain.pdb
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\bin\Debug\net5.0\Persistence.pdb
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\obj\Debug\net5.0\Application.csprojAssemblyReference.cache
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\obj\Debug\net5.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\obj\Debug\net5.0\Application.AssemblyInfoInputs.cache
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\obj\Debug\net5.0\Application.AssemblyInfo.cs
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\obj\Debug\net5.0\Application.csproj.CoreCompileInputs.cache
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\obj\Debug\net5.0\Application.csproj.CopyComplete
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\obj\Debug\net5.0\Application.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\obj\Debug\net5.0\ref\Application.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Application\obj\Debug\net5.0\Application.pdb

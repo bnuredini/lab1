@@ -58,3 +58,18 @@
 /home/bleart/projects/lab1/Persistence/obj/Debug/net5.0/Persistence.dll
 /home/bleart/projects/lab1/Persistence/obj/Debug/net5.0/ref/Persistence.dll
 /home/bleart/projects/lab1/Persistence/obj/Debug/net5.0/Persistence.pdb
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\bin\Debug\net5.0\Persistence.deps.json
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\bin\Debug\net5.0\Persistence.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\bin\Debug\net5.0\ref\Persistence.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\bin\Debug\net5.0\Persistence.pdb
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\bin\Debug\net5.0\Domain.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\bin\Debug\net5.0\Domain.pdb
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\obj\Debug\net5.0\Persistence.csprojAssemblyReference.cache
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\obj\Debug\net5.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\obj\Debug\net5.0\Persistence.AssemblyInfoInputs.cache
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\obj\Debug\net5.0\Persistence.AssemblyInfo.cs
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\obj\Debug\net5.0\Persistence.csproj.CoreCompileInputs.cache
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\obj\Debug\net5.0\Persistence.csproj.CopyComplete
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\obj\Debug\net5.0\Persistence.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\obj\Debug\net5.0\ref\Persistence.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Persistence\obj\Debug\net5.0\Persistence.pdb

@@ -10,7 +10,7 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context)
         {
-            if (context.Tests.Any()) return;
+            if (context.Patients.Any()) return;
             
             var tests = new List<Test>
             {
@@ -63,8 +63,40 @@ namespace Persistence
                 }
             };
 
+            var patients = new List<Patient>
+            {
+                new Patient
+                {
+                    Full_Name="Qendresa Berisha",
+                    Birthday = "23-07-1998",
+                    Gender = "Female",
+                    Phone_Number = "049343431",
+                    Email = "email@gmail.com",
+                    Address = "Prishtine"
+                },
+                new Patient
+                {
+                    Full_Name="Filan Fisteku",
+                    Birthday = "15-01-2000",
+                    Gender = "Female",
+                    Phone_Number = "049455431",
+                    Email = "email@gmail.com",
+                    Address = "Prishtine"
+                },
+                new Patient
+                {
+                    Full_Name="Shembull3",
+                    Birthday ="11-12-2001" ,
+                    Gender = "Male",
+                    Phone_Number = "049123456",
+                    Email = "email@gmail.com",
+                    Address = "Prishtine"
+                },
+            };
+
             await context.Tests.AddRangeAsync(tests);
             await context.Countries.AddRangeAsync(countries);
+            await context.Patients.AddRangeAsync(patients);
             await context.SaveChangesAsync();
         }
     }

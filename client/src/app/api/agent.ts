@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { count } from "console";
 import { Country } from "../models/country";
+import { Patient } from "../models/patient";
 import { Test } from "../models/test";
 
 const sleep = (delay: number) => {
@@ -47,10 +48,18 @@ const Countries = {
     axios.put<void>(`/countries/${country.id}`, test),
   delete: (id: string) => axios.delete<void>(`/countries/${id}`),
 };
+const Patients={
+  list:()=> requests.get<Patient[]>('/patients'),
+  details: (id: string )=> requests.get<Patient>(`/patients/${id}`),
+  create: (patient: Patient)=> requests.post<void>('/patients', patient),
+  update: (patient: Patient)=> axios.put<void>(`/patients/${patient.id}`,patient ),
+  delete: (id: string )=> axios.delete<void>(`/patients/${id}`)
+}
 
 const agent = {
   Tests,
   Countries,
+  Patients
 };
 
 export default agent;

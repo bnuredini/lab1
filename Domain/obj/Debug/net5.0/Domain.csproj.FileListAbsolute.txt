@@ -46,3 +46,15 @@
 /home/bleart/projects/lab1/Domain/obj/Debug/net5.0/Domain.dll
 /home/bleart/projects/lab1/Domain/obj/Debug/net5.0/ref/Domain.dll
 /home/bleart/projects/lab1/Domain/obj/Debug/net5.0/Domain.pdb
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\bin\Debug\net5.0\Domain.deps.json
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\bin\Debug\net5.0\Domain.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\bin\Debug\net5.0\ref\Domain.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\bin\Debug\net5.0\Domain.pdb
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\obj\Debug\net5.0\Domain.csprojAssemblyReference.cache
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\obj\Debug\net5.0\Domain.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\obj\Debug\net5.0\ref\Domain.dll
+D:\UBT\viti II\semestri 4\lab kurs\Project\lab1\Domain\obj\Debug\net5.0\Domain.pdb
