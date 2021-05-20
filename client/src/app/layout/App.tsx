@@ -7,6 +7,7 @@ import { Route } from "react-router-dom";
 import HomePage from "../../features/home/HomePage";
 import CountryDashboard from "../../features/stats/CountryDashboard";
 import PatientDashboard from "../../features/patients/dashboard/PatientDashboard";
+import PatientForm from "../../features/patients/form/PatientForm";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/tests" component={TestDashboard} />
         <Route path="/countries" component={CountryDashboard} />
         <Route path="/patients" component={PatientDashboard} />
+        <Route path="/newPatient" component={PatientForm} />
       </Container>
     </>
   );

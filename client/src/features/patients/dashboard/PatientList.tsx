@@ -34,7 +34,7 @@ export default observer(function PatientList() {
                   as={Link}
                   to={`/patients/${patient.id}`}
                   floated="right"
-                  content="View"
+                  content="Shiko"
                   color="blue"
                 />
                 <Button
@@ -42,7 +42,7 @@ export default observer(function PatientList() {
                   loading={loading && target === patient.id}
                   onClick={(e) => handlePatientDelete(e, patient.id)}
                   floated="right"
-                  content="Delete"
+                  content="Fshij"
                   color="red"
                 />
                 <Label basic content={patient.phone_Number} />

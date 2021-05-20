@@ -31,7 +31,7 @@ export default observer(function TestList() {
                 <Button
                   onClick={() => testStore.selectTest(test.id)}
                   floated="right"
-                  content="View"
+                  content="Shiko"
                   color="blue"
                 />
                 <Button
@@ -39,7 +39,7 @@ export default observer(function TestList() {
                   loading={loading && target === test.id}
                   onClick={(e) => handleTestDelete(e, test.id)}
                   floated="right"
-                  content="Delete"
+                  content="Fshij"
                   color="red"
                 />
                 <Label basic content={test.variation} />

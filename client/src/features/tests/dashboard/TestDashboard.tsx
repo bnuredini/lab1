@@ -27,7 +27,7 @@ export default observer(function TestDashboard() {
       <Button
         onClick={() => testStore.openForm()}
         primary
-        content="Create a Test"
+        content="Krijo test"
         style={{ marginBottom: "1.4rem" }}
       />
       <Grid>

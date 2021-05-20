@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
-import { Grid } from "semantic-ui-react";
+import { Button, Grid } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import PatientList from "./PatientList";
@@ -15,11 +15,19 @@ export default observer(function PatientDashboard() {
   if (patientStore.loadingInitial)
     return <LoadingComponent content="Loading app" />;
   return (
-    <Grid>
-      <Grid.Column width="10">
-        <PatientList />
-      </Grid.Column>
-      <Grid.Column width="6"></Grid.Column>
-    </Grid>
+    <>
+      <Button
+        primary
+        content="Krijo pacient"
+        to="/whatthe"
+        style={{ marginBottom: "1.4rem" }}
+      />
+      <Grid>
+        <Grid.Column width="10">
+          <PatientList />
+        </Grid.Column>
+        <Grid.Column width="6"></Grid.Column>
+      </Grid>
+    </>
   );
 });
