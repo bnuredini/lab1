@@ -1,138 +1,123 @@
-import {makeAutoObservable, runInAction} from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { Patient } from "../models/patient";
 import agent from "../api/agent";
 
-export default class PatientStore{
-patientRegistry=new Map<string, Patient>();
-selectedPatient: Patient | undefined=undefined;
-editMode=false;
-loading=false;
-loadingInitial=true;
+export default class PatientStore {
+  patientRegistry = new Map<string, Patient>();
+  selectedPatient: Patient | undefined = undefined;
+  editMode = false;
+  loading = false;
+  loadingInitial = true;
 
-    constructor(){
-        makeAutoObservable(this)
-    }
-
-    get patientsByDate(){
-        return Array.from(this.patientRegistry.values()).sort((a,b)=> 
-        Date.parse(a.birthday)- Date.parse(b.birthday));
-    }
-
-    loadPatients= async() => {
-        this.loadingInitial=true;
-        try{
-            const patients =await agent.Patients.list();
-                    patients.forEach(patient=> {
-                    this.setPatient(patient);
-
-                })            
-            this.setLoadingInitial(false);            
-        }catch (error){
-            console.log(error);
-          
-                this.setLoadingInitial(false);
-           
-            
-        }
-    }
-
-    loadPatient=async(id:string)=>{
-        let patient= this.getPatient(id);
-
-        if(patient){
-            this.selectedPatient=patient;
-            return patient;
-        }else{
-            this.loadingInitial=true;
-            try{
-                patient=await agent.Patients.details(id);
-                this.setPatient(patient);
-                runInAction(() => {
-                    this.selectedPatient=(patient);
-
-                })
-                this.setLoadingInitial(false);
-                return patient;
-
-
-            }catch(error){
-                console.log(error);
-                this.setLoadingInitial(false);
-            }
-
-        }
-    }
-
-    private setPatient=(patient: Patient)=>{
-        patient.birthday=patient.birthday;
-                    this.patientRegistry.set(patient.id, patient);
-    }
-
-    private getPatient=(id:string)=>{
-        return this.patientRegistry.get(id);
-    }
-
-    setLoadingInitial = (state: boolean) => {
-        this.loadingInitial = state;
-    }
-
-    createPatient=async (patient: Patient) => {
-        this.loading =true;
-        try{
-
-            await agent.Patients.create(patient);
-            runInAction(() => {
-                this.patientRegistry.set(patient.id, patient);
-                this.selectedPatient=patient;
-                this.editMode=false;
-                this.loading=false;
-            })
-
-        }catch(error){
-            console.log(error);
-            runInAction(() => {
-                this.loading=false;
-
-        })
-    }
+  constructor() {
+    makeAutoObservable(this);
   }
-  updatePatient=async (patient: Patient) => {
-    this.loading =true;
-    try{
 
-        await agent.Patients.update(patient);
+  get patientsByDate() {
+    return Array.from(this.patientRegistry.values()).sort(
+      (a, b) => Date.parse(a.birthday) - Date.parse(b.birthday)
+    );
+  }
+
+  loadPatients = async () => {
+    this.loadingInitial = true;
+    try {
+      const patients = await agent.Patients.list();
+      patients.forEach((patient) => {
+        this.setPatient(patient);
+      });
+      this.setLoadingInitial(false);
+    } catch (error) {
+      console.log(error);
+
+      this.setLoadingInitial(false);
+    }
+  };
+
+  loadPatient = async (id: string) => {
+    let patient = this.getPatient(id);
+
+    if (patient) {
+      this.selectedPatient = patient;
+      return patient;
+    } else {
+      this.loadingInitial = true;
+      try {
+        patient = await agent.Patients.details(id);
+        this.setPatient(patient);
         runInAction(() => {
-            this.patientRegistry.set(patient.id, patient);
-            this.selectedPatient=patient;
-            this.editMode=false;
-            this.loading=false;
-        })
-
-    }catch(error){
+          this.selectedPatient = patient;
+        });
+        this.setLoadingInitial(false);
+        return patient;
+      } catch (error) {
         console.log(error);
-        runInAction(() => {
-            this.loading=false;
+        this.setLoadingInitial(false);
+      }
+    }
+  };
 
-         })
-      } 
-   }
+  private setPatient = (patient: Patient) => {
+    patient.birthday = patient.birthday;
+    this.patientRegistry.set(patient.id, patient);
+  };
 
-   deletePatient= async (id: string) => {
-    this.loading =true;
-    try{
+  private getPatient = (id: string) => {
+    return this.patientRegistry.get(id);
+  };
 
-        await agent.Patients.delete(id);
-        runInAction(() => {
-          this.patientRegistry.delete(id);  
-            this.loading=false;
-        })
+  setLoadingInitial = (state: boolean) => {
+    this.loadingInitial = state;
+  };
 
-    }catch(error){
-        console.log(error);
-        runInAction(() => {
-            this.loading=false;
+  createPatient = async (patient: Patient) => {
+    this.loading = true;
+    try {
+      await agent.Patients.create(patient);
+      runInAction(() => {
+        this.patientRegistry.set(patient.id, patient);
+        this.selectedPatient = patient;
+        this.editMode = false;
+        this.loading = false;
+      });
+    } catch (error) {
+      console.log(error);
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  };
+  updatePatient = async (patient: Patient) => {
+    this.loading = true;
+    try {
+      await agent.Patients.update(patient);
+      runInAction(() => {
+        this.patientRegistry.set(patient.id, patient);
+        this.selectedPatient = patient;
+        this.editMode = false;
+        this.loading = false;
+      });
+    } catch (error) {
+      console.log(error);
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  };
 
-         })
-   }
-}
+  deletePatient = async (id: string) => {
+    this.loading = true;
+    try {
+      await agent.Patients.delete(id);
+      runInAction(() => {
+        this.patientRegistry.delete(id);
+        this.loading = false;
+      });
+    } catch (error) {
+      console.log(error);
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  };
 }
