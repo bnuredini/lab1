@@ -10,11 +10,11 @@ export default observer(function TestForm() {
 
   const initialState = selectedTest ?? {
     id: "",
-    patientId: "",
+    patientId: 0,
     date: "",
     description: "",
-    hospitalId: "",
-    vaccineId: "",
+    hospitalId: 0,
+    vaccineId: 0,
     variation: "",
   };
 
@@ -42,23 +42,31 @@ export default observer(function TestForm() {
           onChange={handleInputChange}
         />
         <Form.Input
+          placeholder="Patient ID"
+          value={test.patientId}
+          name="pacientId"
+          onChange={handleInputChange}
+        />
+        <Form.Input
           placeholder="Description"
           value={test.description}
           name="description"
           onChange={handleInputChange}
         />
-        <Form.Input
-          placeholder="Hospital ID"
-          value={test.hospitalId}
-          name="hospitalId"
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Vaccine ID"
-          value={test.vaccineId}
-          name="vaccineId"
-          onChange={handleInputChange}
-        />
+        <Form.Group widths="equal">
+          <Form.Input
+            placeholder="Hospital ID"
+            value={test.hospitalId}
+            name="hospitalId"
+            onChange={handleInputChange}
+          />
+          <Form.Input
+            placeholder="Vaccine ID"
+            value={test.vaccineId}
+            name="vaccineId"
+            onChange={handleInputChange}
+          />
+        </Form.Group>
         <Form.Input
           placeholder="Variation"
           value={test.variation}

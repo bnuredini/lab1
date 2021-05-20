@@ -1,9 +1,9 @@
 export interface Test {
   id: string;
-  patientId: string;
+  patientId: number;
   date: string;
   description: string;
-  hospitalId: string;
-  vaccineId: string;
+  hospitalId: number;
+  vaccineId: number;
   variation: string;
 }
