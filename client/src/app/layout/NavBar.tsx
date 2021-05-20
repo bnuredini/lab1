@@ -19,12 +19,12 @@ export default function NavBar() {
         <Menu.Item as={NavLink} to="/tests" name="Testet" exact />
         <Menu.Item as={NavLink} to="/countries" name="Statistikat" />
         <Menu.Item as={NavLink} to="/patients" name="Pacientet" />
-        <Menu.Item name="Profile" />
+        <Menu.Item name="Profili" />
         <Menu.Item position={"right"}>
-          <Button content="Login" />
+          <Button content="Kycu" />
         </Menu.Item>
         <Menu.Item>
-          <Button content="Register" />
+          <Button content="Regjistrohu" />
         </Menu.Item>
       </Container>
     </Menu>

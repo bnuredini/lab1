@@ -1,9 +1,11 @@
 body {
-  background-color: #eaeaea !important;
+  /* background-color: #eaeaea !important; */
+  background-color: white !important;
 }
 
 .ui.menu {
-  background-color: #31352e;
+  /* background-color: #31352e; */
+  background-color: black;
 }
 
 .item {

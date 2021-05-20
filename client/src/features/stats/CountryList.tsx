@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Item, ItemMeta, Label, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Item,
+  ItemMeta,
+  Label,
+  Segment,
+  Statistic,
+} from "semantic-ui-react";
 import agent from "../../app/api/agent";
 import { Country } from "../../app/models/country";
 import LoadingComponent from "../../app/layout/LoadingComponent";
@@ -7,6 +14,8 @@ import LoadingComponent from "../../app/layout/LoadingComponent";
 export default function CountryList() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // if (loading) return <LoadingComponent content="Loading app" />;
 
   useEffect(() => {
     agent.Countries.list().then((response) => {
@@ -26,12 +35,28 @@ export default function CountryList() {
         <Item key={country.id}>
           <Item.Content>
             <Item.Header as="a">{country.name}</Item.Header>
-            {/* <Item.Meta>{country.deaths}</Item.Meta> */}
             <Item.Description>
-              <div>Infections: {country.infections}</div>
+              <Statistic>
+                <Statistic.Value>{country.infections}</Statistic.Value>
+                <Statistic.Label>Infektime</Statistic.Label>
+              </Statistic>
+              <Statistic>
+                <Statistic.Value>{country.deaths}</Statistic.Value>
+                <Statistic.Label>Vdekje</Statistic.Label>
+              </Statistic>
+              <Statistic>
+                <Statistic.Value>{country.recoveries}</Statistic.Value>
+                <Statistic.Label>Rikuperime</Statistic.Label>
+              </Statistic>
+              <Statistic>
+                <Statistic.Value>{country.vaccinated}</Statistic.Value>
+                <Statistic.Label>Vaksinime</Statistic.Label>
+              </Statistic>
+
+              {/* <div>Infections: {country.infections}</div>
               <div>Deaths: {country.deaths}</div>
               <div>Recoveries: {country.recoveries}</div>
-              <div>Vaccinated: {country.vaccinated}</div>
+              <div>Vaccinated: {country.vaccinated}</div> */}
             </Item.Description>
             <Item.Extra>
               {/* <Button floated="right" content="View" color="blue" />
