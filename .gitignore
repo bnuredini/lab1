@@ -30,3 +30,4 @@ ipch/
 *.[Cc]ache
 !?*.[Cc]ache/
 
+.vscode/
