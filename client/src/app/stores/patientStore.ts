@@ -58,7 +58,7 @@ export default class PatientStore {
   };
 
   private setPatient = (patient: Patient) => {
-    patient.birthday = patient.birthday;
+    // patient.birthday = patient.birthday;
     this.patientRegistry.set(patient.id, patient);
   };
 

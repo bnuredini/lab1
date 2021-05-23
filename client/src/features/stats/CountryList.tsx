@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Item,
-  ItemMeta,
-  Label,
-  Segment,
-  Statistic,
-} from "semantic-ui-react";
+import { Item, Statistic } from "semantic-ui-react";
 import agent from "../../app/api/agent";
 import { Country } from "../../app/models/country";
-import LoadingComponent from "../../app/layout/LoadingComponent";
 
 export default function CountryList() {
   const [countries, setCountries] = useState<Country[]>([]);
