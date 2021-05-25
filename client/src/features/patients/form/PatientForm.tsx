@@ -1,106 +1,89 @@
 import { observer } from "mobx-react-lite";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
-import { Button, Form, Segment } from "semantic-ui-react";
+import React, {useState } from "react";
+import { Button,Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
-import LoadingComponent from "../../../app/layout/LoadingComponent";
-import { v4 as uuid } from "uuid";
-import { Link } from "react-router-dom";
+import * as Yup from  'yup';
+import MyTextInput from "../../../app/common/form/MyTextInput";
+import MySelectInput from "../../../app/common/form/MySelectInput";
+import MyDateInput from "../../../app/common/form/MyDateInput";
+import { Formik, Form, ErrorMessage, validateYupSchema} from "formik";
+import { genderOptions } from "../../../app/common/options/genderOptions";
+import { Patient } from "../../../app/models/patient";
 
 export default observer(function PatientForm() {
-  const history = useHistory();
   const { patientStore } = useStore();
-  const { createPatient, updatePatient, loading, loadPatient, loadingInitial } =
-    patientStore;
-  const { id } = useParams<{ id: string }>();
-  const [patient, setPatient] = useState({
+  const { createPatient, selectedPatient, closeForm, updatePatient, loading} = patientStore;
+   
+  
+  const initialState = selectedPatient ?? {
     id: "",
     full_Name: "",
-    birthday: "",
+    birthday: null,
     gender: "",
-    phone_Number: "",
+    phone_Number:0,
     email: "",
-  });
+    address:"",
+    
+  };
 
-  useEffect(() => {
-    if (id) loadPatient(id).then((patient) => setPatient(patient!));
-  }, [id, loadPatient]);
+  const validationSchema=Yup.object({
+  
+    full_Name: Yup.string().required(),
+    birthday: Yup.string().required('Ju lutem vendosni ditelindjen').nullable(),
+    gender: Yup.string().required(),
+    phone_Number: Yup.number().required(),
+    email: Yup.string().required(),
+    address: Yup.string().required()
+    
+  })
+  const [patient] = useState(initialState);
 
-  function handleSubmit() {
-    if (patient.id.length === 0) {
-      let newPatient = {
-        ...patient,
-        id: uuid(),
-      };
-      createPatient(newPatient).then(() =>
-        history.push(`/patients/${newPatient.id}`)
-      );
-    } else {
-      updatePatient(patient).then(() =>
-        history.push(`/patients/${patient.id}`)
-      );
-    }
-  }
-  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target;
-    setPatient({ ...patient, [name]: value });
-  }
-  if (loadingInitial) return <LoadingComponent content="Loading patient..." />;
+  function handleFormSubmit(patient: Patient) {
+     patient.id ? updatePatient(patient) : createPatient(patient);
+   }
+
+
   return (
     <Segment clearing>
-      <Form onSubmit={handleSubmit} autoComplete="off">
-        <Form.Input
-          placeholder="Full_Name"
-          value={patient.full_Name}
-          name="full_Name"
-          onChange={handleInputChange}
+      <Formik 
+      validationSchema={validationSchema}
+      enableReinitialize
+      initialValues={patient}
+      onSubmit={values => handleFormSubmit(values)}>
+        {({handleSubmit, isValid, isSubmitting, dirty}) =>(
+    <Form  className='ui form' onSubmit={handleSubmit} >
+<MyTextInput  name="Emri dhe Mbiemri" placeholder="Full_Name"/>
+<MyDateInput
+          placeholderText="Ditelindja"
+          name="date"
+          showTimeSelect
+          timeCaption='time'
+          dateFormat='dd.MM.yyyy, (h:mm aa)'
         />
-        <Form.Input
-          type="date"
-          placeholder="Birthday"
-          value={patient.birthday}
-          name="birthday"
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Gender"
-          value={patient.gender}
-          name="gender"
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Phone_Number"
-          value={patient.phone_Number}
-          name="phone_Number"
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Email"
-          value={patient.email}
-          name="email"
-          onChange={handleInputChange}
-        />
-        {/* <Form.Input
-          placeholder="Address"
-          value={patient.address}
-          name="address"
-          onChange={handleInputChange}
-        /> */}
-        <Button
-          loading={loading}
-          floated="right"
-          positive
-          type="submit"
-          content="Submit"
-        />
-        <Button
-          as={Link}
-          to="/patients"
-          floated="right"
-          type="button"
-          content="Cancel"
-        />
-      </Form>
+<MySelectInput options={genderOptions} placeholder="Gjinia" name="gender"/>
+<MyTextInput placeholder="Numri i telefonit" name="phone_Number"/>
+<MyTextInput placeholder="Email-i" name="email"/>
+<MyTextInput
+  placeholder="Adresa" name="address"/>
+<Button
+disabled={isSubmitting || !dirty || !isValid}
+  loading={loading}
+  floated="right"
+  positive
+  type="submit"
+  content="Submit"
+/>
+<Button
+ onClick={closeForm}
+  to="/patients"
+  floated="right"
+  type="button"
+  content="Cancel"
+/>
+</Form>
+        )}
+      </Formik>
+      
     </Segment>
   );
 });

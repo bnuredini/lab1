@@ -68,27 +68,27 @@ namespace Persistence
                 new Patient
                 {
                     Full_Name="Qendresa Berisha",
-                    Birthday = "23-07-1998",
+                    Birthday = DateTime.Now.AddMonths(-2),
                     Gender = "Female",
-                    Phone_Number = "049343431",
+                    Phone_Number = 049343431,
                     Email = "email@gmail.com",
                     Address = "Prishtine"
                 },
                 new Patient
                 {
                     Full_Name="Filan Fisteku",
-                    Birthday = "15-01-2000",
+                    Birthday = DateTime.Now.AddMonths(-2),
                     Gender = "Female",
-                    Phone_Number = "049455431",
+                    Phone_Number = 049455431,
                     Email = "email@gmail.com",
                     Address = "Prishtine"
                 },
                 new Patient
                 {
                     Full_Name="Shembull3",
-                    Birthday ="11-12-2001" ,
+                    Birthday =DateTime.Now.AddMonths(-2) ,
                     Gender = "Male",
-                    Phone_Number = "049123456",
+                    Phone_Number = 049123456,
                     Email = "email@gmail.com",
                     Address = "Prishtine"
                 },

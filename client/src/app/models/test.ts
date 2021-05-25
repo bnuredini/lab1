@@ -1,7 +1,7 @@
 export interface Test {
   id: string;
   patientId: number;
-  date: string;
+  date: Date | null;
   description: string;
   hospitalId: number;
   vaccineId: number;

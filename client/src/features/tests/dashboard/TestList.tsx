@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { observer } from "mobx-react-lite";
 import React, { SyntheticEvent, useState } from "react";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
@@ -20,7 +21,7 @@ export default observer(function TestList() {
           <Item key={test.id}>
             <Item.Content>
               <Item.Header as="a">{test.description}</Item.Header>
-              <Item.Meta>{test.date}</Item.Meta>
+              <Item.Meta>{format (test.date!, 'dd.MM.yyyy, (h:mm aa)')}</Item.Meta>
               <Item.Description>
                 <div>{test.description}</div>
                 <div>
