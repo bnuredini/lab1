@@ -1,7 +1,15 @@
+import { Formik, Form, ErrorMessage, validateYupSchema } from "formik";
 import { observer } from "mobx-react-lite";
-import React, { ChangeEvent, useState } from "react";
-import { Button, Form, Segment } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Button, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
+import * as Yup from  'yup';
+import MyTextInput from "../../../app/common/form/MyTextInput";
+import MyTextArea from "../../../app/common/form/MyTextArea";
+import MySelectInput from "../../../app/common/form/MySelectInput";
+import { variationOptions } from "../../../app/common/options/variationOptions";
+import MyDateInput from "../../../app/common/form/MyDateInput";
+import { Test } from "../../../app/models/test";
 
 export default observer(function TestForm() {
   const { testStore } = useStore();
@@ -11,69 +19,67 @@ export default observer(function TestForm() {
   const initialState = selectedTest ?? {
     id: "",
     patientId: 0,
-    date: "",
+    date: null,
     description: "",
     hospitalId: 0,
     vaccineId: 0,
     variation: "",
   };
 
-  const [test, setTest] = useState(initialState);
+  const validationSchema=Yup.object({
+  
+    patientId: Yup.number().required(),
+    date: Yup.string().required('Ju lutem vendosni nje date').nullable(),
+    description: Yup.string().required(),
+    hospitalId: Yup.number().required(),
+    vaccineId: Yup.number().required(),
+    variation: Yup.string().required()
+  })
+  const [test] = useState(initialState);
 
-  function handleSubmit() {
-    test.id ? updateTest(test) : createTest(test);
-  }
+  function handleFormSubmit(test: Test) {
+     test.id ? updateTest(test) : createTest(test);
+   }
 
-  function handleInputChange(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    const { name, value } = event.target;
-    setTest({ ...test, [name]: value });
-  }
+  
 
   return (
     <Segment clearing>
-      <Form onSubmit={handleSubmit}>
-        <Form.Input
-          type="date"
-          placeholder="Date"
-          value={test.date}
+      <Formik 
+      validationSchema={validationSchema}
+      enableReinitialize 
+      initialValues={test} 
+      onSubmit={values =>  handleFormSubmit(values)}>        
+      {({handleSubmit, isValid, isSubmitting, dirty}) => (
+          <Form className='ui form' onSubmit={handleSubmit}>
+            <MyTextInput name='patientId' placeholder='PatientID'/>
+        <MyDateInput
+          placeholderText="Date"
           name="date"
-          onChange={handleInputChange}
+          showTimeSelect
+          timeCaption='time'
+          dateFormat='dd.MM.yyyy, (h:mm aa)'
         />
-        <Form.Input
-          placeholder="Patient ID"
-          value={test.patientId}
-          name="pacientId"
-          onChange={handleInputChange}
-        />
-        <Form.Input
+       
+        <MyTextArea rows={3}
           placeholder="Description"
-          value={test.description}
           name="description"
-          onChange={handleInputChange}
         />
-        <Form.Group widths="equal">
-          <Form.Input
+     
+          <MyTextInput
             placeholder="Hospital ID"
-            value={test.hospitalId}
             name="hospitalId"
-            onChange={handleInputChange}
           />
-          <Form.Input
+          <MyTextInput
             placeholder="Vaccine ID"
-            value={test.vaccineId}
             name="vaccineId"
-            onChange={handleInputChange}
           />
-        </Form.Group>
-        <Form.Input
+        <MySelectInput options={variationOptions}
           placeholder="Variation"
-          value={test.variation}
           name="variation"
-          onChange={handleInputChange}
         />
         <Button
+        disabled={isSubmitting || !dirty || !isValid}
           loading={loading}
           floated="right"
           positive
@@ -86,7 +92,9 @@ export default observer(function TestForm() {
           type="button"
           content="Cancel"
         />
-      </Form>
+</Form>
+        )}
+        </Formik>
     </Segment>
   );
 });

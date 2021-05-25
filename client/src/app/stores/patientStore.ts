@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { Patient } from "../models/patient";
 import agent from "../api/agent";
+import { v4 as uuid } from "uuid";
 
 export default class PatientStore {
   patientRegistry = new Map<string, Patient>();
@@ -12,19 +13,19 @@ export default class PatientStore {
   constructor() {
     makeAutoObservable(this);
   }
-
+ 
   get patientsByDate() {
     return Array.from(this.patientRegistry.values()).sort(
-      (a, b) => Date.parse(a.birthday) - Date.parse(b.birthday)
+      (a, b) => a.birthday!.getTime() - b.birthday!.getTime()
     );
   }
 
   loadPatients = async () => {
-    this.loadingInitial = true;
     try {
       const patients = await agent.Patients.list();
       patients.forEach((patient) => {
-        this.setPatient(patient);
+        patient.birthday = new Date(patient.birthday!);
+        this.patientRegistry.set(patient.id, patient);
       });
       this.setLoadingInitial(false);
     } catch (error) {
@@ -33,6 +34,23 @@ export default class PatientStore {
       this.setLoadingInitial(false);
     }
   };
+
+  selectPatient = (id: string) => {
+    this.selectedPatient = this.patientRegistry.get(id);
+  };
+  cancelSelectedPatient = () => {
+    this.selectedPatient = undefined;
+  };
+
+  openForm = (id?: string) => {
+    id ? this.selectPatient(id) : this.cancelSelectedPatient();
+    this.editMode = true;
+  };
+
+  closeForm = () => {
+    this.editMode = false;
+  };
+
 
   loadPatient = async (id: string) => {
     let patient = this.getPatient(id);
@@ -72,6 +90,7 @@ export default class PatientStore {
 
   createPatient = async (patient: Patient) => {
     this.loading = true;
+    patient.id=uuid();
     try {
       await agent.Patients.create(patient);
       runInAction(() => {

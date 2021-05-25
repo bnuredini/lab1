@@ -4,29 +4,42 @@ import { Button, Grid } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import PatientList from "./PatientList";
+import PatientDetails from "../details/PatientDetails";
+import PatientForm from "../form/PatientForm";
 
 export default observer(function PatientDashboard() {
   const { patientStore } = useStore();
-  const { loadPatients, patientRegistry } = patientStore;
+  const { editMode, selectedPatient } = patientStore;
+
   useEffect(() => {
-    if (patientRegistry.size <= 1) loadPatients();
-  }, [patientRegistry.size, loadPatients]);
+    patientStore.loadPatients();
+  }, [patientStore]); // side-effect runs when any dependecy values changes
 
   if (patientStore.loadingInitial)
     return <LoadingComponent content="Loading app" />;
+
+  // useEffect(() => {
+  //   if (patientRegistry.size <= 1) loadPatients();
+  // }, [patientRegistry.size, loadPatients]);
+
+  // if (patientStore.loadingInitial)
+  //   return <LoadingComponent content="Loading app" />;
   return (
     <>
-      <Button
+<Button
+        onClick={() => patientStore.openForm()}
         primary
-        content="Krijo pacient"
-        to="/whatthe"
+        content="Regjistohu"
         style={{ marginBottom: "1.4rem" }}
       />
       <Grid>
-        <Grid.Column width="10">
+<Grid.Column width="12">
+          {selectedPatient && !editMode && <PatientDetails />}
+          {editMode && <PatientForm />}
+        </Grid.Column>
+        <Grid.Column width="12">
           <PatientList />
         </Grid.Column>
-        <Grid.Column width="6"></Grid.Column>
       </Grid>
     </>
   );

@@ -1,4 +1,6 @@
+import { format } from "date-fns";
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button, Card, Image } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
@@ -15,19 +17,19 @@ export default function TestDetails() {
       <Card.Content>
         <Card.Header>{test.description}</Card.Header>
         <Card.Meta>
-          <span>{test.date}</span>
+          <span>{format (test.date!, 'dd.MM.yyyy, (h:mm aa)')}</span>
         </Card.Meta>
         <Card.Description>{test.description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
         <Button.Group widths="2">
-          <Button
+          <Button 
             onClick={() => openForm(test.id)}
             basic
             color="blue"
             content="Edit"
           />
-          <Button
+          <Button 
             onClick={cancelSelectedTest}
             basic
             color="grey"

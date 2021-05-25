@@ -16,7 +16,7 @@ export default class TestStore {
 
   get testsByDate() {
     return Array.from(this.testRegistry.values()).sort(
-      (a, b) => Date.parse(a.date) - Date.parse(b.date)
+      (a, b) => a.date!.getTime() - b.date!.getTime()
     );
   }
 
@@ -25,7 +25,7 @@ export default class TestStore {
       const tests = await agent.Tests.list();
 
       tests.forEach((test) => {
-        test.date = test.date.split("T")[0];
+        test.date = new Date(test.date!);
         // this.tests.push(test);
         this.testRegistry.set(test.id, test);
       });

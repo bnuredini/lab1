@@ -1,6 +1,7 @@
+import { format } from "date-fns";
 import { observer } from "mobx-react-lite";
 import React, { SyntheticEvent, useState } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 
@@ -24,15 +25,14 @@ export default observer(function PatientList() {
           <Item key={patient.id}>
             <Item.Content>
               <Item.Header as="a">{patient.full_Name}</Item.Header>
-              <Item.Meta>{patient.birthday}</Item.Meta>
+              <Item.Meta>{format (patient.birthday!, 'dd.MM.yyyy, (h:mm aa)')}</Item.Meta>
               <Item.Description>
                 <div>{patient.gender}</div>
                 <div>{patient.address}</div>
               </Item.Description>
               <Item.Extra>
                 <Button
-                  as={Link}
-                  to={`/patients/${patient.id}`}
+                   onClick={() => patientStore.selectPatient(patient.id)}
                   floated="right"
                   content="Shiko"
                   color="blue"
