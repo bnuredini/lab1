@@ -13,7 +13,7 @@ export default class PatientStore {
   constructor() {
     makeAutoObservable(this);
   }
- 
+
   get patientsByDate() {
     return Array.from(this.patientRegistry.values()).sort(
       (a, b) => a.birthday!.getTime() - b.birthday!.getTime()
@@ -50,7 +50,6 @@ export default class PatientStore {
   closeForm = () => {
     this.editMode = false;
   };
-
 
   loadPatient = async (id: string) => {
     let patient = this.getPatient(id);
@@ -90,7 +89,7 @@ export default class PatientStore {
 
   createPatient = async (patient: Patient) => {
     this.loading = true;
-    patient.id=uuid();
+    patient.id = uuid();
     try {
       await agent.Patients.create(patient);
       runInAction(() => {

@@ -37,10 +37,6 @@ function App() {
       <ToastContainer position="bottom-right" hideProgressBar />
       <ModalContainer />
 
-      {/* <Route
-        path={"/(.+)"}
-        render={() => (
-          <> */}
       <NavBar />
       <Container style={{ marginTop: "7em" }}>
         <Switch>
@@ -57,9 +53,6 @@ function App() {
         </Switch>
       </Container>
     </>
-    //   )}
-    // />
-    // </>
   );
 }
 
