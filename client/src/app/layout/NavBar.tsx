@@ -1,8 +1,18 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { Button, Container, Menu } from "semantic-ui-react";
+import { Link, NavLink } from "react-router-dom";
+import { Button, Container, Menu, Image, Dropdown } from "semantic-ui-react";
+import LoginForm from "../../features/users/LoginForm";
+import RegisterForm from "../../features/users/RegisterForm";
+import modalStore from "../stores/modalStore";
+import { useStore } from "../stores/store";
 
-export default function NavBar() {
+export default observer(function NavBar() {
+  const { userStore, modalStore } = useStore();
+  const {
+    userStore: { user, logout },
+  } = useStore();
+
   return (
     <Menu pointing widths={10}>
       <Container>
@@ -18,13 +28,51 @@ export default function NavBar() {
         <Menu.Item as={NavLink} to="/patients" name="Pacientet" />
         <Menu.Item as={NavLink} to="/errors" name="Errors" />
         <Menu.Item name="Profili" />
-        <Menu.Item position={"right"}>
-          <Button content="Kycu" />
-        </Menu.Item>
-        <Menu.Item>
-          <Button content="Regjistrohu" />
+        <Menu.Item position={"right"}></Menu.Item>
+        <Menu.Item position="right">
+          {userStore.isLoggedIn ? (
+            <>
+              <Image
+                src={user?.image || "/assets/user.png"}
+                avatar
+                spaced="right"
+              />
+              <Dropdown pointing="top left" text={user?.displayName}>
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    as={Link}
+                    to={`/profile/${user?.username}`}
+                    text="My Profile"
+                    icon="user"
+                  />
+                  <Dropdown.Item onClick={logout} text="Logout" icon="power" />
+                </Dropdown.Menu>
+              </Dropdown>
+            </>
+          ) : (
+            <div></div>
+          )}
+          {userStore.isLoggedIn ? (
+            <div></div>
+          ) : (
+            <>
+              <Button
+                onClick={() => modalStore.openModal(<LoginForm />)}
+                inverted
+                style={{ margin: "0rem 1rem" }}
+              >
+                Kycu
+              </Button>
+              <Button
+                onClick={() => modalStore.openModal(<RegisterForm />)}
+                inverted
+              >
+                Registrohu
+              </Button>
+            </>
+          )}
         </Menu.Item>
       </Container>
     </Menu>
   );
-}
+});

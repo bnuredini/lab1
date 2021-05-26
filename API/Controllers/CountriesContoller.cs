@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Application.Countries;
 using Domain;
 using Persistence;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 { 
+    [AllowAnonymous]
     public class CountriesController : BaseApiController
     {
         [HttpGet]

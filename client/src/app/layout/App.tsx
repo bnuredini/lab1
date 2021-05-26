@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "semantic-ui-react";
 import NavBar from "./NavBar";
 import TestDashboard from "../../features/tests/dashboard/TestDashboard";
@@ -12,13 +12,33 @@ import TestErrors from "../../errors/TestError";
 import { ToastContainer } from "react-toastify";
 import NotFound from "../../errors/NotFound";
 import ServerError from "../../errors/ServerError";
+import LoginForm from "../../features/users/LoginForm";
+import { useStore } from "../stores/store";
+import LoadingComponent from "./LoadingComponent";
+import LoginPage from "../../features/users/LoginPage";
+import ModalContainer from "../common/modals/ModalContainer";
 
 function App() {
+  const { commonStore, userStore } = useStore();
+
+  useEffect(() => {
+    if (commonStore.token) {
+      userStore.getUser().finally(() => commonStore.setAppLoaded());
+    } else {
+      commonStore.setAppLoaded();
+    }
+  }, [commonStore, userStore]);
+
+  if (!commonStore.appLoaded)
+    return <LoadingComponent content="Loading app..." />;
+
   return (
     <>
+      <ToastContainer position="bottom-right" hideProgressBar />
+      <ModalContainer />
+
       <NavBar />
       <Container style={{ marginTop: "7em" }}>
-        <ToastContainer position="bottom-right" hideProgressBar />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/tests" component={TestDashboard} />
@@ -27,7 +47,9 @@ function App() {
           <Route path="/newPatient" component={PatientForm} />
           <Route path="/errors" component={TestErrors} />
           <Route path="/server-error" component={ServerError} />
+          <Route path="/login" component={LoginForm} />
           <Route component={NotFound} />
+          <Route exact path="/loginpage" component={LoginPage} />
         </Switch>
       </Container>
     </>
