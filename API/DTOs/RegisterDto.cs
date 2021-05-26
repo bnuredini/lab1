@@ -11,7 +11,8 @@ namespace API.DTOs
         public string Email { get; set; }
 
         [Required]
-        [RegularExpression("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4-8}$", ErrorMessage ="Fjalekalimi duhet te jete me kompleks!")]
+        [RegularExpression("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$",
+         ErrorMessage = "Fjalekalimi duhet te jete me kompleks")]
         public string Password { get; set; }
        
         [Required]
