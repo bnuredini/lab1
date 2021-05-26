@@ -17,6 +17,7 @@ import { useStore } from "../stores/store";
 import LoadingComponent from "./LoadingComponent";
 import LoginPage from "../../features/users/LoginPage";
 import ModalContainer from "../common/modals/ModalContainer";
+import Stats from "../../Stats";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -38,6 +39,8 @@ function App() {
       <ModalContainer />
 
       <NavBar />
+      <Route exact path="/stats" component={Stats} />
+
       <Container style={{ marginTop: "7em" }}>
         <Switch>
           <Route exact path="/" component={HomePage} />
