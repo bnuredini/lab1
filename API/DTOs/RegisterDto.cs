@@ -13,6 +13,7 @@ namespace API.DTOs
         [Required]
         [RegularExpression("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4-8}$", ErrorMessage ="Fjalekalimi duhet te jete me kompleks!")]
         public string Password { get; set; }
+       
         [Required]
         public string Username { get; set; }
     }

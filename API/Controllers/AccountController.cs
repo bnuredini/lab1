@@ -44,22 +44,24 @@ namespace API.Controllers
     }
 
     [HttpPost("register")]
-    public async Task<ActionResult<UserDto>>Register(RegisterDto registerDto)
+    public async Task <ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
         if (await _userManager.Users.AnyAsync(x => x.Email == registerDto.Email))
         {
-            return BadRequest("Email ekziston!");
+            ModelState.AddModelError("email", "Email ekziston");
+            return ValidationProblem();
         }
          if (await _userManager.Users.AnyAsync(x => x.UserName == registerDto.Username))
         {
-            return BadRequest("Username ekziston!");
+             ModelState.AddModelError("username", "Username ekziston");
+            return ValidationProblem();
         }
 
         var user =new AppUser
         {
-            DisplayName=registerDto.DisplayName,
-            Email=registerDto.Email,
-            UserName=registerDto.Username
+            DisplayName = registerDto.DisplayName,
+            Email = registerDto.Email,
+            UserName = registerDto.Username
 
         };
 
@@ -90,6 +92,7 @@ namespace API.Controllers
             {
                 DisplayName = user.DisplayName,
                 Token = _tokenService.CreateToken(user),
+                Image=null,
                 Username = user.UserName
 
             };
