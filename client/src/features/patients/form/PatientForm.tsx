@@ -6,7 +6,7 @@ import * as Yup from  'yup';
 import MyTextInput from "../../../app/common/form/MyTextInput";
 import MySelectInput from "../../../app/common/form/MySelectInput";
 import MyDateInput from "../../../app/common/form/MyDateInput";
-import { Formik, Form, ErrorMessage, validateYupSchema} from "formik";
+import { Formik, Form, ErrorMessage} from "formik";
 import { genderOptions } from "../../../app/common/options/genderOptions";
 import { Patient } from "../../../app/models/patient";
 
