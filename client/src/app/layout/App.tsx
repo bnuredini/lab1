@@ -18,28 +18,31 @@ import LoadingComponent from "./LoadingComponent";
 import LoginPage from "../../features/users/LoginPage";
 import ModalContainer from "../common/modals/ModalContainer";
 
-
 function App() {
-  const {commonStore, userStore}=useStore();
+  const { commonStore, userStore } = useStore();
 
   useEffect(() => {
-   
-    if(commonStore.token){
-      userStore.getUser().finally(()=> commonStore.setAppLoaded());
-    }else{
+    if (commonStore.token) {
+      userStore.getUser().finally(() => commonStore.setAppLoaded());
+    } else {
       commonStore.setAppLoaded();
     }
-  }, [commonStore, userStore])
+  }, [commonStore, userStore]);
 
-
-    if(!commonStore.appLoaded) return <LoadingComponent content='Loading app...'/>
+  if (!commonStore.appLoaded)
+    return <LoadingComponent content="Loading app..." />;
 
   return (
     <>
+      <ToastContainer position="bottom-right" hideProgressBar />
+      <ModalContainer />
+
+      {/* <Route
+        path={"/(.+)"}
+        render={() => (
+          <> */}
       <NavBar />
       <Container style={{ marginTop: "7em" }}>
-        <ToastContainer position="bottom-right" hideProgressBar />
-        <ModalContainer/>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/tests" component={TestDashboard} />
@@ -49,11 +52,14 @@ function App() {
           <Route path="/errors" component={TestErrors} />
           <Route path="/server-error" component={ServerError} />
           <Route path="/login" component={LoginForm} />
-          <Route path="/loginpage" component={LoginPage}/>
           <Route component={NotFound} />
+          <Route exact path="/loginpage" component={LoginPage} />
         </Switch>
       </Container>
     </>
+    //   )}
+    // />
+    // </>
   );
 }
 
