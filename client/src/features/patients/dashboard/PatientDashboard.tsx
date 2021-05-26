@@ -13,17 +13,12 @@ export default observer(function PatientDashboard() {
 
   useEffect(() => {
     patientStore.loadPatients();
-  }, [patientStore]); // side-effect runs when any dependecy values changes
+  }, [patientStore]); 
 
   if (patientStore.loadingInitial)
     return <LoadingComponent content="Loading app" />;
 
-  // useEffect(() => {
-  //   if (patientRegistry.size <= 1) loadPatients();
-  // }, [patientRegistry.size, loadPatients]);
-
-  // if (patientStore.loadingInitial)
-  //   return <LoadingComponent content="Loading app" />;
+ 
   return (
     <>
 <Button

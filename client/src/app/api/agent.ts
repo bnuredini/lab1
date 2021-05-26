@@ -4,7 +4,6 @@ import { Country } from "../models/country";
 import { Patient } from "../models/patient";
 import { Test } from "../models/test";
 import { history } from "../../index";
-import { storeAnnotation } from "mobx/dist/internal";
 import { store } from "../stores/store";
 import { User, UserFormValues } from "../models/user";
 
