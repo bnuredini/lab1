@@ -50,23 +50,24 @@ export default observer(function TestForm() {
       >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
           <Form className="ui form" onSubmit={handleSubmit}>
-            <MyTextInput name="patientId" placeholder="PatientID" />
+            <MyTextInput name="patientId" placeholder="ID e Pacientit" />
             <MyDateInput
-              placeholderText="Date"
+              placeholderText="Data"
               name="date"
               showTimeSelect
               timeCaption="time"
               dateFormat="dd.MM.yyyy, (h:mm aa)"
             />
 
-            <MyTextArea rows={3} placeholder="Description" name="description" />
+            <MyTextArea rows={3} placeholder="Pershkrimi" name="description" />
 
-            <MyTextInput placeholder="Hospital ID" name="hospitalId" />
-            <MyTextInput placeholder="Vaccine ID" name="vaccineId" />
+            <MyTextInput placeholder="ID e Spitalit" name="hospitalId" />
+            <MyTextInput placeholder="ID e Vaksines" name="vaccineId" />
             <MySelectInput
               options={variationOptions}
-              placeholder="Variation"
+              placeholder="Varianti"
               name="variation"
+              
             />
             <Button
               disabled={isSubmitting || !dirty || !isValid}
@@ -74,13 +75,13 @@ export default observer(function TestForm() {
               floated="right"
               positive
               type="submit"
-              content="Submit"
+              content="Ruaj"
             />
             <Button
               onClick={closeForm}
               floated="right"
               type="button"
-              content="Cancel"
+              content="Anulo"
             />
           </Form>
         )}

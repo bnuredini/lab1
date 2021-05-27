@@ -1,7 +1,7 @@
 import { Global, css } from '@emotion/react';
 import React, { useEffect, useState } from 'react'
-import CountryList from './CovComponents/CountryList';
-import GlobalInfo from './CovComponents/GlobalInfo'
+import CountryList from './features/covcomponents/CountryList';
+import GlobalInfo from './features/covcomponents/GlobalInfo'
 import type { ResponseData } from './types';
 
 
