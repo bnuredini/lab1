@@ -35,10 +35,9 @@ function App() {
 
   return (
     <>
-      <ToastContainer position="bottom-right" hideProgressBar />
-      <ModalContainer />
-
       <NavBar />
+      <ModalContainer />
+      <ToastContainer position="bottom-right" hideProgressBar />
       <Route exact path="/stats" component={Stats} />
 
       <Container style={{ marginTop: "7em" }}>

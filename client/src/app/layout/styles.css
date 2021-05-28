@@ -1,11 +1,16 @@
-body {
-  /* background-color: #eaeaea !important; */
-  background-color: white !important;
+:root {
+  --bg: #f2ede7;
+  --primary: #66b275;
 }
 
+body {
+  background-color: var(--bg) !important;
+  /* background-color: white !important; */
+}
+
+/* Navbar */
 .ui.menu {
-  /* background-color: #31352e; */
-  background-color: black;
+  background-color: var(--primary);
 }
 
 .item {
@@ -14,4 +19,9 @@ body {
 
 .react-datepicker-wrapper {
   width: 100%;
+}
+
+/* Footer */
+.ui.inverted.vertical.segment {
+  background-color: var(--primary);
 }
