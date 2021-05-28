@@ -6,6 +6,8 @@ import LoginForm from "../../features/users/LoginForm";
 import RegisterForm from "../../features/users/RegisterForm";
 import modalStore from "../stores/modalStore";
 import { useStore } from "../stores/store";
+// @ts-ignore
+import Avatar from "boring-avatars";
 
 export default observer(function NavBar() {
   const { userStore, modalStore } = useStore();
@@ -32,10 +34,17 @@ export default observer(function NavBar() {
         <Menu.Item position="right">
           {userStore.isLoggedIn ? (
             <>
-              <Image
+              {/* <Image
                 src={user?.image || "/assets/user.png"}
                 avatar
                 spaced="right"
+              /> */}
+              <Avatar
+                size={40}
+                name={user?.displayName}
+                variant="beam"
+                colors={["#69D2E7", "#A7DBD8", "#E0E4CC", "#F38630", "#FA6900"]}
+                style={{ marginRight: ".5rem" }}
               />
               <Dropdown pointing="top left" text={user?.displayName}>
                 <Dropdown.Menu>
@@ -44,6 +53,7 @@ export default observer(function NavBar() {
                     to={`/profile/${user?.username}`}
                     text="My Profile"
                     icon="user"
+                    style={{ marginRight: "2rem" }}
                   />
                   <Dropdown.Item onClick={logout} text="Logout" icon="power" />
                 </Dropdown.Menu>
