@@ -11,10 +11,72 @@ body {
 /* Navbar */
 .ui.menu {
   background-color: var(--primary);
+  height: 5rem;
 }
 
 .item {
   color: white !important;
+}
+
+/* Homepage background */
+.main-bg {
+  min-width: 100%;
+  min-height: 10.3rem;
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)),
+    url("http://www.colourlovers.com/wallPaper/1200x800/n/465753/COLOURlovers.com-Navaho.png"); */
+  background-color: var(--primary);
+}
+
+.title {
+  font-size: 5rem;
+}
+
+.tests-wrapper,
+.stats-wrapper,
+.management-wrapper,
+.help-wrapper,
+.footer-wrapper {
+  margin-right: -100%; /* Break out of the main wrapper */
+  margin-left: -100%;
+}
+
+.ui.two.column.grid.tests,
+.ui.two.column.grid.stats,
+.ui.two.column.grid.help,
+.ui.two.column.grid.management {
+  display: flex;
+  align-items: center;
+
+  height: 50vh;
+  width: 40%;
+  margin: auto;
+  padding: 2rem;
+  line-height: 1.7rem;
+}
+
+/* Tests */
+.ui.two.column.grid.tests {
+  background-color: #66b275;
+}
+
+/* Stats */
+.ui.two.column.grid.stats {
+  justify-content: center;
+  background-color: white;
+}
+
+/* Management */
+.ui.two.column.grid.management {
+  background-color: #66b275;
+}
+
+/* Help */
+.ui.two.column.grid.help {
+  justify-content: center;
+  margin-bottom: 3rem;
 }
 
 .react-datepicker-wrapper {
