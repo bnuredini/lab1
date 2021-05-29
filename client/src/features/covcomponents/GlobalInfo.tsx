@@ -12,10 +12,10 @@ const Wrapper = styled.div`
 
 const GlobalInfo: React.FunctionComponent<Props> = ({ newConfirmed, newDeaths, newRecovered }) => {
     return <Wrapper> 
-        <h1>Global Covid-19 Statistics</h1>
-        <h3>New Confirmed: {new Intl.NumberFormat().format(newConfirmed)}</h3>
-        <h3>New Deaths: {new Intl.NumberFormat().format(newDeaths)}</h3>
-        <h3>New Recovered: {new Intl.NumberFormat().format(newRecovered)}</h3>
+        <h1>Statistikat Globale te Covid-19</h1>
+        <h3>Rastet e reja te konfirmuara: {new Intl.NumberFormat().format(newConfirmed)}</h3>
+        <h3>Rastet e reja te vdekjeve: {new Intl.NumberFormat().format(newDeaths)}</h3>
+        <h3>Rastet e reja e te sheruarve: {new Intl.NumberFormat().format(newRecovered)}</h3>
     </Wrapper>
 }
 

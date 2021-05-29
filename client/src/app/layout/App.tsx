@@ -38,10 +38,11 @@ function App() {
       <NavBar />
       <ModalContainer />
       <ToastContainer position="bottom-right" hideProgressBar />
-      <Route exact path="/stats" component={Stats} />
+      
 
       <Container style={{ marginTop: "7em" }}>
         <Switch>
+        <Route exact path="/stats" component={Stats} />
           <Route exact path="/" component={HomePage} />
           <Route path="/tests" component={TestDashboard} />
           <Route path="/countries" component={CountryDashboard} />

@@ -4,7 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import { Button, Container, Menu, Image, Dropdown } from "semantic-ui-react";
 import LoginForm from "../../features/users/LoginForm";
 import RegisterForm from "../../features/users/RegisterForm";
-import modalStore from "../stores/modalStore";
 import { useStore } from "../stores/store";
 // @ts-ignore
 import Avatar from "boring-avatars";
