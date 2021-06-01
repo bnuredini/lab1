@@ -7,8 +7,7 @@ namespace Domain
     {
         public string DisplayName {get; set;}
         public string Bio {get; set;}
-        public ICollection<Test> Tests { get; set; }
-        public ICollection<Chronic_Disease> ChronicDisease { get; set; }
+       
         
     
     }

@@ -13,8 +13,6 @@ namespace Domain
         public int HospitalId { get; set; }
         public int VaccineId { get; set; }
         public string Variation { get; set; }
-        public ICollection<AppUser> Patient { get; set; }
-        public ICollection<Rezult> Results { get; set; }
-        public ICollection<TestingCenter> Centers { get; set; }
+       
     }
 }
