@@ -2,49 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210601010724_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.6");
-
-            modelBuilder.Entity("AppUserChronic_Disease", b =>
-                {
-                    b.Property<Guid>("ChronicDiseaseId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PatientId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ChronicDiseaseId", "PatientId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("AppUserChronic_Disease");
-                });
-
-            modelBuilder.Entity("AppUserTest", b =>
-                {
-                    b.Property<string>("PatientId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("TestsId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("PatientId", "TestsId");
-
-                    b.HasIndex("TestsId");
-
-                    b.ToTable("AppUserTest");
-                });
 
             modelBuilder.Entity("Domain.AppUser", b =>
                 {
@@ -262,21 +234,6 @@ namespace Persistence.Migrations
                     b.ToTable("Tests");
                 });
 
-            modelBuilder.Entity("Domain.TestingCenter", b =>
-                {
-                    b.Property<Guid>("Public_CenterId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("Private_CenterId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Public_CenterId", "Private_CenterId");
-
-                    b.HasIndex("Private_CenterId");
-
-                    b.ToTable("TestingCenters");
-                });
-
             modelBuilder.Entity("Domain.Variation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -419,103 +376,6 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RezultTest", b =>
-                {
-                    b.Property<Guid>("ResultsId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("TestsId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ResultsId", "TestsId");
-
-                    b.HasIndex("TestsId");
-
-                    b.ToTable("RezultTest");
-                });
-
-            modelBuilder.Entity("RezultVariation", b =>
-                {
-                    b.Property<Guid>("ResultsId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("VariationsId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ResultsId", "VariationsId");
-
-                    b.HasIndex("VariationsId");
-
-                    b.ToTable("RezultVariation");
-                });
-
-            modelBuilder.Entity("TestTestingCenter", b =>
-                {
-                    b.Property<Guid>("TestsId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("CentersPublic_CenterId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("CentersPrivate_CenterId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("TestsId", "CentersPublic_CenterId", "CentersPrivate_CenterId");
-
-                    b.HasIndex("CentersPublic_CenterId", "CentersPrivate_CenterId");
-
-                    b.ToTable("TestTestingCenter");
-                });
-
-            modelBuilder.Entity("AppUserChronic_Disease", b =>
-                {
-                    b.HasOne("Domain.Chronic_Disease", null)
-                        .WithMany()
-                        .HasForeignKey("ChronicDiseaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("AppUserTest", b =>
-                {
-                    b.HasOne("Domain.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Test", null)
-                        .WithMany()
-                        .HasForeignKey("TestsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.TestingCenter", b =>
-                {
-                    b.HasOne("Domain.Private_Center", "Private_Center")
-                        .WithMany("Public_Center")
-                        .HasForeignKey("Private_CenterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Public_Center", "Public_Center")
-                        .WithMany("Private_Center")
-                        .HasForeignKey("Public_CenterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Private_Center");
-
-                    b.Navigation("Public_Center");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -565,61 +425,6 @@ namespace Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("RezultTest", b =>
-                {
-                    b.HasOne("Domain.Rezult", null)
-                        .WithMany()
-                        .HasForeignKey("ResultsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Test", null)
-                        .WithMany()
-                        .HasForeignKey("TestsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RezultVariation", b =>
-                {
-                    b.HasOne("Domain.Rezult", null)
-                        .WithMany()
-                        .HasForeignKey("ResultsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Variation", null)
-                        .WithMany()
-                        .HasForeignKey("VariationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TestTestingCenter", b =>
-                {
-                    b.HasOne("Domain.Test", null)
-                        .WithMany()
-                        .HasForeignKey("TestsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.TestingCenter", null)
-                        .WithMany()
-                        .HasForeignKey("CentersPublic_CenterId", "CentersPrivate_CenterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Private_Center", b =>
-                {
-                    b.Navigation("Public_Center");
-                });
-
-            modelBuilder.Entity("Domain.Public_Center", b =>
-                {
-                    b.Navigation("Private_Center");
                 });
 #pragma warning restore 612, 618
         }

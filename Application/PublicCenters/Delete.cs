@@ -1,25 +1,17 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Core;
-using Domain;
-using FluentValidation;
 using MediatR;
 using Persistence;
+using Application.Core;
 
-namespace Application.Patients
+namespace Application.PublicCenters
 {
-    public class Create
+    public class Delete
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Patient Patient { get; set; }
-        }
-
-        public class CommandValidator : AbstractValidator<Command>
-        {
-            public CommandValidator() {
-                RuleFor(x => x.Patient).SetValidator(new PatientValidator());
-            }
+            public Guid Id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -33,14 +25,15 @@ namespace Application.Patients
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Patients.Add(request.Patient);
+                var public_Center = await _context.Public_Centers.FindAsync(request.Id);
 
+                _context.Remove(public_Center);
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
-                    return Result<Unit>.Failure("Failed during patient creation");
+                    return Result<Unit>.Failure("Failed to delete the center");
                 }
 
-                return Result<Unit>.Success(Unit.Value);
+               return (Result<Unit>.Success(Unit.Value));
             }
         }
     }

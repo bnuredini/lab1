@@ -2,34 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210601021733_TestConnection")]
+    partial class TestConnection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.6");
-
-            modelBuilder.Entity("AppUserChronic_Disease", b =>
-                {
-                    b.Property<Guid>("ChronicDiseaseId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PatientId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ChronicDiseaseId", "PatientId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("AppUserChronic_Disease");
-                });
 
             modelBuilder.Entity("AppUserTest", b =>
                 {
@@ -434,21 +421,6 @@ namespace Persistence.Migrations
                     b.ToTable("RezultTest");
                 });
 
-            modelBuilder.Entity("RezultVariation", b =>
-                {
-                    b.Property<Guid>("ResultsId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("VariationsId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ResultsId", "VariationsId");
-
-                    b.HasIndex("VariationsId");
-
-                    b.ToTable("RezultVariation");
-                });
-
             modelBuilder.Entity("TestTestingCenter", b =>
                 {
                     b.Property<Guid>("TestsId")
@@ -465,21 +437,6 @@ namespace Persistence.Migrations
                     b.HasIndex("CentersPublic_CenterId", "CentersPrivate_CenterId");
 
                     b.ToTable("TestTestingCenter");
-                });
-
-            modelBuilder.Entity("AppUserChronic_Disease", b =>
-                {
-                    b.HasOne("Domain.Chronic_Disease", null)
-                        .WithMany()
-                        .HasForeignKey("ChronicDiseaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("AppUserTest", b =>
@@ -578,21 +535,6 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Test", null)
                         .WithMany()
                         .HasForeignKey("TestsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RezultVariation", b =>
-                {
-                    b.HasOne("Domain.Rezult", null)
-                        .WithMany()
-                        .HasForeignKey("ResultsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Variation", null)
-                        .WithMany()
-                        .HasForeignKey("VariationsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
