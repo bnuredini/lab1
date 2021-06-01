@@ -7,13 +7,13 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Patients
+namespace Application.ChronicDiseases
 {
     public class List
     {
-        public class Query : IRequest<Result<List<Patient>>> { }
+        public class Query : IRequest<Result<List<Chronic_Disease>>> { }
 
-        public class Handler : IRequestHandler<Query, Result<List<Patient>>>
+        public class Handler : IRequestHandler<Query, Result<List<Chronic_Disease>>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -21,10 +21,9 @@ namespace Application.Patients
                 _context = context;
             }
 
-            public async Task<Result<List<Patient>>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<List<Chronic_Disease>>> Handle(Query request, CancellationToken cancellationToken)
             {
-              
-                return Result<List<Patient>>.Success(await _context.Patients.ToListAsync());
+                return Result<List<Chronic_Disease>>.Success(await _context.Chronic_Diseases.ToListAsync());
             }
         }
     }

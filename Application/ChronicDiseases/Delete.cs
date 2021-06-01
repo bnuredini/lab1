@@ -1,25 +1,17 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Core;
-using Domain;
-using FluentValidation;
 using MediatR;
 using Persistence;
+using Application.Core;
 
-namespace Application.Patients
+namespace Application.ChronicDiseases
 {
-    public class Create
+    public class Delete
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Patient Patient { get; set; }
-        }
-
-        public class CommandValidator : AbstractValidator<Command>
-        {
-            public CommandValidator() {
-                RuleFor(x => x.Patient).SetValidator(new PatientValidator());
-            }
+            public Guid Id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -33,14 +25,15 @@ namespace Application.Patients
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Patients.Add(request.Patient);
+                var chronic_Disease = await _context.Chronic_Diseases.FindAsync(request.Id);
 
+                _context.Remove(chronic_Disease);
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
-                    return Result<Unit>.Failure("Failed during patient creation");
+                    return Result<Unit>.Failure("Failed to delete chronic disease");
                 }
 
-                return Result<Unit>.Success(Unit.Value);
+               return (Result<Unit>.Success(Unit.Value));
             }
         }
     }

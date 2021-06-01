@@ -6,19 +6,19 @@ using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.Patients
+namespace Application.Rezults
 {
     public class Create
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Patient Patient { get; set; }
+            public Rezult Rezult { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator() {
-                RuleFor(x => x.Patient).SetValidator(new PatientValidator());
+                RuleFor(x => x.Rezult).SetValidator(new RezultValidator());
             }
         }
 
@@ -33,11 +33,11 @@ namespace Application.Patients
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Patients.Add(request.Patient);
+                _context.Rezults.Add(request.Rezult);
 
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
-                    return Result<Unit>.Failure("Failed during patient creation");
+                    return Result<Unit>.Failure("Failed during result creation");
                 }
 
                 return Result<Unit>.Success(Unit.Value);
