@@ -27,7 +27,7 @@ export default observer(function NavBar() {
         <Menu.Item as={NavLink} to="/tests" name="Testet" exact />
         <Menu.Item as={NavLink} to="/stats" name="Statistikat" />
         <Menu.Item as={NavLink} to="/patients" name="Pacientet" />
-        <Menu.Item as={NavLink} to="/errors" name="Errors" />
+        <Menu.Item as={NavLink} to="/screening-test" name="Testi online" />
         <Menu.Item name="Profili" />
         <Menu.Item position={"right"}></Menu.Item>
         <Menu.Item position="right">
