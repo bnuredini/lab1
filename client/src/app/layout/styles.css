@@ -14,7 +14,7 @@ body {
   height: 5rem;
 }
 
-.item {
+.navitem {
   color: white !important;
 }
 
@@ -165,7 +165,7 @@ body {
 
 .radioCustomButton:checked ~ .radioCustomLabel:before {
   content: "";
-  /* background: #8bc53f url("") no-repeat; */
   background-size: 27px;
+  background: #b8e084;
   border-color: #8bc53f;
 }

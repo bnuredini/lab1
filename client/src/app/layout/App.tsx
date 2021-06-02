@@ -43,7 +43,7 @@ function App() {
       <Container style={{ marginTop: "7em" }}>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/screening-test" component={ScreeningTest} />
+          <Route path="/screening-test" component={ScreeningTest} />
           <Route exact path="/stats" component={Stats} />
           <Route path="/tests" component={TestDashboard} />
           <Route path="/countries" component={CountryDashboard} />
@@ -52,7 +52,7 @@ function App() {
           <Route path="/errors" component={TestErrors} />
           <Route path="/server-error" component={ServerError} />
           <Route path="/login" component={LoginForm} />
-          <Route exact path="/loginpage" component={LoginPage} />
+          <Route exact path="/loginpage" component={HomePage} />
           <Route component={NotFound} />
         </Switch>
       </Container>
