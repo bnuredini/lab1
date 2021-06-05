@@ -5,7 +5,6 @@
 
 body {
   background-color: var(--bg) !important;
-  /* background-color: white !important; */
 }
 
 /* Navbar */
@@ -43,6 +42,11 @@ body {
   margin-left: -100%;
 }
 
+.tests-wrapper,
+.management-wrapper {
+  background-color: var(--primary);
+}
+
 .ui.two.column.grid.tests,
 .ui.two.column.grid.stats,
 .ui.two.column.grid.help,
@@ -57,20 +61,9 @@ body {
   line-height: 1.7rem;
 }
 
-/* Tests */
-.ui.two.column.grid.tests {
-  background-color: #66b275;
-}
-
 /* Stats */
 .ui.two.column.grid.stats {
   justify-content: center;
-  background-color: white;
-}
-
-/* Management */
-.ui.two.column.grid.management {
-  background-color: #66b275;
 }
 
 /* Help */

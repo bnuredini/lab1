@@ -19,6 +19,7 @@ import LoginPage from "../../features/users/LoginPage";
 import ModalContainer from "../common/modals/ModalContainer";
 import Stats from "../../Stats";
 import ScreeningTest from "../../features/screening-test/ScreeningTest";
+import AdminDashboard from "../../features/admin/AdminDashboard";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -52,6 +53,7 @@ function App() {
           <Route path="/errors" component={TestErrors} />
           <Route path="/server-error" component={ServerError} />
           <Route path="/login" component={LoginForm} />
+          <Route path="/admin" component={AdminDashboard} />
           <Route exact path="/loginpage" component={HomePage} />
           <Route component={NotFound} />
         </Switch>
