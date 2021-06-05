@@ -26,9 +26,8 @@ export default observer(function NavBar() {
         </Menu.Item>
         <Menu.Item
           as={NavLink}
-          to="/tests"
-          name="Testet"
-          exact
+          to="/screening-test"
+          name="Testi online"
           className="navitem"
         />
         <Menu.Item
@@ -37,19 +36,20 @@ export default observer(function NavBar() {
           name="Statistikat"
           className="navitem"
         />
-        <Menu.Item
-          as={NavLink}
-          to="/patients"
-          name="Pacientet"
-          className="navitem"
-        />
-        <Menu.Item
-          as={NavLink}
-          to="/screening-test"
-          name="Testi online"
-          className="navitem"
-        />
-        <Menu.Item name="Profili" className="navitem" />
+        {userStore.isLoggedIn ? (
+          <>
+            <Menu.Item
+              as={NavLink}
+              to="/tests"
+              name="Testet"
+              exact
+              className="navitem"
+            />
+            <Menu.Item name="Profili" className="navitem" />
+          </>
+        ) : (
+          <div></div>
+        )}
         <Menu.Item position={"right"}></Menu.Item>
         <Menu.Item position="right" className="navitem">
           {userStore.isLoggedIn ? (
@@ -92,7 +92,7 @@ export default observer(function NavBar() {
                 onClick={() => modalStore.openModal(<RegisterForm />)}
                 inverted
               >
-                Registrohu
+                Regjistrohu
               </Button>
             </>
           )}

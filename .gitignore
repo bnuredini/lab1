@@ -31,3 +31,4 @@ ipch/
 !?*.[Cc]ache/
 
 .vscode/
+.eslintcache
