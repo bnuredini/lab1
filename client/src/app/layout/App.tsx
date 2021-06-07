@@ -17,7 +17,7 @@ import { useStore } from "../stores/store";
 import LoadingComponent from "./LoadingComponent";
 import LoginPage from "../../features/users/LoginPage";
 import ModalContainer from "../common/modals/ModalContainer";
-import Stats from "../../Stats";
+import Stats from "../../features/covComponents/Stats";
 import ScreeningTest from "../../features/screening-test/ScreeningTest";
 import AdminDashboard from "../../features/admin/AdminDashboard";
 
