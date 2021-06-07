@@ -1,14 +1,17 @@
 import { Global, css } from '@emotion/react';
 import React, { useEffect, useState } from 'react'
-import CountryList from './features/covcomponents/CountryList';
-import GlobalInfo from './features/covcomponents/GlobalInfo'
-import type { ResponseData } from './types';
+import BarChart from './CovComponents/BarChart';
+import CountryList from './CovComponents/CountryList';
+import GlobalInfo from './CovComponents/GlobalInfo'
+import type { ResponseData, Country } from './types';
 
 
 
 const Stats: React.FunctionComponent = () => {
 
 const [data, setData] = useState<ResponseData | undefined>(undefined);    
+
+const [activeCountries, setActiveCountries] = useState<Country[]>([]);
 
 
 const fetchData = async () => {
@@ -21,7 +24,21 @@ const fetchData = async () => {
 
     useEffect(() =>{
         fetchData();
-    }, [])
+    }, []);
+
+    const onCountryClick = (country: Country) => {
+      const countryIndex = activeCountries.findIndex(activeCountry => activeCountry.ID === country.ID);
+
+      if(countryIndex > -1) {
+        const newActiveCountries = [...activeCountries];
+        newActiveCountries.splice(countryIndex, 1);
+
+        setActiveCountries(newActiveCountries);
+      } 
+      else {
+        setActiveCountries([...activeCountries, country]);
+      }     
+    };
 
     return (
       <div>
@@ -32,14 +49,19 @@ const fetchData = async () => {
             }
         `} 
         />
+
         {data ? 
         <>
         <GlobalInfo 
         newConfirmed={data?.Global.NewConfirmed} 
         newDeaths={data?.Global.NewDeaths} 
         newRecovered={data?.Global.NewRecovered}/>
+
+        <hr />
+
+        {activeCountries.length ? <BarChart countries={activeCountries}/> : null}
         
-        <CountryList countries={data.Countries}/>
+        <CountryList countries={data.Countries} onItemClick={onCountryClick}/>
         </>
         : "Loading..."}
       </div>
