@@ -16,5 +16,6 @@ namespace Domain
         public ICollection<AppUser> Patient { get; set; }
         public ICollection<Rezult> Results { get; set; }
         public ICollection<TestingCenter> Centers { get; set; }
+        public ICollection<Vaccine> Vaccines { get; set; }
     }
 }
