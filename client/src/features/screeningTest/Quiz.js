@@ -5,8 +5,6 @@ import QuestionCount from "./QuestionCount";
 import AnswerOption from "./AnswerOption";
 
 export default function Quiz(props) {
-  // return <div>shanari</div>;
-
   function renderAnswerOptions(key) {
     return (
       <AnswerOption

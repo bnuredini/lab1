@@ -19,7 +19,7 @@ export default observer(function TestList() {
       <Item.Group divided>
         {testsByPatient.map((test) => {
           // replace w/ the current users id
-          if (test.patientId !== 12332) return;
+          // if (test.patientId !== 12332) return;
 
           return (
             <Item key={test.id}>

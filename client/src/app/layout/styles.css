@@ -98,19 +98,16 @@ body {
   list-style: none;
 }
 
-/* QuestionCount Component */
 .questionCount {
   padding: 1.5rem 2.5rem 0;
   font-size: 14px;
 }
 
-/* Question Component */
 .question {
   margin: 0;
   padding: 0.5rem 2.5rem 1.5rem 2.5rem;
 }
 
-/* AnswerOption Component */
 .answerOption {
   border-top: 1px solid #eee;
 }
@@ -161,4 +158,9 @@ body {
   background-size: 27px;
   background: #b8e084;
   border-color: #8bc53f;
+}
+
+.result__title {
+  line-height: 2.5rem;
+  font-size: 3rem;
 }

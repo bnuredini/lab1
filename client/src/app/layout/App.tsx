@@ -18,7 +18,7 @@ import LoadingComponent from "./LoadingComponent";
 import LoginPage from "../../features/users/LoginPage";
 import ModalContainer from "../common/modals/ModalContainer";
 import Stats from "../../features/covComponents/Stats";
-import ScreeningTest from "../../features/screening-test/ScreeningTest";
+import ScreeningTest from "../../features/screeningTest/ScreeningTest";
 import AdminDashboard from "../../features/admin/AdminDashboard";
 
 function App() {
