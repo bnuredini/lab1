@@ -17,7 +17,9 @@ import { useStore } from "../stores/store";
 import LoadingComponent from "./LoadingComponent";
 import LoginPage from "../../features/users/LoginPage";
 import ModalContainer from "../common/modals/ModalContainer";
-import Stats from "../../Stats";
+import Stats from "../../features/covComponents/Stats";
+import ScreeningTest from "../../features/screeningTest/ScreeningTest";
+import AdminDashboard from "../../features/admin/AdminDashboard";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -38,12 +40,12 @@ function App() {
       <NavBar />
       <ModalContainer />
       <ToastContainer position="bottom-right" hideProgressBar />
-      
 
       <Container style={{ marginTop: "7em" }}>
         <Switch>
-        <Route exact path="/stats" component={Stats} />
           <Route exact path="/" component={HomePage} />
+          <Route path="/screening-test" component={ScreeningTest} />
+          <Route exact path="/stats" component={Stats} />
           <Route path="/tests" component={TestDashboard} />
           <Route path="/countries" component={CountryDashboard} />
           <Route path="/patients" component={PatientDashboard} />
@@ -51,8 +53,9 @@ function App() {
           <Route path="/errors" component={TestErrors} />
           <Route path="/server-error" component={ServerError} />
           <Route path="/login" component={LoginForm} />
+          <Route path="/admin" component={AdminDashboard} />
+          <Route exact path="/loginpage" component={HomePage} />
           <Route component={NotFound} />
-          <Route exact path="/loginpage" component={LoginPage} />
         </Switch>
       </Container>
     </>

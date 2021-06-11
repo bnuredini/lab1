@@ -18,6 +18,9 @@ namespace Persistence
         public DbSet<Chronic_Disease> Chronic_Diseases { get; set; }
         public DbSet<Private_Center> Private_Centers { get; set; }
         public DbSet<Public_Center> Public_Centers { get; set; }
+        public DbSet<Vaccine> Vaccines { get; set; }
+         public DbSet<Article> Articles { get; set; }
+
         public DbSet<TestingCenter> TestingCenters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

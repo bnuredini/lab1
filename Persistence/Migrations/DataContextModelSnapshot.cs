@@ -16,6 +16,21 @@ namespace Persistence.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.6");
 
+            modelBuilder.Entity("AppUserArticle", b =>
+                {
+                    b.Property<Guid>("ArticlesId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ArticlesId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AppUserArticle");
+                });
+
             modelBuilder.Entity("AppUserChronic_Disease", b =>
                 {
                     b.Property<Guid>("ChronicDiseaseId")
@@ -94,6 +109,9 @@ namespace Persistence.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
 
@@ -114,6 +132,26 @@ namespace Persistence.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Domain.Article", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("Domain.Chronic_Disease", b =>
@@ -275,6 +313,29 @@ namespace Persistence.Migrations
                     b.HasIndex("Private_CenterId");
 
                     b.ToTable("TestingCenters");
+                });
+
+            modelBuilder.Entity("Domain.Vaccine", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Creator")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Efficacy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vaccines");
                 });
 
             modelBuilder.Entity("Domain.Variation", b =>
@@ -467,6 +528,36 @@ namespace Persistence.Migrations
                     b.ToTable("TestTestingCenter");
                 });
 
+            modelBuilder.Entity("TestVaccine", b =>
+                {
+                    b.Property<Guid>("TestsId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("VaccinesId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("TestsId", "VaccinesId");
+
+                    b.HasIndex("VaccinesId");
+
+                    b.ToTable("TestVaccine");
+                });
+
+            modelBuilder.Entity("AppUserArticle", b =>
+                {
+                    b.HasOne("Domain.Article", null)
+                        .WithMany()
+                        .HasForeignKey("ArticlesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("AppUserChronic_Disease", b =>
                 {
                     b.HasOne("Domain.Chronic_Disease", null)
@@ -608,6 +699,21 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.TestingCenter", null)
                         .WithMany()
                         .HasForeignKey("CentersPublic_CenterId", "CentersPrivate_CenterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TestVaccine", b =>
+                {
+                    b.HasOne("Domain.Test", null)
+                        .WithMany()
+                        .HasForeignKey("TestsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Vaccine", null)
+                        .WithMany()
+                        .HasForeignKey("VaccinesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

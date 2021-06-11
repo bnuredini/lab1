@@ -20,6 +20,10 @@ export default class TestStore {
     );
   }
 
+  get testsByPatient() {
+    return Array.from(this.testRegistry.values());
+  }
+
   loadTests = async () => {
     try {
       const tests = await agent.Tests.list();

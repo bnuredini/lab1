@@ -23,10 +23,8 @@ namespace Persistence
                 foreach (var user in users)
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
-                    
                 }
             }
-
 
             if (context.Patients.Any()) return;
             
@@ -232,6 +230,30 @@ namespace Persistence
                     Location="Peje"
                 },
             };
+             var vaccines = new List<Vaccine>
+            {
+                 new Vaccine
+                {
+                   Name="Pfizer", 
+                   Efficacy="mbi 91.3%",
+                   Creator="BioNTech",
+                   Type="mRNA" 
+                },
+                 new Vaccine
+                {
+                   Name="AstraZeneca", 
+                   Efficacy="mbi 81.3%",
+                   Creator="Oxford",
+                   Type="Viral vector" 
+                },
+                 new Vaccine
+                {
+                   Name="Moderna", 
+                   Efficacy="mbi 94.1%",
+                   Creator="Moderna, NIAID",
+                   Type="mRNA" 
+                }
+            };
 
             await context.Tests.AddRangeAsync(tests);
             await context.Countries.AddRangeAsync(countries);
@@ -241,6 +263,7 @@ namespace Persistence
             await context.Chronic_Diseases.AddRangeAsync(chronic_d);
             await context.Private_Centers.AddRangeAsync(private_c);
             await context.Public_Centers.AddRangeAsync(public_c);
+            await context.Vaccines.AddRangeAsync(vaccines);
             await context.SaveChangesAsync();
         }
     }

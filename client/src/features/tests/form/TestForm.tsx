@@ -1,4 +1,4 @@
-import { Formik, Form, ErrorMessage, validateYupSchema } from "formik";
+import { Formik, Form } from "formik";
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import { Button, Segment } from "semantic-ui-react";
@@ -67,7 +67,6 @@ export default observer(function TestForm() {
               options={variationOptions}
               placeholder="Varianti"
               name="variation"
-              
             />
             <Button
               disabled={isSubmitting || !dirty || !isValid}

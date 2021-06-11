@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Button, Container, Menu, Image, Dropdown } from "semantic-ui-react";
+import { Button, Container, Menu, Dropdown } from "semantic-ui-react";
 import LoginForm from "../../features/users/LoginForm";
 import RegisterForm from "../../features/users/RegisterForm";
 import { useStore } from "../stores/store";
@@ -24,20 +24,48 @@ export default observer(function NavBar() {
             style={{ marginRight: "5px" }}
           />
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/tests" name="Testet" exact />
-        <Menu.Item as={NavLink} to="/stats" name="Statistikat" />
-        <Menu.Item as={NavLink} to="/patients" name="Pacientet" />
-        <Menu.Item as={NavLink} to="/errors" name="Errors" />
-        <Menu.Item name="Profili" />
-        <Menu.Item position={"right"}></Menu.Item>
-        <Menu.Item position="right">
+        <Menu.Item
+          as={NavLink}
+          to="/screening-test"
+          name="Testi online"
+          className="navitem"
+        />
+        <Menu.Item
+          as={NavLink}
+          to="/stats"
+          name="Statistikat"
+          className="navitem"
+        />
+        {userStore.isLoggedIn ? (
+          <>
+            <Menu.Item
+              as={NavLink}
+              to="/tests"
+              name="Testet"
+              exact
+              className="navitem"
+            />
+            {/* <Menu.Item name="Profili" className="navitem" /> */}
+            {userStore.user?.role == "Admin" ? (
+              <Menu.Item
+                as={NavLink}
+                to="/admin"
+                name="Dashboard"
+                className="navitem"
+              />
+            ) : (
+              <div></div>
+            )}
+          </>
+        ) : (
+          <div></div>
+        )}
+        <Menu.Item position="right" className="navitem">
+          {userStore.user?.role}
+        </Menu.Item>
+        <Menu.Item position="right" className="navitem">
           {userStore.isLoggedIn ? (
             <>
-              {/* <Image
-                src={user?.image || "/assets/user.png"}
-                avatar
-                spaced="right"
-              /> */}
               <Avatar
                 size={40}
                 name={user?.displayName}
@@ -76,7 +104,7 @@ export default observer(function NavBar() {
                 onClick={() => modalStore.openModal(<RegisterForm />)}
                 inverted
               >
-                Registrohu
+                Regjistrohu
               </Button>
             </>
           )}

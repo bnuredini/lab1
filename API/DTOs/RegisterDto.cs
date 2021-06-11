@@ -6,6 +6,7 @@ namespace API.DTOs
     {
         [Required]
         public string DisplayName { get; set; }
+
         [Required]
         [EmailAddress]
         public string Email { get; set; }
@@ -17,5 +18,8 @@ namespace API.DTOs
        
         [Required]
         public string Username { get; set; }
+       
+        [Required]
+        public string Role { get; set; }
     }
 }
