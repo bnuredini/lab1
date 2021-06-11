@@ -45,16 +45,27 @@ export default observer(function NavBar() {
               exact
               className="navitem"
             />
-            <Menu.Item name="Profili" className="navitem" />
+            {/* <Menu.Item name="Profili" className="navitem" /> */}
+            {userStore.user?.role == "Admin" ? (
+              <Menu.Item
+                as={NavLink}
+                to="/admin"
+                name="Dashboard"
+                className="navitem"
+              />
+            ) : (
+              <div></div>
+            )}
           </>
         ) : (
           <div></div>
         )}
-        <Menu.Item position={"right"}></Menu.Item>
-        <Menu.Item position={"right"}>{userStore.user?.role}</Menu.Item>
         <Menu.Item position="right" className="navitem">
-          {userStore.isLoggedIn && userStore.user?.role == "Admin" ? (
-                    <>
+          {userStore.user?.role}
+        </Menu.Item>
+        <Menu.Item position="right" className="navitem">
+          {userStore.isLoggedIn ? (
+            <>
               <Avatar
                 size={40}
                 name={user?.displayName}
