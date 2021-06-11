@@ -51,9 +51,10 @@ export default observer(function NavBar() {
           <div></div>
         )}
         <Menu.Item position={"right"}></Menu.Item>
+        <Menu.Item position={"right"}>{userStore.user?.role}</Menu.Item>
         <Menu.Item position="right" className="navitem">
-          {userStore.isLoggedIn ? (
-            <>
+          {userStore.isLoggedIn && userStore.user?.role == "Admin" ? (
+                    <>
               <Avatar
                 size={40}
                 name={user?.displayName}
