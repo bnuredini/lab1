@@ -67,7 +67,7 @@ namespace API.Controllers
                 DisplayName = registerDto.DisplayName,
                 Email = registerDto.Email,
                 UserName = registerDto.Username,
-                // Role =registerDto.Role
+                Role =registerDto.Role
 
             };
 
