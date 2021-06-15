@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [AllowAnonymous]
+    // [AllowAnonymous]
     public class TestsController : BaseApiController
     {
         [HttpGet]
@@ -15,7 +15,6 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new List.Query()));
         }
-       
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTest(Guid id)

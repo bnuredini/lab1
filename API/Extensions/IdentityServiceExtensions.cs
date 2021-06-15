@@ -19,28 +19,26 @@ namespace API.Extensions
             {
                 opt.Password.RequireNonAlphanumeric=false;
             })
-            .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<DataContext>()
-            .AddSignInManager<SignInManager<AppUser>>();
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<DataContext>()
+                .AddSignInManager<SignInManager<AppUser>>();
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(opt =>
-            {
-                opt.TokenValidationParameters = new TokenValidationParameters
+                .AddJwtBearer(opt =>
                 {
-                    ValidateIssuerSigningKey =true,
-                    IssuerSigningKey=key,
-                    ValidateIssuer= false,
-                    ValidateAudience=false 
-                };
-            });
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey =true,
+                        IssuerSigningKey=key,
+                        ValidateIssuer= false,
+                        ValidateAudience=false 
+                    };
+                });
+
             services.AddScoped<TokenService>();
 
             return services;
-
         }
-        
     }
 }

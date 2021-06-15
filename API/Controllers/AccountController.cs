@@ -39,11 +39,11 @@ namespace API.Controllers
             var roles = await _userManager.GetRolesAsync(user);
             var role = roles[0];
 
-
             if (result.Succeeded)
             {
                 return CreateUserObject(user, role);
             }
+
             return Unauthorized();
         }
 
@@ -73,7 +73,7 @@ namespace API.Controllers
 
             var result= await _userManager.CreateAsync(user, registerDto.Password);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return CreateUserObject(user);
             }
@@ -101,7 +101,6 @@ namespace API.Controllers
                     Image=null,
                     Username = user.UserName,
                     Role = user.Role
-
                 };
         }
 
@@ -114,7 +113,6 @@ namespace API.Controllers
                     Image=null,
                     Username = user.UserName,
                     Role = role
-
                 };
         }
     }
