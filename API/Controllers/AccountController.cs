@@ -39,11 +39,11 @@ namespace API.Controllers
             var roles = await _userManager.GetRolesAsync(user);
             var role = roles[0];
 
+
             if (result.Succeeded)
             {
                 return CreateUserObject(user, role);
             }
-
             return Unauthorized();
         }
 
@@ -73,7 +73,7 @@ namespace API.Controllers
 
             var result= await _userManager.CreateAsync(user, registerDto.Password);
 
-            if (result.Succeeded)
+            if(result.Succeeded)
             {
                 return CreateUserObject(user);
             }
@@ -88,7 +88,8 @@ namespace API.Controllers
             var user=await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
             var roles = await _userManager.GetRolesAsync(user);
             var role = roles[0];
-            return CreateUserObject(user, role);
+
+            return CreateUserObject(user);
 
         }
 
@@ -101,6 +102,7 @@ namespace API.Controllers
                     Image=null,
                     Username = user.UserName,
                     Role = user.Role
+
                 };
         }
 
@@ -112,7 +114,8 @@ namespace API.Controllers
                     Token = _tokenService.CreateToken(user),
                     Image=null,
                     Username = user.UserName,
-                    Role = role
+                    Role =user.Role
+
                 };
         }
     }
