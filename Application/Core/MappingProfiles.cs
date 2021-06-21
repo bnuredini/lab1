@@ -8,6 +8,14 @@ namespace Application.Core
         public MappingProfiles()
         {
             CreateMap<Test, Test>();
+            CreateMap<Patient, Patient>();
+            CreateMap<Chronic_Disease, Chronic_Disease>();
+            CreateMap<Private_Center, Private_Center>();
+            CreateMap<Public_Center, Public_Center>();
+            CreateMap<Rezult, Rezult>();
+            CreateMap<Vaccine, Vaccine>();
+            CreateMap<Article, Article>();
+            CreateMap<Variation, Variation>();
         }
     }
 }
