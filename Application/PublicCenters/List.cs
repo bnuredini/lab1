@@ -23,7 +23,9 @@ namespace Application.PublicCenters
 
             public async Task<Result<List<Public_Center>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return Result<List<Public_Center>>.Success(await _context.Public_Centers.ToListAsync());
+                return Result<List<Public_Center>>.Success(await _context.Public_Centers
+                .Include(x=>x.Private_Center)
+                .ToListAsync());
             }
         }
     }

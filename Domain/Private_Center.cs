@@ -8,7 +8,7 @@ namespace Domain
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
-        public ICollection<TestingCenter> Public_Center { get; set; }
-        
+        public ICollection<TestingCenter> Public_Center { get; set; } = new List<TestingCenter>();
+
     }
 }

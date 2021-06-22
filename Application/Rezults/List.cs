@@ -23,7 +23,9 @@ namespace Application.Rezults
 
             public async Task<Result<List<Rezult>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return Result<List<Rezult>>.Success(await _context.Rezults.ToListAsync());
+                return Result<List<Rezult>>.Success(await _context.Rezults
+                .Include(x=>x.Variations)
+                .ToListAsync());
             }
         }
     }

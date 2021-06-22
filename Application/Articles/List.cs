@@ -23,7 +23,9 @@ namespace Application.Articles
 
             public async Task<Result<List<Article>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return Result<List<Article>>.Success(await _context.Articles.ToListAsync());
+                return Result<List<Article>>.Success(await _context.Articles
+                .Include(x=>x.User)
+                .ToListAsync());
             }
         }
     }

@@ -23,8 +23,12 @@ namespace Application.Tests
 
             public async Task<Result<List<Test>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                // return await _context.Tests.ToListAsync(cancellationToken);
-                return Result<List<Test>>.Success(await _context.Tests.ToListAsync());
+                return Result<List<Test>>.Success(await _context.Tests
+                .Include(x=>x.Patient)
+                .Include(x=>x.Results)
+                .Include(x=>x.Vaccines)
+                .Include(x=>x.Centers)
+                .ToListAsync());
             }
         }
     }
