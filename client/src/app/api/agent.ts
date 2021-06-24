@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { Country } from "../models/country";
 import { Patient } from "../models/patient";
 import { Test } from "../models/test";
+import { Vaccine } from "../models/vaccine";
 import { history } from "../../index";
 import { store } from "../stores/store";
 import { User, UserFormValues } from "../models/user";
@@ -103,11 +104,21 @@ const Account = {
     requests.post<User>("/account/register", user),
 };
 
+const Vaccines = {
+  list: () => requests.get<Vaccine[]>("/vaccines"),
+  details: (id: string) => requests.get<Vaccine>(`/vaccines/${id}`),
+  create: (vaccine: Vaccine) => axios.post<void>("/vaccines", vaccine),
+  update: (vaccine: Vaccine) =>
+    axios.put<void>(`/vaccines/${vaccine.id}`, vaccine),
+  delete: (id: string) => axios.delete<void>(`/vaccines/${id}`),
+};
+
 const agent = {
   Tests,
   Countries,
   Patients,
   Account,
+  Vaccines,
 };
 
 export default agent;

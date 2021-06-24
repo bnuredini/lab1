@@ -20,6 +20,8 @@ import ModalContainer from "../common/modals/ModalContainer";
 import Stats from "../../features/covComponents/Stats";
 import ScreeningTest from "../../features/screeningTest/ScreeningTest";
 import AdminDashboard from "../../features/admin/AdminDashboard";
+import VaccineDashboard from "../../features/vaccines/dashboard/VaccineDashboard";
+import VaccineForm from "../../features/vaccines/form/VaccineForm";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -50,6 +52,8 @@ function App() {
           <Route path="/countries" component={CountryDashboard} />
           <Route path="/patients" component={PatientDashboard} />
           <Route path="/newPatient" component={PatientForm} />
+          <Route path="/vaccines" component={VaccineDashboard} />
+          <Route path="/newVaccine" component={VaccineForm} />
           <Route path="/errors" component={TestErrors} />
           <Route path="/server-error" component={ServerError} />
           <Route path="/login" component={LoginForm} />
