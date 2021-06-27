@@ -8,6 +8,8 @@ import { history } from "../../index";
 import { store } from "../stores/store";
 import { User, UserFormValues } from "../models/user";
 import { PublicCenter } from "../models/publicCenter";
+import { PrivateCenter } from "../models/privateCenter";
+import { Variation } from "../models/variation";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -123,6 +125,24 @@ const PublicCenters = {
   delete: (id: string) => axios.delete<void>(`/publicCenter/${id}`),
 };
 
+const PrivateCenters = {
+  list: () => requests.get<PrivateCenter[]>("/privateCenter"),
+  details: (id: string) => requests.get<PrivateCenter>(`/privateCenter/${id}`),
+  create: (privateCenter: PrivateCenter) => axios.post<void>("/privateCenter", privateCenter),
+  update: (privateCenter: PrivateCenter) =>
+    axios.put<void>(`/privateCenter/${privateCenter.id}`, privateCenter),
+  delete: (id: string) => axios.delete<void>(`/privateCenter/${id}`),
+};
+
+const Variations = {
+  list: () => requests.get<Variation[]>("/variations"),
+  details: (id: string) => requests.get<Variation>(`/variations/${id}`),
+  create: (variation: Variation) => axios.post<void>("/variations", variation),
+  update: (variation: Variation) =>
+    axios.put<void>(`/variations/${variation.id}`, variation),
+  delete: (id: string) => axios.delete<void>(`/variations/${id}`),
+};
+
 const agent = {
   Tests,
   Countries,
@@ -130,6 +150,8 @@ const agent = {
   Account,
   Vaccines,
   PublicCenters,
+  PrivateCenters,
+  Variations,
 };
 
 export default agent;

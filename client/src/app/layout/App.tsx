@@ -24,6 +24,10 @@ import VaccineDashboard from "../../features/vaccines/dashboard/VaccineDashboard
 import VaccineForm from "../../features/vaccines/form/VaccineForm";
 import PublicCenterDashboard from "../../features/publicCenters/dashboard/PublicCenterDashboard";
 import PublicCenterForm from "../../features/publicCenters/form/PublicCenterForm";
+import PrivateCenterDashboard from "../../features/privateCenters/dashboard/PrivateCenterDashboard";
+import PrivateCenterForm from "../../features/privateCenters/form/PrivateCenterForm";
+import VariationDashboard from "../../features/vatiations/dashboard/VariationDashboard";
+import VariationForm from "../../features/vatiations/form/VariationForm";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -58,6 +62,10 @@ function App() {
           <Route path="/newVaccine" component={VaccineForm} />
           <Route path="/publicCenters" component={PublicCenterDashboard} />
           <Route path="/newPublicCenter" component={PublicCenterForm} />
+          <Route path="/privateCenters" component={PrivateCenterDashboard} />
+          <Route path="/newPrivateCenter" component={PrivateCenterForm} />
+          <Route path="/variations" component={VariationDashboard} />
+          <Route path="/newVariation" component={VariationForm} />
           <Route path="/errors" component={TestErrors} />
           <Route path="/server-error" component={ServerError} />
           <Route path="/login" component={LoginForm} />

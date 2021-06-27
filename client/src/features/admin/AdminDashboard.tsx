@@ -18,7 +18,7 @@ export default class AdminDashboard extends Component {
             <Menu.Item
               name="Private Centers"
               active={activeItem === "Private Centers"}
-              onClick={this.handleItemClick}
+              as={NavLink} to="/privateCenters"
             />
             <Menu.Item
               name="Public Centers"
@@ -33,7 +33,7 @@ export default class AdminDashboard extends Component {
             <Menu.Item
               name="Variations"
               active={activeItem === "Variations"}
-              onClick={this.handleItemClick}
+              as={NavLink} to="/variations"
             />
             <Menu.Item
               name="Users"
