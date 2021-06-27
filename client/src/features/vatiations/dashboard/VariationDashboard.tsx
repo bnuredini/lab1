@@ -25,7 +25,7 @@ export default observer(function VariationDashboard() {
       <Button
         onClick={() => variationStore.openForm()}
         primary
-        content="Krijo qender"
+        content="Krijo variacion"
         style={{ marginBottom: "1.4rem" }}
       />
       <Grid>
