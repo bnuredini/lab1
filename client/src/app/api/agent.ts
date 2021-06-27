@@ -7,6 +7,7 @@ import { Vaccine } from "../models/vaccine";
 import { history } from "../../index";
 import { store } from "../stores/store";
 import { User, UserFormValues } from "../models/user";
+import { PublicCenter } from "../models/publicCenter";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -113,12 +114,22 @@ const Vaccines = {
   delete: (id: string) => axios.delete<void>(`/vaccines/${id}`),
 };
 
+const PublicCenters = {
+  list: () => requests.get<PublicCenter[]>("/publicCenter"),
+  details: (id: string) => requests.get<PublicCenter>(`/publicCenter/${id}`),
+  create: (publicCenter: PublicCenter) => axios.post<void>("/publicCenter", publicCenter),
+  update: (publicCenter: PublicCenter) =>
+    axios.put<void>(`/publicCenter/${publicCenter.id}`, publicCenter),
+  delete: (id: string) => axios.delete<void>(`/publicCenter/${id}`),
+};
+
 const agent = {
   Tests,
   Countries,
   Patients,
   Account,
   Vaccines,
+  PublicCenters,
 };
 
 export default agent;

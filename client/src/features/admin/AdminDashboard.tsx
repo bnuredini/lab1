@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import { Grid, Menu, Segment } from "semantic-ui-react";
 
 export default class AdminDashboard extends Component {
@@ -22,12 +23,12 @@ export default class AdminDashboard extends Component {
             <Menu.Item
               name="Public Centers"
               active={activeItem === "Public Centers"}
-              onClick={this.handleItemClick}
+              as={NavLink} to="/publicCenters"
             />
             <Menu.Item
               name="Vaccines"
               active={activeItem === "Vaccines"}
-              onClick={this.handleItemClick}
+              as={NavLink} to="/vaccines"
             />
             <Menu.Item
               name="Variations"
