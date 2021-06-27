@@ -10,6 +10,7 @@ import { User, UserFormValues } from "../models/user";
 import { PublicCenter } from "../models/publicCenter";
 import { PrivateCenter } from "../models/privateCenter";
 import { Variation } from "../models/variation";
+import { ChronicDisease } from "../models/chronicDisease";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -143,6 +144,15 @@ const Variations = {
   delete: (id: string) => axios.delete<void>(`/variations/${id}`),
 };
 
+const ChronicDiseases = {
+  list: () => requests.get<ChronicDisease[]>("/chronicDiseases"),
+  details: (id: string) => requests.get<ChronicDisease>(`/chronicDiseases/${id}`),
+  create: (chronicDisease: ChronicDisease) => axios.post<void>("/chronicDiseases", chronicDisease),
+  update: (chronicDisease: ChronicDisease) =>
+    axios.put<void>(`/chronicDiseases/${chronicDisease.id}`, chronicDisease),
+  delete: (id: string) => axios.delete<void>(`/chronicDiseases/${id}`),
+};
+
 const agent = {
   Tests,
   Countries,
@@ -152,6 +162,7 @@ const agent = {
   PublicCenters,
   PrivateCenters,
   Variations,
+  ChronicDiseases,
 };
 
 export default agent;

@@ -35,6 +35,11 @@ export default class AdminDashboard extends Component {
               active={activeItem === "Variations"}
               as={NavLink} to="/variations"
             />
+             <Menu.Item
+              name="Chronic Diseases"
+              active={activeItem === "Chronic Disease"}
+              as={NavLink} to="/chronicDiseases"
+            />
             <Menu.Item
               name="Users"
               active={activeItem === "Users"}

@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import ChronicDiseaseStore from "./chronicDiseaseStore";
 import CommonStore from "./commonStore";
 import ModalStore from "./modalStore";
 import PatientStore from "./patientStore";
@@ -19,6 +20,7 @@ interface Store {
   publicCenterStore: PublicCenterStore;
   privateCenterStore: PrivateCenterStore;
   variationStore: VariationStore;
+  chronicDiseaseStore: ChronicDiseaseStore;
 }
 
 export const store: Store = {
@@ -26,11 +28,13 @@ export const store: Store = {
   publicCenterStore: new PublicCenterStore(),
   privateCenterStore: new PrivateCenterStore(),
   variationStore: new VariationStore(),
+  chronicDiseaseStore: new ChronicDiseaseStore(),
   testStore: new TestStore(),
   patientStore: new PatientStore(),
   commonStore: new CommonStore(),
   userStore: new UserStore(),
   modalStore: new ModalStore(),
+
 };
 
 export const StoreContext = createContext(store);

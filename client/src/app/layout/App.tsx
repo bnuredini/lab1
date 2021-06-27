@@ -28,6 +28,7 @@ import PrivateCenterDashboard from "../../features/privateCenters/dashboard/Priv
 import PrivateCenterForm from "../../features/privateCenters/form/PrivateCenterForm";
 import VariationDashboard from "../../features/vatiations/dashboard/VariationDashboard";
 import VariationForm from "../../features/vatiations/form/VariationForm";
+import ChronicDiseaseDashboard from "../../features/chronicDiseases/dashboard/ChronicDiseaseDashboard";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -64,6 +65,7 @@ function App() {
           <Route path="/newPublicCenter" component={PublicCenterForm} />
           <Route path="/privateCenters" component={PrivateCenterDashboard} />
           <Route path="/newPrivateCenter" component={PrivateCenterForm} />
+          <Route path="/chronicDiseases" component={ChronicDiseaseDashboard} />
           <Route path="/variations" component={VariationDashboard} />
           <Route path="/newVariation" component={VariationForm} />
           <Route path="/errors" component={TestErrors} />
