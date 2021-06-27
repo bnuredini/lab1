@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Container } from "semantic-ui-react";
 import NavBar from "./NavBar";
 import TestDashboard from "../../features/tests/dashboard/TestDashboard";
@@ -15,19 +15,14 @@ import ServerError from "../../errors/ServerError";
 import LoginForm from "../../features/users/LoginForm";
 import { useStore } from "../stores/store";
 import LoadingComponent from "./LoadingComponent";
-import LoginPage from "../../features/users/LoginPage";
 import ModalContainer from "../common/modals/ModalContainer";
 import Stats from "../../features/covComponents/Stats";
 import ScreeningTest from "../../features/screeningTest/ScreeningTest";
 import AdminDashboard from "../../features/admin/AdminDashboard";
 import VaccineDashboard from "../../features/vaccines/dashboard/VaccineDashboard";
-import VaccineForm from "../../features/vaccines/form/VaccineForm";
 import PublicCenterDashboard from "../../features/publicCenters/dashboard/PublicCenterDashboard";
-import PublicCenterForm from "../../features/publicCenters/form/PublicCenterForm";
 import PrivateCenterDashboard from "../../features/privateCenters/dashboard/PrivateCenterDashboard";
-import PrivateCenterForm from "../../features/privateCenters/form/PrivateCenterForm";
 import VariationDashboard from "../../features/vatiations/dashboard/VariationDashboard";
-import VariationForm from "../../features/vatiations/form/VariationForm";
 import ChronicDiseaseDashboard from "../../features/chronicDiseases/dashboard/ChronicDiseaseDashboard";
 
 function App() {
@@ -60,14 +55,10 @@ function App() {
           <Route path="/patients" component={PatientDashboard} />
           <Route path="/newPatient" component={PatientForm} />
           <Route path="/vaccines" component={VaccineDashboard} />
-          <Route path="/newVaccine" component={VaccineForm} />
           <Route path="/publicCenters" component={PublicCenterDashboard} />
-          <Route path="/newPublicCenter" component={PublicCenterForm} />
           <Route path="/privateCenters" component={PrivateCenterDashboard} />
-          <Route path="/newPrivateCenter" component={PrivateCenterForm} />
           <Route path="/chronicDiseases" component={ChronicDiseaseDashboard} />
           <Route path="/variations" component={VariationDashboard} />
-          <Route path="/newVariation" component={VariationForm} />
           <Route path="/errors" component={TestErrors} />
           <Route path="/server-error" component={ServerError} />
           <Route path="/login" component={LoginForm} />
