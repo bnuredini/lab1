@@ -10,7 +10,6 @@ namespace Domain
         public string Gender { get; set; }
         public int Phone_Number { get; set; }
         public string Email { get; set; }
-
         public string Address { get; set; }        
     }
 }

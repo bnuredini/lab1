@@ -10,6 +10,5 @@ namespace Domain
         public Guid Public_CenterId { get; set; }
         public Public_Center Public_Center { get; set; }
         public ICollection<Test> Tests { get; set; }
-
     }
 }

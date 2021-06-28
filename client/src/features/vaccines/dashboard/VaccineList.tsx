@@ -6,10 +6,13 @@ import { useStore } from "../../../app/stores/store";
 
 export default observer(function VaccineList() {
   const { vaccineStore } = useStore();
-  const { deleteVaccine, vaccines, loading} = vaccineStore;
+  const { deleteVaccine, vaccines, loading } = vaccineStore;
   const [target, setTarget] = useState("");
 
-  function handleVaccineDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
+  function handleVaccineDelete(
+    e: SyntheticEvent<HTMLButtonElement>,
+    id: string
+  ) {
     setTarget(e.currentTarget.name);
     deleteVaccine(id);
   }
@@ -17,10 +20,7 @@ export default observer(function VaccineList() {
   return (
     <Segment>
       <Item.Group divided>
-        {vaccines.map(vaccine => {
-          // replace w/ the current users id
-          // if (test.patientId !== 12332) return;
-
+        {vaccines.map((vaccine) => {
           return (
             <Item key={vaccine.id}>
               <Item.Content>
@@ -50,7 +50,7 @@ export default observer(function VaccineList() {
               </Item.Content>
             </Item>
           );
-        })}               
+        })}
       </Item.Group>
     </Segment>
   );

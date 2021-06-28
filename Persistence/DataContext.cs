@@ -19,7 +19,7 @@ namespace Persistence
         public DbSet<Private_Center> Private_Centers { get; set; }
         public DbSet<Public_Center> Public_Centers { get; set; }
         public DbSet<Vaccine> Vaccines { get; set; }
-         public DbSet<Article> Articles { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
         public DbSet<TestingCenter> TestingCenters { get; set; }
 
@@ -39,10 +39,5 @@ namespace Persistence
             .WithMany(s => s.Private_Center)
             .HasForeignKey(tc => tc.Public_CenterId);
         }
-
-
-
-
-
     }
 }

@@ -14,26 +14,15 @@ export default class VaccineStore {
     makeAutoObservable(this);
   }
 
-//   get testsByDate() {
-//     return Array.from(this.vaccineRegistry.values()).sort(
-//       (a, b) => a.date!.getTime() - b.date!.getTime()
-//     );
-//   }
-
-//   get testsByPatient() {
-//     return Array.from(this.testRegistry.values());
-//   }
-get vaccines() {
+  get vaccines() {
     return Array.from(this.vaccineRegistry.values());
-}
+  }
 
   loadVaccines = async () => {
     try {
       const vaccines = await agent.Vaccines.list();
 
       vaccines.forEach((vaccine) => {
-        // test.date = new Date(test.date!);
-        // this.tests.push(test);
         this.vaccineRegistry.set(vaccine.id, vaccine);
       });
       this.setLoadingInitial(false);
@@ -48,7 +37,6 @@ get vaccines() {
   };
 
   selectVaccine = (id: string) => {
-    // this.selectedTest = this.tests.find((t) => t.id === id);
     this.selectedVaccine = this.vaccineRegistry.get(id);
   };
 

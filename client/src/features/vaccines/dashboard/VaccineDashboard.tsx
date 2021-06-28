@@ -13,13 +13,11 @@ export default observer(function VaccineDashboard() {
 
   useEffect(() => {
     vaccineStore.loadVaccines();
-  }, [vaccineStore]); // side-effect runs when any dependecy values changes
+  }, [vaccineStore]);
 
   if (vaccineStore.loadingIntial)
     return <LoadingComponent content="Loading app" />;
 
-  // set the app's title
-  // TODO: find a better way to do this
   document.title = "lab1";
 
   return (

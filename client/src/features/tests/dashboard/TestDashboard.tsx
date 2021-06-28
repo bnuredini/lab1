@@ -13,7 +13,7 @@ export default observer(function TestDashboard() {
 
   useEffect(() => {
     testStore.loadTests();
-  }, [testStore]); // side-effect runs when any dependecy values changes
+  }, [testStore]); // side-effect runs when any dependecy value changes
 
   if (testStore.loadingIntial)
     return <LoadingComponent content="Loading app" />;

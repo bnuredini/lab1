@@ -3,11 +3,14 @@ import React from "react";
 import { Button, Card, Image } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
-// import { Link } from "react-router-dom";
 
 export default function VaccineDetails() {
   const { vaccineStore } = useStore();
-  const { selectedVaccine: vaccine, openForm, cancelSelectedVaccine } = vaccineStore;
+  const {
+    selectedVaccine: vaccine,
+    openForm,
+    cancelSelectedVaccine,
+  } = vaccineStore;
 
   if (!vaccine) return <LoadingComponent />;
 
