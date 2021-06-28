@@ -7,6 +7,10 @@ import { Vaccine } from "../models/vaccine";
 import { history } from "../../index";
 import { store } from "../stores/store";
 import { User, UserFormValues } from "../models/user";
+import { PublicCenter } from "../models/publicCenter";
+import { PrivateCenter } from "../models/privateCenter";
+import { Variation } from "../models/variation";
+import { ChronicDisease } from "../models/chronicDisease";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -113,12 +117,52 @@ const Vaccines = {
   delete: (id: string) => axios.delete<void>(`/vaccines/${id}`),
 };
 
+const PublicCenters = {
+  list: () => requests.get<PublicCenter[]>("/publicCenter"),
+  details: (id: string) => requests.get<PublicCenter>(`/publicCenter/${id}`),
+  create: (publicCenter: PublicCenter) => axios.post<void>("/publicCenter", publicCenter),
+  update: (publicCenter: PublicCenter) =>
+    axios.put<void>(`/publicCenter/${publicCenter.id}`, publicCenter),
+  delete: (id: string) => axios.delete<void>(`/publicCenter/${id}`),
+};
+
+const PrivateCenters = {
+  list: () => requests.get<PrivateCenter[]>("/privateCenter"),
+  details: (id: string) => requests.get<PrivateCenter>(`/privateCenter/${id}`),
+  create: (privateCenter: PrivateCenter) => axios.post<void>("/privateCenter", privateCenter),
+  update: (privateCenter: PrivateCenter) =>
+    axios.put<void>(`/privateCenter/${privateCenter.id}`, privateCenter),
+  delete: (id: string) => axios.delete<void>(`/privateCenter/${id}`),
+};
+
+const Variations = {
+  list: () => requests.get<Variation[]>("/variations"),
+  details: (id: string) => requests.get<Variation>(`/variations/${id}`),
+  create: (variation: Variation) => axios.post<void>("/variations", variation),
+  update: (variation: Variation) =>
+    axios.put<void>(`/variations/${variation.id}`, variation),
+  delete: (id: string) => axios.delete<void>(`/variations/${id}`),
+};
+
+const ChronicDiseases = {
+  list: () => requests.get<ChronicDisease[]>("/chronicDiseases"),
+  details: (id: string) => requests.get<ChronicDisease>(`/chronicDiseases/${id}`),
+  create: (chronicDisease: ChronicDisease) => axios.post<void>("/chronicDiseases", chronicDisease),
+  update: (chronicDisease: ChronicDisease) =>
+    axios.put<void>(`/chronicDiseases/${chronicDisease.id}`, chronicDisease),
+  delete: (id: string) => axios.delete<void>(`/chronicDiseases/${id}`),
+};
+
 const agent = {
   Tests,
   Countries,
   Patients,
   Account,
   Vaccines,
+  PublicCenters,
+  PrivateCenters,
+  Variations,
+  ChronicDiseases,
 };
 
 export default agent;
