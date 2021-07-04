@@ -1,0 +1,33 @@
+.info-box {
+    flex: 1;
+    cursor: pointer;
+
+    &:not(:last-child) {
+        margin-right: 15px;
+    }
+
+    &__cases {
+        color: #cc1034;
+        font-weight: 600;
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0;
+    }
+
+    &__total {
+        color: #6c757d;
+        font-weight: 700;
+        font-size: 0.8rem;
+        margin-top: 15px;
+    }
+
+    &--selected {
+        &-success {
+            border-top: 10px solid #8fd460;
+        }
+
+        &-alert {
+            border-top: 10px solid #e84749;
+        }
+    }
+}
