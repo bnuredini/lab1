@@ -24,6 +24,7 @@ import PublicCenterDashboard from "../../features/publicCenters/dashboard/Public
 import PrivateCenterDashboard from "../../features/privateCenters/dashboard/PrivateCenterDashboard";
 import VariationDashboard from "../../features/vatiations/dashboard/VariationDashboard";
 import ChronicDiseaseDashboard from "../../features/chronicDiseases/dashboard/ChronicDiseaseDashboard";
+import ProfilePage from "../../features/profiles/ProfilePage";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -60,6 +61,7 @@ function App() {
           <Route path="/chronicDiseases" component={ChronicDiseaseDashboard} />
           <Route path="/variations" component={VariationDashboard} />
           <Route path="/errors" component={TestErrors} />
+          <Route path="/profiles/:username" component={ProfilePage} />
           <Route path="/server-error" component={ServerError} />
           <Route path="/login" component={LoginForm} />
           <Route path="/admin" component={AdminDashboard} />
