@@ -11,6 +11,7 @@ import { PublicCenter } from "../models/publicCenter";
 import { PrivateCenter } from "../models/privateCenter";
 import { Variation } from "../models/variation";
 import { ChronicDisease } from "../models/chronicDisease";
+import { Article } from "../models/article";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -153,6 +154,8 @@ const ChronicDiseases = {
   delete: (id: string) => axios.delete<void>(`/chronicDiseases/${id}`),
 };
 
+import { Article } from "../models/article";
+
 const agent = {
   Tests,
   Countries,
@@ -163,6 +166,7 @@ const agent = {
   PrivateCenters,
   Variations,
   ChronicDiseases,
+  Articles,
 };
 
 export default agent;
