@@ -36,6 +36,12 @@ export default observer(function NavBar() {
           name="Statistikat"
           className="navitem"
         />
+        <Menu.Item
+          as={NavLink}
+          to="/articles"
+          name="News"
+          className="navitem"
+        />
         {userStore.isLoggedIn ? (
           <>
             <Menu.Item
