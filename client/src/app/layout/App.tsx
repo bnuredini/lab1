@@ -64,9 +64,9 @@ function App() {
           <Route path="/server-error" component={ServerError} />
           <Route path="/login" component={LoginForm} />
           <Route path="/admin" component={AdminDashboard} />
+          <Route path="/articles" component={Article} />
           <Route exact path="/loginpage" component={HomePage} />
           <Route component={NotFound} />
-          <Route path="/articles" component={Article} />
         </Switch>
       </Container>
     </>
