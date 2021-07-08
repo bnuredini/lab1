@@ -154,7 +154,14 @@ const ChronicDiseases = {
   delete: (id: string) => axios.delete<void>(`/chronicDiseases/${id}`),
 };
 
-import { Article } from "../models/article";
+const Articles = {
+  list: () => requests.get<Article[]>('/articles'),
+  details: (id: string) => requests.get<Article>(`/articles/${id}`),
+  create: (article: Article) => requests.post<void>('/articles', article),
+  update: (article: Article) => requests.put<void>(`/articles/${article.id}`, article),
+  delete: (id: string) => requests.del<void>(`/articles/${id}`)
+}
+
 
 const agent = {
   Tests,
