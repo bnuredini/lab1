@@ -24,6 +24,7 @@ import PublicCenterDashboard from "../../features/publicCenters/dashboard/Public
 import PrivateCenterDashboard from "../../features/privateCenters/dashboard/PrivateCenterDashboard";
 import VariationDashboard from "../../features/vatiations/dashboard/VariationDashboard";
 import ChronicDiseaseDashboard from "../../features/chronicDiseases/dashboard/ChronicDiseaseDashboard";
+import Article from "../../features/articles/Article";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -65,6 +66,7 @@ function App() {
           <Route path="/admin" component={AdminDashboard} />
           <Route exact path="/loginpage" component={HomePage} />
           <Route component={NotFound} />
+          <Route path="/articles" component={Article} />
         </Switch>
       </Container>
     </>
