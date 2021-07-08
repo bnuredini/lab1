@@ -9,6 +9,7 @@ import TestStore from "./testStore";
 import UserStore from "./userStore";
 import VaccineStore from "./vaccineStore";
 import VariationStore from "./variationStore";
+import ArticleStore from "./articleStore";
 
 interface Store {
   testStore: TestStore;
@@ -21,6 +22,7 @@ interface Store {
   privateCenterStore: PrivateCenterStore;
   variationStore: VariationStore;
   chronicDiseaseStore: ChronicDiseaseStore;
+  articleStore: ArticleStore;
 }
 
 export const store: Store = {
@@ -34,7 +36,7 @@ export const store: Store = {
   commonStore: new CommonStore(),
   userStore: new UserStore(),
   modalStore: new ModalStore(),
-
+  articleStore: new ArticleStore(),
 };
 
 export const StoreContext = createContext(store);
