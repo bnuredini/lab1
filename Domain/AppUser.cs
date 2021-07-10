@@ -11,5 +11,7 @@ namespace Domain
         public ICollection<Test> Tests { get; set; }
         public ICollection<Chronic_Disease> ChronicDisease { get; set; }
         public ICollection<Article> Articles { get; set; }
+
+        public ICollection<PatientVaccine> Vaccines { get; set; }
     }
 }
