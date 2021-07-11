@@ -16,9 +16,10 @@ namespace Application.Core
             CreateMap<Vaccine, Vaccine>();
             CreateMap<Article, Article>();
             CreateMap<Variation, Variation>();
-             CreateMap<VaccineApplication, VaccineApplication>();
+            CreateMap<Drug, Drug>();
+            CreateMap<Treatment, Treatment>();
+            CreateMap<VaccineApplication, VaccineApplication>();
             CreateMap<Allergy, Allergy>();
-
         }
     }
 }

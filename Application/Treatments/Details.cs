@@ -6,16 +6,16 @@ using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.Patients
+namespace Application.Treatments
 {
     public class Details
     {
-        public class Query : IRequest<Result<Patient>>
+        public class Query : IRequest<Result<Treatment>>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<Patient>>
+        public class Handler : IRequestHandler<Query, Result<Treatment>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -23,11 +23,11 @@ namespace Application.Patients
                 _context = context;
             }
 
-            public async Task<Result<Patient>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<Treatment>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var patient = await _context.Patients.FindAsync(request.Id);
+                var treatment = await _context.Treatments.FindAsync(request.Id);
 
-                return Result<Patient>.Success(patient);
+                return Result<Treatment>.Success(treatment);
             }
         }
     }
