@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Container,
   Divider,
@@ -29,12 +30,16 @@ export default function Footer() {
             </Grid.Column>
 
             <Grid.Column width={6}>
-              {/* <Header inverted as="h4" content="Group 1" /> */}
               <List link inverted>
-                <List.Item as="a">Testet</List.Item>
-                <List.Item as="a">Statistikat</List.Item>
-                <List.Item as="a">Pacientet</List.Item>
-                <List.Item as="a">Profili</List.Item>
+                <List.Item as={Link} to="/tests">
+                  Testet
+                </List.Item>
+                <List.Item as={Link} to="/stats">
+                  Statistikat
+                </List.Item>
+                <List.Item as={Link} to="/patients">
+                  Pacientet
+                </List.Item>
               </List>
             </Grid.Column>
           </Grid>
@@ -42,16 +47,16 @@ export default function Footer() {
           <Divider inverted section />
           <Image centered size="mini" src="/assets/logo.png" />
           <List horizontal inverted divided link size="small">
-            <List.Item as="a" href="#">
+            <List.Item as={Link} to="/">
               Site Map
             </List.Item>
-            <List.Item as="a" href="#">
+            <List.Item as={Link} href="/">
               Contact Us
             </List.Item>
-            <List.Item as="a" href="#">
+            <List.Item as={Link} href="/">
               Terms and Conditions
             </List.Item>
-            <List.Item as="a" href="#">
+            <List.Item as={Link} href="/">
               Privacy Policy
             </List.Item>
           </List>

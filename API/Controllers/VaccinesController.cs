@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [AllowAnonymous]
     public class VaccinesController : BaseApiController
     {
         [HttpGet]
@@ -15,7 +14,6 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new List.Query()));
         }
-       
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVaccine(Guid id)
@@ -34,6 +32,12 @@ namespace API.Controllers
         {
             vaccine.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command{Vaccine = vaccine}));
+        }
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateVaccine(Guid id)
+        {
+            return HandleResult(await Mediator.Send(new PatientAdder.Command{Id = id}));
         }
 
         [HttpDelete("{id}")]
