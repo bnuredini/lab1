@@ -22,6 +22,9 @@ namespace Persistence
         public DbSet<Public_Center> Public_Centers { get; set; }
         public DbSet<Vaccine> Vaccines { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Allergy> Allergies { get; set; }
+        public DbSet<VaccineApplication> VaccineApplications { get; set; }
+
 
         public DbSet<TestingCenter> TestingCenters { get; set; }
 
