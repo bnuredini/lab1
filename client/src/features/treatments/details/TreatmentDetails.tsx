@@ -2,7 +2,6 @@ import { format } from "date-fns";
 import React from "react";
 import { Button, Card, Image } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
-import treatmentStore from "../../../app/stores/treatmentStore";
 import { useStore } from "../../../app/stores/store";
 
 export default function TreatmentDetails() {

@@ -59,7 +59,7 @@ function App() {
           <Route path="/patients" component={PatientDashboard} />
           <Route path="/newPatient" component={PatientForm} />
           <Route path="/vaccines" component={VaccineDashboard} />
-          <Route path="/treatments" component={TreatmentDashboard} />
+          <Route path="/treatment" component={TreatmentDashboard} />
           <Route path="/publicCenters" component={PublicCenterDashboard} />
           <Route path="/drugs" component={DrugDashboard} />
           <Route path="/privateCenters" component={PrivateCenterDashboard} />

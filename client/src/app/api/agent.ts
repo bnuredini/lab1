@@ -172,12 +172,12 @@ const Drugs = {
   delete: (id: string) => axios.delete<void>(`/drugs/${id}`),
 };
 const Treatments = {
-  list: () => requests.get<Treatment[]>("/treatments"),
-  details: (id: string) => requests.get<Treatment>(`/treatments/${id}`),
-  create: (treatment: Treatment) => axios.post<void>("/treatments", treatment),
+  list: () => requests.get<Treatment[]>("/treatment"),
+  details: (id: string) => requests.get<Treatment>(`/treatment/${id}`),
+  create: (treatment: Treatment) => axios.post<void>("/treatment", treatment),
   update: (treatment: Treatment) =>
-    axios.put<void>(`/treatments/${treatment.id}`, treatment),
-  delete: (id: string) => axios.delete<void>(`/treatments/${id}`),
+    axios.put<void>(`/treatment/${treatment.id}`, treatment),
+  delete: (id: string) => axios.delete<void>(`/treatment/${id}`),
 };
 
 

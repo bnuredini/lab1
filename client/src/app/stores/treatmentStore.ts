@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
-import { v4 as uuid } from "uuid";
 import { Treatment } from "../models/treatment";
+import { v4 as uuid } from "uuid";
 
 export default class TreatmentStore {
   treatmentRegistry = new Map<string, Treatment>();
@@ -14,7 +14,13 @@ export default class TreatmentStore {
     makeAutoObservable(this);
   }
 
-  get treatments() {
+  get treatmentsByDate() {
+    return Array.from(this.treatmentRegistry.values()).sort(
+      (a, b) => a.date!.getTime() - b.date!.getTime()
+    );
+  }
+
+  get treatmentsByPatient() {
     return Array.from(this.treatmentRegistry.values());
   }
 
@@ -23,6 +29,7 @@ export default class TreatmentStore {
       const treatments = await agent.Treatments.list();
 
       treatments.forEach((treatment) => {
+        treatment.date = new Date(treatment.date!);
         this.treatmentRegistry.set(treatment.id, treatment);
       });
       this.setLoadingInitial(false);

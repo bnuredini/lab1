@@ -27,10 +27,10 @@ export default observer(function TreatmentForm() {
     doctor: Yup.string().required(),
     date: Yup.string().required("Ju lutem vendosni daten").nullable(),
   });
-  const [test] = useState(initialState);
+  const [treatment] = useState(initialState);
 
   function handleFormSubmit(treatment: Treatment) {
-    test.id ? updateTreatment(treatment) : createTreatment(treatment);
+    treatment.id ? updateTreatment(treatment) : createTreatment(treatment);
   }
 
   return (
@@ -38,7 +38,7 @@ export default observer(function TreatmentForm() {
       <Formik
         validationSchema={validationSchema}
         enableReinitialize
-        initialValues={test}
+        initialValues={treatment}
         onSubmit={(values) => handleFormSubmit(values)}
       >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (

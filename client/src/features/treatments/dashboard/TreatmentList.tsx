@@ -1,12 +1,12 @@
 import { format } from "date-fns";
 import { observer } from "mobx-react-lite";
 import React, { SyntheticEvent, useState } from "react";
-import { Button, Item, Label, Segment } from "semantic-ui-react";
+import { Button, Item, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function TreatmentList() {
   const { treatmentStore } = useStore();
-  const { deleteTreatment, treatments, loading } = treatmentStore;
+  const { deleteTreatment, treatmentsByDate, loading } = treatmentStore;
   const [target, setTarget] = useState("");
 
   function handleTreatmentDelete(
@@ -20,7 +20,7 @@ export default observer(function TreatmentList() {
   return (
     <Segment>
       <Item.Group divided>
-        {treatments.map((treatment) => {
+        {treatmentsByDate.map((treatment) => {
           return (
             <Item key={treatment.id}>
               <Item.Content>

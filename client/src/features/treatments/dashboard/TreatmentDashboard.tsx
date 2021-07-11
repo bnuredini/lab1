@@ -24,7 +24,7 @@ export default observer(function TreatmentDashboard() {
 <Button
         onClick={() => treatmentStore.openForm()}
         primary
-        content="Add"
+        content="Krijo trajtim"
         style={{ marginBottom: "1.4rem" }}
       />
       <Grid>
