@@ -35,6 +35,7 @@ export default class PatientStore {
     }
   };
 
+
   selectPatient = (id: string) => {
     this.selectedPatient = this.patientRegistry.get(id);
   };

@@ -302,6 +302,36 @@ namespace Persistence
 
                 await context.Chronic_Diseases.AddRangeAsync(chronicDiseases);
             }
+             if (!context.Drugs.Any())
+            {
+                var drugs = new List<Drug>
+                {
+                    new Drug
+                    {
+                        Name="Sintrom",
+                        SideEffects = "Blood Thinning",
+                        Type = "Blood Thinner",
+                        Description = "Twice a day",
+                    },
+                };
+
+                await context.Drugs.AddRangeAsync(drugs);
+            }
+              if (!context.Treatments.Any())
+            {
+                var treatments = new List<Treatment>
+                {
+                    new Treatment
+                    {
+                        Description="Yada yada yada",
+                        Patient ="UK",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Doctor = "Twice a day",
+                    },
+                };
+
+                await context.Treatments.AddRangeAsync(treatments);
+            }
 
             await context.SaveChangesAsync();
         }

@@ -26,6 +26,8 @@ import VariationDashboard from "../../features/vatiations/dashboard/VariationDas
 import ChronicDiseaseDashboard from "../../features/chronicDiseases/dashboard/ChronicDiseaseDashboard";
 import Article from "../../features/articles/Article";
 import ProfilePage from "../../features/profiles/ProfilePage";
+import DrugDashboard from "../../features/drugs/dashboard/DrugDashboard";
+import TreatmentDashboard from "../../features/treatments/dashboard/TreatmentDashboard";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -57,7 +59,9 @@ function App() {
           <Route path="/patients" component={PatientDashboard} />
           <Route path="/newPatient" component={PatientForm} />
           <Route path="/vaccines" component={VaccineDashboard} />
+          <Route path="/treatments" component={TreatmentDashboard} />
           <Route path="/publicCenters" component={PublicCenterDashboard} />
+          <Route path="/drugs" component={DrugDashboard} />
           <Route path="/privateCenters" component={PrivateCenterDashboard} />
           <Route path="/chronicDiseases" component={ChronicDiseaseDashboard} />
           <Route path="/variations" component={VariationDashboard} />
