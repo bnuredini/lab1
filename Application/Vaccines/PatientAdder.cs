@@ -1,26 +1,20 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
 using Application.Interfaces;
 using Domain;
-using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.ChronicDiseases
+namespace Application.Vaccines
 {
-    public class Create
+    public class PatientAdder
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Chronic_Disease Chronic_Disease { get; set; }
-        }
-
-        public class CommandValidator : AbstractValidator<Command>
-        {
-            public CommandValidator() {
-                RuleFor(x => x.Chronic_Disease).SetValidator(new Chronic_DiseaseValidator());
-            }
+            public Guid Id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -30,19 +24,32 @@ namespace Application.ChronicDiseases
 
             public Handler(DataContext context, IUserAccessor userAccessor)
             {
-                _context = context;
                 _userAccessor = userAccessor;
+                _context = context;
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Chronic_Diseases.Add(request.Chronic_Disease);
+                var user = await _context.Users.FirstOrDefaultAsync(x =>
+                    x.UserName == _userAccessor.GetUsername());
+
+                var vaccine = await _context.Vaccines.FirstOrDefaultAsync(x =>
+                    x.Id == request.Id);
+                if (vaccine == null) return null;
+
+                var patient = new PatientVaccine
+                {
+                    AppUser = user,
+                    Vaccine = vaccine
+                };
+                
+                vaccine.Patients.Add(patient);
 
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
-                    return Result<Unit>.Failure("Failed during Chronic Disease creation");
+                    return Result<Unit>.Failure("Failed during Vaccine updation");
                 }
-
+                
                 return Result<Unit>.Success(Unit.Value);
             }
         }

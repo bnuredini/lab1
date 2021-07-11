@@ -11,19 +11,128 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
-            if (!userManager.Users.Any())
+            if(!userManager.Users.Any() && !context.Vaccines.Any() && !context.Chronic_Diseases.Any())
             {
                 var users = new List<AppUser>
                 {
                     new AppUser { DisplayName="Test", UserName="test", Email="test@test.com" },
                     new AppUser { DisplayName="Test2", UserName="test2", Email="test2@test.com" },
                     new AppUser { DisplayName="Test3", UserName="test3", Email="test3@test.com" },
+                    new AppUser { DisplayName="doki", UserName="doki", Email="doki@qkuk.rks" },
                 };
 
                 foreach (var user in users)
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
+
+                var vaccines = new List<Vaccine>
+                {
+                    new Vaccine
+                    {
+                        Name = "Pfizer", 
+                        Efficacy = "mbi 91.3%",
+                        Creator = "BioNTech",
+                        Type = "mRNA",
+                        Patients = new List<PatientVaccine> {
+                            new PatientVaccine {
+                                AppUser = users[1]
+                            },
+                            new PatientVaccine {
+                                AppUser = users[3]
+                            }
+                        }
+                    },
+                    new Vaccine
+                    {
+                        Name = "AstraZeneca", 
+                        Efficacy = "mbi 81.3%",
+                        Creator = "Oxford",
+                        Type = "Viral vector" 
+                    },
+                    new Vaccine
+                    {
+                        Name = "Moderna", 
+                        Efficacy = "mbi 94.1%",
+                        Creator = "Moderna, NIAID",
+                        Type = "mRNA",
+                        Patients = new List<PatientVaccine> {
+                            new PatientVaccine {
+                                AppUser = users[1]
+                            }
+                        }
+                    }
+                };
+
+                await context.Vaccines.AddRangeAsync(vaccines);
+
+
+                var chronicDiseases = new List<Chronic_Disease>
+                {
+                    new Chronic_Disease
+                    {
+                        Name = "Kancer",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[1]
+                            },
+                            new PatientChronicDisease {
+                                AppUser = users[3]
+                            }
+                        }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "Semundje te zemres",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[1]
+                            }
+                    }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "Hipertension",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[2]
+                            }
+                        }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "Diabet",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[3]
+                            }
+                        }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "Semundje te mushkrive",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[2]
+                            }
+                        }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "Semundje autoimune",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[3]
+                            }
+                        }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "HIV-AIDS"
+                    },
+                };
+
+                await context.Chronic_Diseases.AddRangeAsync(chronicDiseases);
             }
 
             if (!context.Patients.Any())
@@ -158,32 +267,7 @@ namespace Persistence
 
             if (!context.Vaccines.Any())
             {
-                var vaccines = new List<Vaccine>
-                {
-                    new Vaccine
-                    {
-                        Name = "Pfizer",
-                        Efficacy = "mbi 91.3%",
-                        Creator = "BioNTech",
-                        Type = "mRNA"
-                    },
-                    new Vaccine
-                    {
-                        Name = "AstraZeneca",
-                        Efficacy = "mbi 81.3%",
-                        Creator = "Oxford",
-                        Type = "Viral vector"
-                    },
-                    new Vaccine
-                    {
-                        Name = "Moderna",
-                        Efficacy = "mbi 94.1%",
-                        Creator = "Moderna, NIAID",
-                        Type = "mRNA"
-                    }
-                };
-
-                await context.Vaccines.AddRangeAsync(vaccines);
+              
             }
 
             if (!context.Rezults.Any())
@@ -266,43 +350,12 @@ namespace Persistence
                 await context.Public_Centers.AddRangeAsync(publicCenters);
             }
 
-            if (!context.Chronic_Diseases.Any())
-            {
-                var chronicDiseases = new List<Chronic_Disease>
-                {
-                    new Chronic_Disease
-                    {
-                        Name = "Kancer"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "Semundje te zemres"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "Hipertension"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "Diabet"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "Semundje te mushkrive"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "Semundje autoimune"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "HIV-AIDS"
-                    },
-                };
+            // if (!context.Chronic_Diseases.Any())
+            // {
+                
+            // }
 
-                await context.Chronic_Diseases.AddRangeAsync(chronicDiseases);
-            }
-             if (!context.Drugs.Any())
+            if (!context.Drugs.Any())
             {
                 var drugs = new List<Drug>
                 {
@@ -317,7 +370,8 @@ namespace Persistence
 
                 await context.Drugs.AddRangeAsync(drugs);
             }
-              if (!context.Treatments.Any())
+          
+            if (!context.Treatments.Any())
             {
                 var treatments = new List<Treatment>
                 {
@@ -387,7 +441,6 @@ namespace Persistence
                 await context.VaccineApplications.AddRangeAsync(vaccineApplication);
 
             }
-
 
             await context.SaveChangesAsync();
         }

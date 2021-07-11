@@ -9,7 +9,8 @@ namespace Domain
         public string Bio {get; set;}
         public string Role { get; set; }
         public ICollection<Test> Tests { get; set; }
-        public ICollection<Chronic_Disease> ChronicDisease { get; set; }
+        public ICollection<PatientChronicDisease> ChronicDisease { get; set; }
         public ICollection<Article> Articles { get; set; }
+        public ICollection<PatientVaccine> Vaccines { get; set; }
     }
 }

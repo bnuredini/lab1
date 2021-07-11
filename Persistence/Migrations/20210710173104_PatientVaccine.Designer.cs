@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210710173104_PatientVaccine")]
+    partial class PatientVaccine
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,6 +33,21 @@ namespace Persistence.Migrations
                     b.ToTable("AppUserArticle");
                 });
 
+            modelBuilder.Entity("AppUserChronic_Disease", b =>
+                {
+                    b.Property<Guid>("ChronicDiseaseId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PatientId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ChronicDiseaseId", "PatientId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("AppUserChronic_Disease");
+                });
+
             modelBuilder.Entity("AppUserTest", b =>
                 {
                     b.Property<string>("PatientId")
@@ -44,23 +61,6 @@ namespace Persistence.Migrations
                     b.HasIndex("TestsId");
 
                     b.ToTable("AppUserTest");
-                });
-
-            modelBuilder.Entity("Domain.Allergy", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Causes")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Allergies");
                 });
 
             modelBuilder.Entity("Domain.AppUser", b =>
@@ -196,29 +196,6 @@ namespace Persistence.Migrations
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("Domain.Drug", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("SideEffects")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Drugs");
-                });
-
             modelBuilder.Entity("Domain.Patient", b =>
                 {
                     b.Property<Guid>("Id")
@@ -246,21 +223,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("Domain.PatientChronicDisease", b =>
-                {
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("ChronicDiseaseId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("AppUserId", "ChronicDiseaseId");
-
-                    b.HasIndex("ChronicDiseaseId");
-
-                    b.ToTable("PatientChronicDisease");
                 });
 
             modelBuilder.Entity("Domain.PatientVaccine", b =>
@@ -370,29 +332,6 @@ namespace Persistence.Migrations
                     b.ToTable("TestingCenters");
                 });
 
-            modelBuilder.Entity("Domain.Treatment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Doctor")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Patient")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Treatments");
-                });
-
             modelBuilder.Entity("Domain.Vaccine", b =>
                 {
                     b.Property<Guid>("Id")
@@ -414,29 +353,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vaccines");
-                });
-
-            modelBuilder.Entity("Domain.VaccineApplication", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("VaccineApplications");
                 });
 
             modelBuilder.Entity("Domain.Variation", b =>
@@ -659,6 +575,21 @@ namespace Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("AppUserChronic_Disease", b =>
+                {
+                    b.HasOne("Domain.Chronic_Disease", null)
+                        .WithMany()
+                        .HasForeignKey("ChronicDiseaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("AppUserTest", b =>
                 {
                     b.HasOne("Domain.AppUser", null)
@@ -672,25 +603,6 @@ namespace Persistence.Migrations
                         .HasForeignKey("TestsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.PatientChronicDisease", b =>
-                {
-                    b.HasOne("Domain.AppUser", "AppUser")
-                        .WithMany("ChronicDisease")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Chronic_Disease", "ChronicDisease")
-                        .WithMany("Patients")
-                        .HasForeignKey("ChronicDiseaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("ChronicDisease");
                 });
 
             modelBuilder.Entity("Domain.PatientVaccine", b =>
@@ -844,14 +756,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.AppUser", b =>
                 {
-                    b.Navigation("ChronicDisease");
-
                     b.Navigation("Vaccines");
-                });
-
-            modelBuilder.Entity("Domain.Chronic_Disease", b =>
-                {
-                    b.Navigation("Patients");
                 });
 
             modelBuilder.Entity("Domain.Private_Center", b =>
