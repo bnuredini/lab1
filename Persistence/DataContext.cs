@@ -15,11 +15,16 @@ namespace Persistence
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Variation> Variations { get; set; }
         public DbSet<Rezult> Rezults { get; set; }
+        public DbSet<Drug> Drugs { get; set; }
+        public DbSet<Treatment> Treatments { get; set; }
         public DbSet<Chronic_Disease> Chronic_Diseases { get; set; }
         public DbSet<Private_Center> Private_Centers { get; set; }
         public DbSet<Public_Center> Public_Centers { get; set; }
         public DbSet<Vaccine> Vaccines { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Allergy> Allergies { get; set; }
+        public DbSet<VaccineApplication> VaccineApplications { get; set; }
+
 
         public DbSet<TestingCenter> TestingCenters { get; set; }
         public DbSet<PatientVaccine> PatientVaccines { get; set; }

@@ -10,6 +10,8 @@ import UserStore from "./userStore";
 import VaccineStore from "./vaccineStore";
 import VariationStore from "./variationStore";
 import ArticleStore from "./articleStore";
+import DrugStore from "./drugStore";
+import TreatmentStore from "./treatmentStore";
 
 interface Store {
   testStore: TestStore;
@@ -23,6 +25,8 @@ interface Store {
   variationStore: VariationStore;
   chronicDiseaseStore: ChronicDiseaseStore;
   articleStore: ArticleStore;
+  drugStore: DrugStore;
+  treatmentStore: TreatmentStore;
 }
 
 export const store: Store = {
@@ -37,6 +41,8 @@ export const store: Store = {
   userStore: new UserStore(),
   modalStore: new ModalStore(),
   articleStore: new ArticleStore(),
+  drugStore: new DrugStore(),
+  treatmentStore: new TreatmentStore(),
 };
 
 export const StoreContext = createContext(store);

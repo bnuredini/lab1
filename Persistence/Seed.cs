@@ -170,7 +170,7 @@ namespace Persistence
 
                 await context.Patients.AddRangeAsync(patients);
             }
-            
+
             if (!context.Patients.Any())
             {
                 var tests = new List<Test>
@@ -209,7 +209,7 @@ namespace Persistence
 
             if (!context.Countries.Any())
             {
-                var countries = new List<Country> 
+                var countries = new List<Country>
                 {
                     new Country {
                         Id = 1,
@@ -238,11 +238,11 @@ namespace Persistence
                 {
                     new Variation
                     {
-                        Name = "SARS COV-19"  
+                        Name = "SARS COV-19"
                     },
                     new Variation
                     {
-                        Name = "United Kingdom: B.1.1.7"  
+                        Name = "United Kingdom: B.1.1.7"
                     },
                     new Variation
                     {
@@ -267,7 +267,7 @@ namespace Persistence
 
             if (!context.Vaccines.Any())
             {
-
+              
             }
 
             if (!context.Rezults.Any())
@@ -323,7 +323,7 @@ namespace Persistence
 
             if (!context.Public_Centers.Any())
             {
-                var publicCenters=new List<Public_Center>
+                var publicCenters = new List<Public_Center>
                 {
                     new Public_Center
                     {
@@ -354,6 +354,93 @@ namespace Persistence
             // {
                 
             // }
+
+            if (!context.Drugs.Any())
+            {
+                var drugs = new List<Drug>
+                {
+                    new Drug
+                    {
+                        Name="Sintrom",
+                        SideEffects = "Blood Thinning",
+                        Type = "Blood Thinner",
+                        Description = "Twice a day",
+                    },
+                };
+
+                await context.Drugs.AddRangeAsync(drugs);
+            }
+          
+            if (!context.Treatments.Any())
+            {
+                var treatments = new List<Treatment>
+                {
+                    new Treatment
+                    {
+                        Description="Yada yada yada",
+                        Patient ="UK",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Doctor = "Twice a day",
+                    },
+                };
+
+                await context.Treatments.AddRangeAsync(treatments);
+            }
+
+            if (!context.Allergies.Any())
+            {
+                var allergies = new List<Allergy>
+                {
+                    new Allergy
+                    {
+                        Type = "Alegji ne ushqim",
+                        Causes = "Shkaqet jane kur trupi juaj formon antitrupa kunder ndonje ushqimi te veqant"
+                    },
+                    new Allergy
+                    {
+                        Type = "Alergji ne polen",
+                        Causes = "Shkaqet jane polenet e ndryshme ne natyre"
+                    },
+                    new Allergy
+                    {
+                        Type = "Alegji ne kafshe",
+                        Causes = "Shkaqet jane proteinat ne lekuren e kafsheve"
+                    }
+                };
+                await context.Allergies.AddRangeAsync(allergies);
+
+            }
+
+            if (!context.VaccineApplications.Any())
+            {
+                var vaccineApplication = new List<VaccineApplication>
+                {
+                    new VaccineApplication
+                    {
+                        Type = "Pfizer",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Email = "test@test.com",
+                        Location = "Prishtine"
+                    },
+                    new VaccineApplication
+                    {
+                        Type = "Moderna",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Email = "test1@test.com",
+                        Location = "Prishtine"
+                    },
+                    new VaccineApplication
+                    {
+                        Type = "AstraZeneca",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Email = "test2@test.com",
+                        Location = "Prishtine"
+
+                    }
+                };
+                await context.VaccineApplications.AddRangeAsync(vaccineApplication);
+
+            }
 
             await context.SaveChangesAsync();
         }
