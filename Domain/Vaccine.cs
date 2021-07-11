@@ -11,7 +11,6 @@ namespace Domain
         public string Creator { get; set; }
         public string Type { get; set; }
         public ICollection<Test> Tests { get; set; }
-
         public ICollection<PatientVaccine> Patients { get; set; } = new List<PatientVaccine>();
     }
 }

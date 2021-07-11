@@ -11,7 +11,7 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
-            if(!userManager.Users.Any() && !context.Vaccines.Any())
+            if(!userManager.Users.Any() && !context.Vaccines.Any() && !context.Chronic_Diseases.Any())
             {
                 var users = new List<AppUser>
                 {
@@ -65,6 +65,74 @@ namespace Persistence
                 };
 
                 await context.Vaccines.AddRangeAsync(vaccines);
+
+
+                var chronicDiseases = new List<Chronic_Disease>
+                {
+                    new Chronic_Disease
+                    {
+                        Name = "Kancer",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[1]
+                            },
+                            new PatientChronicDisease {
+                                AppUser = users[3]
+                            }
+                        }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "Semundje te zemres",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[1]
+                            }
+                    }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "Hipertension",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[2]
+                            }
+                        }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "Diabet",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[3]
+                            }
+                        }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "Semundje te mushkrive",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[2]
+                            }
+                        }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "Semundje autoimune",
+                        Patients = new List<PatientChronicDisease> {
+                            new PatientChronicDisease {
+                                AppUser = users[3]
+                            }
+                        }
+                    },
+                    new Chronic_Disease
+                    {
+                        Name = "HIV-AIDS"
+                    },
+                };
+
+                await context.Chronic_Diseases.AddRangeAsync(chronicDiseases);
             }
 
             if (!context.Patients.Any())
@@ -282,42 +350,10 @@ namespace Persistence
                 await context.Public_Centers.AddRangeAsync(publicCenters);
             }
 
-            if (!context.Chronic_Diseases.Any())
-            {
-                var chronicDiseases = new List<Chronic_Disease>
-                {
-                    new Chronic_Disease
-                    {
-                        Name = "Kancer"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "Semundje te zemres"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "Hipertension"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "Diabet"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "Semundje te mushkrive"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "Semundje autoimune"
-                    },
-                    new Chronic_Disease
-                    {
-                        Name = "HIV-AIDS"
-                    },
-                };
-
-                await context.Chronic_Diseases.AddRangeAsync(chronicDiseases);
-            }
+            // if (!context.Chronic_Diseases.Any())
+            // {
+                
+            // }
 
             await context.SaveChangesAsync();
         }

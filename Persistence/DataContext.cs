@@ -23,13 +23,13 @@ namespace Persistence
 
         public DbSet<TestingCenter> TestingCenters { get; set; }
         public DbSet<PatientVaccine> PatientVaccines { get; set; }
+        public DbSet<PatientChronicDisease> PatientChronicDisease { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<TestingCenter>(x => x.HasKey(tc => new 
-                {tc.Public_CenterId, tc.Private_CenterId}));
+            builder.Entity<TestingCenter>(x => x.HasKey(tc => new {tc.Public_CenterId, tc.Private_CenterId}));
             builder.Entity<TestingCenter>()
                 .HasOne(p => p.Private_Center)
                 .WithMany(s => s.Public_Center)
@@ -48,6 +48,18 @@ namespace Persistence
                 .HasOne(v => v.Vaccine)
                 .WithMany(u => u.Patients)
                 .HasForeignKey(pv => pv.VaccineId);
+
+                builder.Entity<PatientChronicDisease>(x => x.HasKey(pc => new {pc.AppUserId, pc.ChronicDiseaseId}));
+            builder.Entity<PatientChronicDisease>()
+                .HasOne(u => u.AppUser)
+                .WithMany(c => c.ChronicDisease)
+                .HasForeignKey(pv => pv.AppUserId);
+            builder.Entity<PatientChronicDisease>()
+                .HasOne(c => c.ChronicDisease)
+                .WithMany(u => u.Patients)
+                .HasForeignKey(pc => pc.ChronicDiseaseId);
+
+              
         }
     }
 }

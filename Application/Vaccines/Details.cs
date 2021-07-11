@@ -36,7 +36,7 @@ namespace Application.Vaccines
             {
                 var vaccine = await _context.Vaccines
                     .ProjectTo<VaccineDto>(_mapper.ConfigurationProvider, 
-                        new {currentUseranme = _userAccessor.GetUsername()})
+                        new {currentUsername = _userAccessor.GetUsername()})
                     .FirstOrDefaultAsync(x => x.Id == request.Id);
 
                 return Result<VaccineDto>.Success(vaccine);

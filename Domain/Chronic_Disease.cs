@@ -7,6 +7,6 @@ namespace Domain
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public ICollection<AppUser> Patient { get; set; }
+        public ICollection<PatientChronicDisease> Patients { get; set; } = new List<PatientChronicDisease>();
     }
 }
