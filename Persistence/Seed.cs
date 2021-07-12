@@ -11,7 +11,8 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
-            if(!userManager.Users.Any() && !context.Vaccines.Any() && !context.Chronic_Diseases.Any())
+            if(!userManager.Users.Any() && !context.Vaccines.Any() 
+            && !context.Chronic_Diseases.Any() && !context.Positions.Any())
             {
                 var users = new List<AppUser>
                 {
@@ -25,6 +26,35 @@ namespace Persistence
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
+
+                 var roles = new List<Position>
+                 {
+                     new Position
+                     {
+                         RoleName = "Admin",
+                         Responsibility = "Administrator",
+                         Users = new List<UserPosition> {
+                            new UserPosition {
+                                AppUser = users[2]
+                            },
+                            new UserPosition{
+                                AppUser = users[3]
+                            }
+                     }
+                     },
+                     new Position
+                     {
+                         RoleName = "User",
+                         Responsibility = "Pacient",
+                         Users = new List<UserPosition> {
+                            new UserPosition {
+                                AppUser = users[3]
+                            }
+                     }
+
+                     }
+            };
+             await context.Positions.AddRangeAsync(roles);
 
                 var vaccines = new List<Vaccine>
                 {

@@ -12,5 +12,6 @@ namespace Domain
         public ICollection<PatientChronicDisease> ChronicDisease { get; set; }
         public ICollection<Article> Articles { get; set; }
         public ICollection<PatientVaccine> Vaccines { get; set; }
+        public ICollection<UserPosition> Positions { get; set; }
     }
 }

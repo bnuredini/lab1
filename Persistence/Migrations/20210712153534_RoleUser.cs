@@ -1,0 +1,62 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace Persistence.Migrations
+{
+    public partial class RoleUser : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Positions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    RoleName = table.Column<string>(type: "TEXT", nullable: true),
+                    Responsibility = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Positions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserPositions",
+                columns: table => new
+                {
+                    AppUserId = table.Column<string>(type: "TEXT", nullable: false),
+                    RoleId = table.Column<Guid>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserPositions", x => new { x.AppUserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_UserPositions_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserPositions_Positions_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Positions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserPositions_RoleId",
+                table: "UserPositions",
+                column: "RoleId");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "UserPositions");
+
+            migrationBuilder.DropTable(
+                name: "Positions");
+        }
+    }
+}

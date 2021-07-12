@@ -1,4 +1,5 @@
 using Application.ChronicDiseases;
+using Application.Roles;
 using Application.Vaccines;
 using AutoMapper;
 using Domain;
@@ -24,6 +25,11 @@ namespace Application.Core
                 .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
             CreateMap<Vaccine, VaccineDto>();
             CreateMap<PatientVaccine, Profiles.Profile>()
+                .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
+                .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName))
+                .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
+            CreateMap<Position, RoleDto>();
+            CreateMap<UserPosition, Profiles.Profile>()
                 .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
                 .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName))
                 .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));

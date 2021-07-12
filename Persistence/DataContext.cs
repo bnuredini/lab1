@@ -23,12 +23,15 @@ namespace Persistence
         public DbSet<Vaccine> Vaccines { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Allergy> Allergies { get; set; }
+        public DbSet<Position> Positions { get; set; }
+
+
         public DbSet<VaccineApplication> VaccineApplications { get; set; }
-
-
         public DbSet<TestingCenter> TestingCenters { get; set; }
         public DbSet<PatientVaccine> PatientVaccines { get; set; }
         public DbSet<PatientChronicDisease> PatientChronicDisease { get; set; }
+        public DbSet<UserPosition> UserPositions { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -54,7 +57,7 @@ namespace Persistence
                 .WithMany(u => u.Patients)
                 .HasForeignKey(pv => pv.VaccineId);
 
-                builder.Entity<PatientChronicDisease>(x => x.HasKey(pc => new {pc.AppUserId, pc.ChronicDiseaseId}));
+            builder.Entity<PatientChronicDisease>(x => x.HasKey(pc => new {pc.AppUserId, pc.ChronicDiseaseId}));
             builder.Entity<PatientChronicDisease>()
                 .HasOne(u => u.AppUser)
                 .WithMany(c => c.ChronicDisease)
@@ -63,6 +66,16 @@ namespace Persistence
                 .HasOne(c => c.ChronicDisease)
                 .WithMany(u => u.Patients)
                 .HasForeignKey(pc => pc.ChronicDiseaseId);
+
+            builder.Entity<UserPosition>(x => x.HasKey(ur => new {ur.AppUserId, ur.RoleId}));
+            builder.Entity<UserPosition>()
+                .HasOne(u => u.AppUser)
+                .WithMany(r => r.Positions)
+                .HasForeignKey(ur => ur.AppUserId);
+            builder.Entity<UserPosition>()
+                .HasOne(r => r.Position)
+                .WithMany(u => u.Users)
+                .HasForeignKey(ur => ur.RoleId);
 
               
         }
