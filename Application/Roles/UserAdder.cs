@@ -40,7 +40,8 @@ namespace Application.Roles
                 var person = new UserPosition
                 {
                     AppUser = user,
-                    Position = role
+                    Position = role,
+                    IsAdmin = false
                 };
                 
                 role.Users.Add(person);

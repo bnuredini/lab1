@@ -11,7 +11,7 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
-            if(!userManager.Users.Any() && !context.Vaccines.Any() 
+            if (!userManager.Users.Any() && !context.Vaccines.Any()
             && !context.Chronic_Diseases.Any() && !context.Positions.Any())
             {
                 var users = new List<AppUser>
@@ -27,7 +27,8 @@ namespace Persistence
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
 
-                 var roles = new List<Position>
+
+                var roles = new List<Position>
                  {
                      new Position
                      {
@@ -35,10 +36,13 @@ namespace Persistence
                          Responsibility = "Administrator",
                          Users = new List<UserPosition> {
                             new UserPosition {
-                                AppUser = users[2]
+                                AppUser = users[2],
+                                IsAdmin = true
                             },
                             new UserPosition{
-                                AppUser = users[3]
+                                AppUser = users[3],
+                                IsAdmin = true
+                                
                             }
                      }
                      },
@@ -48,8 +52,18 @@ namespace Persistence
                          Responsibility = "Pacient",
                          Users = new List<UserPosition> {
                             new UserPosition {
-                                AppUser = users[3]
+                                AppUser = users[3],
+                                IsAdmin = true
+                            },
+                            new UserPosition {
+                                AppUser = users[1],
+                                IsAdmin = false
+                            },
+                             new UserPosition {
+                                AppUser = users[0],
+                                IsAdmin = false
                             }
+
                      }
 
                      }
@@ -60,7 +74,7 @@ namespace Persistence
                 {
                     new Vaccine
                     {
-                        Name = "Pfizer", 
+                        Name = "Pfizer",
                         Efficacy = "mbi 91.3%",
                         Creator = "BioNTech",
                         Type = "mRNA",
@@ -75,14 +89,14 @@ namespace Persistence
                     },
                     new Vaccine
                     {
-                        Name = "AstraZeneca", 
+                        Name = "AstraZeneca",
                         Efficacy = "mbi 81.3%",
                         Creator = "Oxford",
-                        Type = "Viral vector" 
+                        Type = "Viral vector"
                     },
                     new Vaccine
                     {
-                        Name = "Moderna", 
+                        Name = "Moderna",
                         Efficacy = "mbi 94.1%",
                         Creator = "Moderna, NIAID",
                         Type = "mRNA",
@@ -297,7 +311,7 @@ namespace Persistence
 
             if (!context.Vaccines.Any())
             {
-              
+
             }
 
             if (!context.Rezults.Any())
@@ -382,7 +396,7 @@ namespace Persistence
 
             // if (!context.Chronic_Diseases.Any())
             // {
-                
+
             // }
 
             if (!context.Drugs.Any())
@@ -400,7 +414,7 @@ namespace Persistence
 
                 await context.Drugs.AddRangeAsync(drugs);
             }
-          
+
             if (!context.Treatments.Any())
             {
                 var treatments = new List<Treatment>

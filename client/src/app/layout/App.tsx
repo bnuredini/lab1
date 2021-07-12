@@ -28,6 +28,7 @@ import Article from "../../features/articles/Article";
 import ProfilePage from "../../features/profiles/ProfilePage";
 import DrugDashboard from "../../features/drugs/dashboard/DrugDashboard";
 import TreatmentDashboard from "../../features/treatments/dashboard/TreatmentDashboard";
+import RoleDashboard from "../../features/roles/dashboard/RoleDashboard";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -62,6 +63,7 @@ function App() {
           <Route path="/treatment" component={TreatmentDashboard} />
           <Route path="/publicCenters" component={PublicCenterDashboard} />
           <Route path="/drugs" component={DrugDashboard} />
+          <Route path="/roles" component={RoleDashboard}/>
           <Route path="/privateCenters" component={PrivateCenterDashboard} />
           <Route path="/chronicDiseases" component={ChronicDiseaseDashboard} />
           <Route path="/variations" component={VariationDashboard} />

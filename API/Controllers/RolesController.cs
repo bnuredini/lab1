@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [AllowAnonymous]
     public class RolesController : BaseApiController
     {
         [HttpGet]
@@ -27,20 +26,20 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new Create.Command {Role = role}));
         }
-
+        // [Authorize(Policy = "IsAdmin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> EditRole(Guid id, Position role)
         {
             role.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command{Role = role}));
         }
-
+        // [Authorize(Policy = "IsAdmin")]
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateRole(Guid id)
         {
             return HandleResult(await Mediator.Send(new UserAdder.Command{Id = id}));
         }
-
+        // [Authorize(Policy = "IsAdmin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRole(Guid id)
         {

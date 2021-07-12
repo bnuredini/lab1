@@ -12,6 +12,7 @@ import VariationStore from "./variationStore";
 import ArticleStore from "./articleStore";
 import DrugStore from "./drugStore";
 import TreatmentStore from "./treatmentStore";
+import RoleStore from "./roleStore";
 
 interface Store {
   testStore: TestStore;
@@ -27,6 +28,7 @@ interface Store {
   articleStore: ArticleStore;
   drugStore: DrugStore;
   treatmentStore: TreatmentStore;
+  roleStore: RoleStore;
 }
 
 export const store: Store = {
@@ -43,6 +45,7 @@ export const store: Store = {
   articleStore: new ArticleStore(),
   drugStore: new DrugStore(),
   treatmentStore: new TreatmentStore(),
+  roleStore: new RoleStore(),
 };
 
 export const StoreContext = createContext(store);

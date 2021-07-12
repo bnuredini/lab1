@@ -17,6 +17,8 @@ namespace Application.Core
             CreateMap<Rezult, Rezult>();
             CreateMap<Vaccine, Vaccine>();
             CreateMap<Article, Article>();
+            CreateMap<Position, Position>();
+            CreateMap<Chronic_Disease, Chronic_Disease>();
             CreateMap<Variation, Variation>();
             CreateMap<Chronic_Disease, ChronicDiseaseDto>();
             CreateMap<PatientChronicDisease, Profiles.Profile>()

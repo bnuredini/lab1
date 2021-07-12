@@ -38,6 +38,18 @@ namespace Application.Roles
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
+
+                 var user = await _context.Users.FirstOrDefaultAsync(x =>
+                    x.UserName == _userAccessor.GetUsername());
+
+                var person = new UserPosition
+                {
+                  AppUser = user,
+                  Position = request.Role,
+                  IsAdmin = true
+                };
+
+                request.Role.Users.Add(person);
                 _context.Positions.Add(request.Role);
 
                 if (!(await _context.SaveChangesAsync() > 0))

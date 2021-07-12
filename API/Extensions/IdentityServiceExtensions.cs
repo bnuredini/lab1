@@ -1,7 +1,9 @@
 using System.Text;
 using API.Services;
 using Domain;
+using Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +21,6 @@ namespace API.Extensions
             {
                 opt.Password.RequireNonAlphanumeric=false;
             })
-                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<DataContext>()
                 .AddSignInManager<SignInManager<AppUser>>();
 
@@ -35,6 +36,15 @@ namespace API.Extensions
                         ValidateAudience=false 
                     };
                 });
+
+                services.AddAuthorization(opt =>
+                {
+                    opt.AddPolicy("IsAdmin", policy =>
+                    {
+                        policy.Requirements.Add(new IsAdminRequirement());
+                    });
+                });
+                services.AddTransient<IAuthorizationHandler, IsAdminRequirementHandler>();
 
             services.AddScoped<TokenService>();
 
