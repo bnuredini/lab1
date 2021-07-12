@@ -36,7 +36,7 @@ export default observer(function ChronicDiseaseForm() {
       >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
           <Form className="ui form" onSubmit={handleSubmit}>
-            <MyTextInput placeholder="Emri i variacionit" name="name" />
+            <MyTextInput placeholder="Sëmundja Kronike" name="name" />
             <Button
               disabled={isSubmitting || !dirty || !isValid}
               loading={loading}
