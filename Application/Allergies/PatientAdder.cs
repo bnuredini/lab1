@@ -1,50 +1,55 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
 using Application.Interfaces;
 using Domain;
-using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Allergies
 {
-    public class Create
+    public class PatientAdder
     {
-        public class Command : IRequest<Result<Unit>>
+         public class Command : IRequest<Result<Unit>>
         {
-            public Allergy Allergy { get; set; }
-        }
-
-        public class CommandValidator : AbstractValidator<Command>
-        {
-            public CommandValidator()
-            {
-                RuleFor(x => x.Allergy).SetValidator(new AllergyValidator());
-            }
+            public Guid Id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
-
             private readonly IUserAccessor _userAccessor;
 
             public Handler(DataContext context, IUserAccessor userAccessor)
             {
-                _context = context;
                 _userAccessor = userAccessor;
+                _context = context;
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Allergies.Add(request.Allergy);
+                var user = await _context.Users.FirstOrDefaultAsync(x =>
+                    x.UserName == _userAccessor.GetUsername());
+
+                var allergy = await _context.Allergies.FirstOrDefaultAsync(x =>
+                    x.Id == request.Id);
+                if (allergy == null) return null;
+
+                var patient = new PatientAllergy
+                {
+                    AppUser = user,
+                    Allergy = allergy
+                };
+                
+                allergy.Patients.Add(patient);
 
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
-                    return Result<Unit>.Failure("Failed during allergy creation");
+                    return Result<Unit>.Failure("Failed during allergy updation");
                 }
-
+                
                 return Result<Unit>.Success(Unit.Value);
             }
         }

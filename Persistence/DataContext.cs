@@ -29,6 +29,7 @@ namespace Persistence
         public DbSet<TestingCenter> TestingCenters { get; set; }
         public DbSet<PatientVaccine> PatientVaccines { get; set; }
         public DbSet<PatientChronicDisease> PatientChronicDisease { get; set; }
+        public DbSet<PatientAllergy> PatientAllergy { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -63,6 +64,16 @@ namespace Persistence
                 .HasOne(c => c.ChronicDisease)
                 .WithMany(u => u.Patients)
                 .HasForeignKey(pc => pc.ChronicDiseaseId);
+
+                builder.Entity<PatientAllergy>(x => x.HasKey(pa => new {pa.AppUserId, pa.AllergyId}));
+            builder.Entity<PatientAllergy>()
+                .HasOne(u => u.AppUser)
+                .WithMany(a => a.Allergies)
+                .HasForeignKey(pa => pa.AppUserId);
+            builder.Entity<PatientAllergy>()
+                .HasOne(a => a.Allergy)
+                .WithMany(u => u.Patients)
+                .HasForeignKey(pa => pa.AllergyId);
 
               
         }

@@ -11,7 +11,8 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
-            if(!userManager.Users.Any() && !context.Vaccines.Any() && !context.Chronic_Diseases.Any())
+            if(!userManager.Users.Any() && !context.Vaccines.Any()
+             && !context.Chronic_Diseases.Any() && !context.Allergies.Any())
             {
                 var users = new List<AppUser>
                 {
@@ -133,6 +134,49 @@ namespace Persistence
                 };
 
                 await context.Chronic_Diseases.AddRangeAsync(chronicDiseases);
+
+            
+                var allergies = new List<Allergy>
+                {
+                    new Allergy
+                    {
+                        Type = "Alegji ne ushqim",
+                        Causes = "Shkaqet jane kur trupi juaj formon antitrupa kunder ndonje ushqimi te veqant",
+                         Patients = new List<PatientAllergy> {
+                            new PatientAllergy {
+                                AppUser = users[1]
+                            }
+                         }
+                    },
+                    new Allergy
+                    {
+                        Type = "Alergji ne polen",
+                        Causes = "Shkaqet jane polenet e ndryshme ne natyre",
+                        Patients = new List<PatientAllergy> {
+                            new PatientAllergy {
+                                AppUser = users[1]
+                            },
+                            new PatientAllergy {
+                                AppUser = users[2]
+                            },
+                            new PatientAllergy {
+                                AppUser = users[3]
+                            }
+                         }
+                    },
+                    new Allergy
+                    {
+                        Type = "Alegji ne kafshe",
+                        Causes = "Shkaqet jane proteinat ne lekuren e kafsheve",
+                        Patients = new List<PatientAllergy> {
+                            new PatientAllergy {
+                                AppUser = users[2]
+                            }
+                         }
+                    }
+                };
+                await context.Allergies.AddRangeAsync(allergies);
+
             }
 
             if (!context.Patients.Any())
@@ -350,11 +394,6 @@ namespace Persistence
                 await context.Public_Centers.AddRangeAsync(publicCenters);
             }
 
-            // if (!context.Chronic_Diseases.Any())
-            // {
-                
-            // }
-
             if (!context.Drugs.Any())
             {
                 var drugs = new List<Drug>
@@ -385,30 +424,6 @@ namespace Persistence
                 };
 
                 await context.Treatments.AddRangeAsync(treatments);
-            }
-
-            if (!context.Allergies.Any())
-            {
-                var allergies = new List<Allergy>
-                {
-                    new Allergy
-                    {
-                        Type = "Alegji ne ushqim",
-                        Causes = "Shkaqet jane kur trupi juaj formon antitrupa kunder ndonje ushqimi te veqant"
-                    },
-                    new Allergy
-                    {
-                        Type = "Alergji ne polen",
-                        Causes = "Shkaqet jane polenet e ndryshme ne natyre"
-                    },
-                    new Allergy
-                    {
-                        Type = "Alegji ne kafshe",
-                        Causes = "Shkaqet jane proteinat ne lekuren e kafsheve"
-                    }
-                };
-                await context.Allergies.AddRangeAsync(allergies);
-
             }
 
             if (!context.VaccineApplications.Any())

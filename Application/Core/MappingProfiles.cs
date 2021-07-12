@@ -1,3 +1,4 @@
+using Application.Allergies;
 using Application.ChronicDiseases;
 using Application.Vaccines;
 using AutoMapper;
@@ -30,7 +31,11 @@ namespace Application.Core
             CreateMap<Drug, Drug>();
             CreateMap<Treatment, Treatment>();
             CreateMap<VaccineApplication, VaccineApplication>();
-            CreateMap<Allergy, Allergy>();
+            CreateMap<Allergy, AllergyDto>();
+            CreateMap<PatientAllergy, Profiles.Profile>()
+                .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
+                .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName))
+                .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
         }
     }
 }

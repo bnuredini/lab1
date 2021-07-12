@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Application.Profiles;
 
-namespace Domain
+namespace Application.Allergies
 {
-    public class Allergy
+    public class AllergyDto
     {
         public Guid Id { get; set; }
         public string Type { get; set; }
         public string Causes { get; set; }
-        public ICollection<PatientAllergy> Patients { get; set; } = new List<PatientAllergy>();
+        public ICollection<Profile> Patients { get; set; }
     }
 }
