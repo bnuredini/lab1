@@ -18,6 +18,8 @@ namespace Application.Core
             CreateMap<Vaccine, Vaccine>();
             CreateMap<Article, Article>();
             CreateMap<Variation, Variation>();
+            CreateMap<Allergy, Allergy>();
+            CreateMap<Chronic_Disease, Chronic_Disease>();
             CreateMap<Chronic_Disease, ChronicDiseaseDto>();
             CreateMap<PatientChronicDisease, Profiles.Profile>()
                 .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))

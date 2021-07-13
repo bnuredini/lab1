@@ -29,6 +29,7 @@ import ProfilePage from "../../features/profiles/ProfilePage";
 import DrugDashboard from "../../features/drugs/dashboard/DrugDashboard";
 import TreatmentDashboard from "../../features/treatments/dashboard/TreatmentDashboard";
 import VaccineApplications from "../../features/vaccineApplications/vaccineApplications";
+import AllergyDashboard from "../../features/allergies/dashboard/AllergyDashboard";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -73,6 +74,7 @@ function App() {
           <Route path="/admin" component={AdminDashboard} />
           <Route path="/articles" component={Article} />
           <Route path="/applications" component={VaccineApplications} />
+          <Route path="/allergies" component={AllergyDashboard}/>
           <Route exact path="/loginpage" component={HomePage} />
           <Route component={NotFound} />
         </Switch>

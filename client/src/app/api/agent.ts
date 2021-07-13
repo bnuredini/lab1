@@ -15,6 +15,7 @@ import { Article } from "../models/article";
 import { Drug } from "../models/drug";
 import { Treatment } from "../models/treatment";
 import { VaccineApplication } from "../models/vaccineApplication";
+import { Allergy } from "../models/allergy";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -189,6 +190,14 @@ const VaccineApplications = {
     axios.put<void>(`/vaccineapplications/${vaccineApplication.id}`, vaccineApplication),
   delete: (id: string) => axios.delete<void>(`/vaccineapplications/${id}`),
 };
+const Allergies = {
+  list: () => requests.get<Allergy[]>("/allergies"),
+  details: (id: string) => requests.get<Allergy>(`/allergies/${id}`),
+  create: (allergy: Allergy) => axios.post<void>("/allergies", allergy),
+  update: (allergy: Allergy) =>
+    axios.put<void>(`/allergies/${allergy.id}`, allergy),
+  delete: (id: string) => axios.delete<void>(`/allergies/${id}`),
+};
 
 const agent = {
   Tests,
@@ -204,6 +213,7 @@ const agent = {
   Drugs,
   Treatments,
   VaccineApplications,
+  Allergies,
 };
 
 export default agent;

@@ -5,31 +5,27 @@ import { Button, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import * as Yup from "yup";
 import MyTextInput from "../../../app/common/form/MyTextInput";
-import { Vaccine } from "../../../app/models/vaccine";
+import { Allergy } from "../../../app/models/allergy";
 
-export default observer(function VaccineForm() {
-  const { vaccineStore } = useStore();
-  const { selectedVaccine, closeForm, createVaccine, updateVaccine, loading } =
-    vaccineStore;
+export default observer(function AllergyForm() {
+  const { allergyStore } = useStore();
+  const { selectedAllergy, closeForm, createAllergy, updateAllergy, loading } =
+    allergyStore;
 
-  const initialState = selectedVaccine ?? {
+  const initialState = selectedAllergy ?? {
     id: "",
-    name: "",
-    efficacy: "",
-    creator: "",
     type: "",
+    causes: "",
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string().required(),
-    efficacy: Yup.string().required(),
-    creator: Yup.string().required(),
     type: Yup.string().required(),
+    causes: Yup.string().required(),
   });
-  const [vaccine] = useState(initialState);
+  const [allergy] = useState(initialState);
 
-  function handleFormSubmit(vaccine: Vaccine) {
-    vaccine.id ? updateVaccine(vaccine) : createVaccine(vaccine);
+  function handleFormSubmit(allergy: Allergy) {
+    allergy.id ? updateAllergy(allergy) : createAllergy(allergy);
   }
 
   return (
@@ -37,15 +33,13 @@ export default observer(function VaccineForm() {
       <Formik
         validationSchema={validationSchema}
         enableReinitialize
-        initialValues={vaccine}
+        initialValues={allergy}
         onSubmit={(values) => handleFormSubmit(values)}
       >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
           <Form className="ui form" onSubmit={handleSubmit}>
-            <MyTextInput name="name" placeholder="Emri i vaksines" />
-            <MyTextInput name="efficacy" placeholder="Efikasiteti i vaksines" />
-            <MyTextInput name="creator" placeholder="Krijuesi i vaksines" />
-            <MyTextInput name="type" placeholder="Lloji i vaksines" />
+            <MyTextInput name="type" placeholder="Lloji i alergjise" />
+            <MyTextInput name="causes" placeholder="Shkaktari i alergjise" />
             <Button
               disabled={isSubmitting || !dirty || !isValid}
               loading={loading}
