@@ -55,17 +55,17 @@ namespace Persistence
                 .WithMany(u => u.Patients)
                 .HasForeignKey(pv => pv.VaccineId);
 
-                builder.Entity<PatientChronicDisease>(x => x.HasKey(pc => new {pc.AppUserId, pc.ChronicDiseaseId}));
+            builder.Entity<PatientChronicDisease>(x => x.HasKey(pc => new {pc.AppUserId, pc.ChronicDiseaseId}));
             builder.Entity<PatientChronicDisease>()
                 .HasOne(u => u.AppUser)
                 .WithMany(c => c.ChronicDisease)
-                .HasForeignKey(pv => pv.AppUserId);
+                .HasForeignKey(pc => pc.AppUserId);
             builder.Entity<PatientChronicDisease>()
                 .HasOne(c => c.ChronicDisease)
                 .WithMany(u => u.Patients)
                 .HasForeignKey(pc => pc.ChronicDiseaseId);
 
-                builder.Entity<PatientAllergy>(x => x.HasKey(pa => new {pa.AppUserId, pa.AllergyId}));
+            builder.Entity<PatientAllergy>(x => x.HasKey(pa => new {pa.AppUserId, pa.AllergyId}));
             builder.Entity<PatientAllergy>()
                 .HasOne(u => u.AppUser)
                 .WithMany(a => a.Allergies)
