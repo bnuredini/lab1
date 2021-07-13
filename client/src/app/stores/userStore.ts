@@ -42,6 +42,10 @@ export default class UserStore {
     }
   };
 
+  setDisplayName = (name: string) => {
+    if (this.user) this.user.displayName = name;
+}
+
   register = async (creds: UserFormValues) => {
     try {
       const user = await agent.Account.register(creds);
