@@ -14,6 +14,9 @@ import DrugStore from "./drugStore";
 import TreatmentStore from "./treatmentStore";
 import VaccineApplicationStore from "./vaccineApplicationStore";
 import AllergyStore from "./allergyStore";
+import CovidRestrictionStore from "./covidRestrictionsStore";
+import DoctorStore from "./doctorStore";
+import LocationStore from "./locationStore";
 import ProfileStore from "./profileStore";
 
 interface Store {
@@ -32,6 +35,9 @@ interface Store {
   treatmentStore: TreatmentStore;
   vaccineApplicationStore: VaccineApplicationStore;
   allergyStore: AllergyStore;
+  covidRestrictionStore : CovidRestrictionStore;
+  doctorStore: DoctorStore;
+  locationStore: LocationStore;
   profileStore: ProfileStore;
 }
 
@@ -51,6 +57,9 @@ export const store: Store = {
   treatmentStore: new TreatmentStore(),
   vaccineApplicationStore: new VaccineApplicationStore(),
   allergyStore: new AllergyStore(),
+  covidRestrictionStore: new CovidRestrictionStore(),
+  doctorStore: new DoctorStore(),
+  locationStore: new LocationStore(),
   profileStore: new ProfileStore(),
 };
 

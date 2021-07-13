@@ -25,8 +25,7 @@ export default class AdminDashboard extends Component {
       { menuItem: "Alergjite", render: () => <AllergyDashboard /> },
       { menuItem: "Pacientet", render: () => <PatientDashboard /> },
     ];
-
-    return (
+ return (
       <Tab
         menu={{ fluid: true, vertical: true }}
         active={activeItem}
@@ -37,3 +36,5 @@ export default class AdminDashboard extends Component {
     );
   }
 }
+
+   
