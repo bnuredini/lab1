@@ -164,10 +164,16 @@ body {
   line-height: 2.5rem;
   font-size: 3rem;
 }
-.tab{
+
+.tab {
   padding-bottom: 10em !important;
 }
-#patientusername{
+
+#patientusername {
   font-size: 45px;
   padding-bottom: 25px;
+}
+
+.ui.fluid.vertical.menu {
+  min-height: 12rem;
 }
