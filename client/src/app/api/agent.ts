@@ -16,6 +16,7 @@ import { Drug } from "../models/drug";
 import { Treatment } from "../models/treatment";
 import { VaccineApplication } from "../models/vaccineApplication";
 import { Allergy } from "../models/allergy";
+import { Profile, UserAllergy, UserChronicDisease, UserVaccine } from "../models/profile";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -198,7 +199,17 @@ const Allergies = {
     axios.put<void>(`/allergies/${allergy.id}`, allergy),
   delete: (id: string) => axios.delete<void>(`/allergies/${id}`),
 };
+const Profiles = {
+  get: (username: string) => requests.get<Profile>(`/profiles/${username}`),
+  updateProfile: (profile: Partial<Profile>) => requests.put(`/profiles`, profile),
+  listAllergies: (username: string, predicate: string) =>
+      requests.get<UserAllergy[]>(`/profiles/${username}/allergies?predicate=${predicate}`),
+  listVaccines: (username: string, predicate: string) =>
+      requests.get<UserVaccine[]>(`/profiles/${username}/vaccines?predicate=${predicate}`),
+  listChronicDisease:(username: string, predicate: string) =>
+  requests.get<UserChronicDisease[]>(`/profiles/${username}/chronicDiseases?predicate=${predicate}`)
 
+}
 const agent = {
   Tests,
   Countries,
@@ -214,6 +225,7 @@ const agent = {
   Treatments,
   VaccineApplications,
   Allergies,
+  Profiles,
 };
 
 export default agent;

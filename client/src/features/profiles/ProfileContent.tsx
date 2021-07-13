@@ -1,20 +1,33 @@
-import { observer } from 'mobx-react-lite';
-import React from 'react';
-import { Tab } from 'semantic-ui-react';
-import PatientListx from '../patients/dashboard/PatientListx';
+import { observer } from "mobx-react-lite";
+import React from "react";
+import { Tab } from "semantic-ui-react";
+import { Profile } from "../../app/models/profile";
+import { useStore } from "../../app/stores/store";
+import ProfileAbout from "./ProfileAbout";
+import ProfileAllergies from "./ProfileAllergies";
+import ProfileChronicDiseases from "./ProfileChronicDiseases";
+import ProfileVaccines from "./ProfileVaccines";
 
-export default observer(function ProfileContent() {
+interface Props {
+  profile: Profile;
+}
 
-    const panes = [
-        {menuItem: 'Te dhenat personale', render: () => <Tab.Pane><PatientListx/></Tab.Pane>},
-        // {menuItem: 'Photos', render: () => <ProfilePhotos profile={profile} />},
-        {menuItem: 'Testet', render: () => <Tab.Pane>Testet</Tab.Pane>},
-        {menuItem: 'Vaksinat', render: () => <Tab.Pane>Vaksinat</Tab.Pane>},
-        {menuItem: 'Semundjet kronike', render: () => <Tab.Pane>Semundjet kronike</Tab.Pane>},
-    ];
+export default observer(function ProfileContent({ profile }: Props) {
+  const { profileStore } = useStore();
 
+  const panes = [
+    { menuItem: "Me shume", render: () => <ProfileAbout /> },
+    { menuItem: "Alergjite", render: () => <ProfileAllergies /> },
+    { menuItem: "Semundjet Kronike", render: () => <ProfileChronicDiseases /> },
+    { menuItem: "Vaksinat", render: () => <ProfileVaccines /> },
+  ];
 
-    return (
-        <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
-    )
-}) 
+  return (
+    <Tab
+      menu={{ fluid: true, vertical: true }}
+      menuPosition="right"
+      panes={panes}
+      onTabChange={(e, data) => profileStore.setActiveTab(data.activeIndex)}
+    />
+  );
+});

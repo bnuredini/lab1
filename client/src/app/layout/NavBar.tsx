@@ -83,7 +83,7 @@ export default observer(function NavBar() {
                 name={user?.displayName}
                 variant="beam"
                 colors={["#69D2E7", "#A7DBD8", "#E0E4CC", "#F38630", "#FA6900"]}
-                style={{ marginRight: ".5rem" }}
+                // style={{ marginRight: ".5rem" }}
               />
               <Dropdown pointing="top left" text={user?.displayName}>
                 <Dropdown.Menu>

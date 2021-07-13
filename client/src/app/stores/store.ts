@@ -14,6 +14,7 @@ import DrugStore from "./drugStore";
 import TreatmentStore from "./treatmentStore";
 import VaccineApplicationStore from "./vaccineApplicationStore";
 import AllergyStore from "./allergyStore";
+import ProfileStore from "./profileStore";
 
 interface Store {
   testStore: TestStore;
@@ -31,6 +32,7 @@ interface Store {
   treatmentStore: TreatmentStore;
   vaccineApplicationStore: VaccineApplicationStore;
   allergyStore: AllergyStore;
+  profileStore: ProfileStore;
 }
 
 export const store: Store = {
@@ -49,6 +51,7 @@ export const store: Store = {
   treatmentStore: new TreatmentStore(),
   vaccineApplicationStore: new VaccineApplicationStore(),
   allergyStore: new AllergyStore(),
+  profileStore: new ProfileStore(),
 };
 
 export const StoreContext = createContext(store);

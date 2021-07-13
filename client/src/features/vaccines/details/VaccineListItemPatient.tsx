@@ -18,7 +18,7 @@ export default observer(function VaccineListItemPatient({ patients }: Props) {
             size={40}
             variant="beam"
             colors={["#A7DBD8", "#E0E4CC", "#F38630", "#FA6900"]}
-            style={{ marginRight: ".5rem" }}
+            // style={{ marginRight: ".5rem" }}
           />
           <p>{p.displayName}</p>
         </List.Item>

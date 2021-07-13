@@ -1,12 +1,13 @@
 using Application.Allergies;
 using Application.ChronicDiseases;
+using Application.Profiles;
 using Application.Vaccines;
 using AutoMapper;
 using Domain;
 
 namespace Application.Core
 {
-    public class MappingProfiles : Profile
+    public class MappingProfiles : AutoMapper.Profile
     {
         public MappingProfiles()
         {
@@ -24,6 +25,7 @@ namespace Application.Core
             CreateMap<Allergy, Allergy>();
             CreateMap<Chronic_Disease, Chronic_Disease>();
             CreateMap<Chronic_Disease, ChronicDiseaseDto>();
+            CreateMap<AppUser, Profiles.Profile>();
             CreateMap<PatientChronicDisease, Profiles.Profile>()
                 .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
                 .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName))
@@ -41,6 +43,19 @@ namespace Application.Core
                 .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
                 .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName))
                 .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
+            CreateMap<PatientAllergy, PatientAllergyDto>()
+                .ForMember(d => d.Type, o => o.MapFrom(s => s.Allergy.Type))
+                .ForMember(d => d.Causes, o => o.MapFrom(s => s.Allergy.Causes));
+            CreateMap<PatientVaccine, PatientVaccineDto>()
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.Vaccine.Name))
+                .ForMember(d => d.Efficacy, o => o.MapFrom(s => s.Vaccine.Efficacy))
+                .ForMember(d => d.Creator, o => o.MapFrom(s => s.Vaccine.Creator))
+                .ForMember(d => d.Type, o => o.MapFrom(s => s.Vaccine.Type));
+            CreateMap<PatientChronicDisease, PatientChronicDiseaseDto>()
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.ChronicDisease.Name));
+                            
+
+
         }
     }
 }
