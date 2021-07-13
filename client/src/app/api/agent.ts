@@ -19,6 +19,7 @@ import { Allergy } from "../models/allergy";
 import { CovidRestriction } from "../models/covidRestriction";
 import { Doctor } from "../models/doctor";
 import { Location } from "../models/location";
+import { Profile, UserAllergy, UserChronicDisease, UserVaccine } from "../models/profile";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -167,7 +168,8 @@ const Articles = {
   create: (article: Article) => requests.post<void>('/articles', article),
   update: (article: Article) => requests.put<void>(`/articles/${article.id}`, article),
   delete: (id: string) => requests.del<void>(`/articles/${id}`)
-}
+};
+
 const Drugs = {
   list: () => requests.get<Drug[]>("/drugs"),
   details: (id: string) => requests.get<Drug>(`/drugs/${id}`),
@@ -176,6 +178,7 @@ const Drugs = {
     axios.put<void>(`/drugs/${drug.id}`, drug),
   delete: (id: string) => axios.delete<void>(`/drugs/${id}`),
 };
+
 const Treatments = {
   list: () => requests.get<Treatment[]>("/treatment"),
   details: (id: string) => requests.get<Treatment>(`/treatment/${id}`),
@@ -193,6 +196,7 @@ const VaccineApplications = {
     axios.put<void>(`/vaccineapplications/${vaccineApplication.id}`, vaccineApplication),
   delete: (id: string) => axios.delete<void>(`/vaccineapplications/${id}`),
 };
+
 const Allergies = {
   list: () => requests.get<Allergy[]>("/allergies"),
   details: (id: string) => requests.get<Allergy>(`/allergies/${id}`),
@@ -200,6 +204,17 @@ const Allergies = {
   update: (allergy: Allergy) =>
     axios.put<void>(`/allergies/${allergy.id}`, allergy),
   delete: (id: string) => axios.delete<void>(`/allergies/${id}`),
+};
+
+const Profiles = {
+  get: (username: string) => requests.get<Profile>(`/profiles/${username}`),
+  updateProfile: (profile: Partial<Profile>) => requests.put(`/profiles`, profile),
+  listAllergies: (username: string, predicate: string) =>
+      requests.get<UserAllergy[]>(`/profiles/${username}/allergies?predicate=${predicate}`),
+  listVaccines: (username: string, predicate: string) =>
+      requests.get<UserVaccine[]>(`/profiles/${username}/vaccines?predicate=${predicate}`),
+  listChronicDisease:(username: string, predicate: string) =>
+  requests.get<UserChronicDisease[]>(`/profiles/${username}/chronicDiseases?predicate=${predicate}`)
 };
 
 const CovidRestrictions = {
@@ -247,6 +262,7 @@ const agent = {
   CovidRestrictions,
   Doctors,
   Locations,
+  Profiles
 };
 
 export default agent;
