@@ -1,12 +1,14 @@
+using System;
+
 namespace Domain
 {
-    public class Country
+    public class Location
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public int Deaths { get; set; }
+        public int ZipCode { get; set; }
         public int Infections { get; set; }
         public int Vaccinated { get; set; }
-        public int Recoveries { get; set; }
+        public int Tested { get; set; }
     }
 }

@@ -21,8 +21,6 @@ export default observer(function VaccineForm() {
   };
 
   const validationSchema = Yup.object({
-    // patientId: Yup.number().required(),
-    // date: Yup.string().required("Ju lutem vendosni nje date").nullable(),
     name: Yup.string().required(),
     efficacy: Yup.string().required(),
     creator: Yup.string().required(),

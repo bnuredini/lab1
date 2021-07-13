@@ -251,29 +251,34 @@ namespace Persistence
                 await context.Tests.AddRangeAsync(tests);
             }
 
-            if (!context.Countries.Any())
+            if (!context.Locations.Any())
             {
-                var countries = new List<Country>
+                var locations = new List<Location>
                 {
-                    new Country {
-                        Id = 1,
-                        Name = "Australia",
-                        Deaths = 9000000,
-                        Infections = 322414123,
-                        Vaccinated = 2414123,
-                        Recoveries = 3418890,
+                    new Location {
+                        Name = "Komuna e Prishtines",
+                        ZipCode = 10000,
+                        Infections = 32245,
+                        Vaccinated = 22414,
+                        Tested = 100234
                     },
-                    new Country {
-                        Id = 2,
-                        Name = "Albania",
-                        Deaths = 2800,
-                        Infections = 303123,
-                        Vaccinated = 314123,
-                        Recoveries = 48890,
-                    }
+                    new Location {
+                        Name = "Komuna e Pejes",
+                        ZipCode = 30000,
+                        Infections = 3224,
+                        Vaccinated = 2244,
+                        Tested = 10034
+                    },
+                    new Location {
+                        Name = "Komuna e Prizrenit",
+                        ZipCode = 20000,
+                        Infections = 3344,
+                        Vaccinated = 2324,
+                        Tested = 10044
+                    },
                 };
 
-                await context.Countries.AddRangeAsync(countries);
+                await context.Locations.AddRangeAsync(locations);
             }
 
             if (!context.Variations.Any())
