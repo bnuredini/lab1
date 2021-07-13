@@ -251,34 +251,97 @@ namespace Persistence
                 await context.Tests.AddRangeAsync(tests);
             }
 
-            if (!context.Countries.Any())
+            if (!context.Locations.Any())
             {
-                var countries = new List<Country>
+                var locations = new List<Location>
                 {
-                    new Country {
-                        Id = 1,
-                        Name = "Australia",
-                        Deaths = 9000000,
-                        Infections = 322414123,
-                        Vaccinated = 2414123,
-                        Recoveries = 3418890,
+                    new Location {
+                        Name = "Komuna e Prishtines",
+                        ZipCode = 10000,
+                        Infections = 32245,
+                        Vaccinated = 22414,
+                        Tested = 100234
                     },
-                    new Country {
-                        Id = 2,
-                        Name = "Albania",
-                        Deaths = 2800,
-                        Infections = 303123,
-                        Vaccinated = 314123,
-                        Recoveries = 48890,
-                    }
+                    new Location {
+                        Name = "Komuna e Pejes",
+                        ZipCode = 30000,
+                        Infections = 3224,
+                        Vaccinated = 2244,
+                        Tested = 10034
+                    },
+                    new Location {
+                        Name = "Komuna e Prizrenit",
+                        ZipCode = 20000,
+                        Infections = 3344,
+                        Vaccinated = 2324,
+                        Tested = 10044
+                    },
                 };
 
-                await context.Countries.AddRangeAsync(countries);
+                await context.Locations.AddRangeAsync(locations);
             }
+
+            if (!context.CovidRestrictions.Any())
+            {
+                var covidRestrictions = new List<CovidRestriction>
+                {
+                    new CovidRestriction
+                    {
+                        Type = "Mbani distancen",
+                        From = DateTime.Now.AddMonths(-2),
+                        Until = DateTime.Now.AddMonths(-2)
+                    },
+                     new CovidRestriction
+                    {
+                        Type = "Vendosni masken",
+                        From = DateTime.Now.AddMonths(-2),
+                        Until = DateTime.Now.AddMonths(-2)
+                    },
+                     new CovidRestriction
+                    {
+                        Type = "Lani duart",
+                        From = DateTime.Now.AddMonths(-2),
+                        Until = DateTime.Now.AddMonths(-2)
+                    },
+                     new CovidRestriction
+                    {
+                        Type = "Rrini larg grupimeve",
+                        From = DateTime.Now.AddMonths(-2),
+                        Until = DateTime.Now.AddMonths(-2)
+                    },
+                };
+                await context.CovidRestrictions.AddRangeAsync(covidRestrictions);
+
+            }
+
+            if(!context.Doctors.Any())
+            {
+                var doctors = new List<Doctor>
+                {
+                    new Doctor
+                    {
+                        Type = "Doktori i pergjithshem"
+                    },
+                     new Doctor
+                    {
+                        Type = "Infektolog"
+                    },
+                     new Doctor
+                    {
+                        Type = "Imunolog"
+                    },
+                     new Doctor
+                    {
+                        Type = "Pulmolog"
+                    },
+                };
+                await context.Doctors.AddRangeAsync(doctors);
+            }
+
 
             if (!context.Variations.Any())
             {
-                var varitatons = new List<Variation>
+                var variations = new List<Variation>
                 {
                     new Variation
                     {
@@ -306,7 +369,7 @@ namespace Persistence
                     }
                 };
 
-                await context.Variations.AddRangeAsync(varitatons);
+                await context.Variations.AddRangeAsync(variations);
             }
 
             if (!context.Vaccines.Any())

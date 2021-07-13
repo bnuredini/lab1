@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210713131126_Location")]
+    partial class Location
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,40 +170,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Chronic_Diseases");
-                });
-
-            modelBuilder.Entity("Domain.CovidRestriction", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("From")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Until")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CovidRestrictions");
-                });
-
-            modelBuilder.Entity("Domain.Doctor", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("Domain.Drug", b =>
