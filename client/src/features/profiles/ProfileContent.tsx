@@ -20,7 +20,7 @@ export default observer(function ProfileContent({profile}: Props) {
         {menuItem: 'Alergjite', render: () => <ProfileAllergies />},
         {menuItem: 'Semundjet Kronike', render: () => <ProfileChronicDiseases />},
         {menuItem: 'Vaksinat', render: () => <ProfileVaccines />},
-    ];
+        ];
 
     return (
         <Tab 
