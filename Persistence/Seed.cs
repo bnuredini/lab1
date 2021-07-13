@@ -281,6 +281,40 @@ namespace Persistence
                 await context.Locations.AddRangeAsync(locations);
             }
 
+            if (!context.CovidRestrictions.Any())
+            {
+                var covidRestrictions = new List<CovidRestriction>
+                {
+                    new CovidRestriction
+                    {
+                        Type = "Mbani distancen",
+                        From = DateTime.Now.AddMonths(-2),
+                        Until = DateTime.Now.AddMonths(-2)
+                    },
+                     new CovidRestriction
+                    {
+                        Type = "Vendosni masken",
+                        From = DateTime.Now.AddMonths(-2),
+                        Until = DateTime.Now.AddMonths(-2)
+                    },
+                     new CovidRestriction
+                    {
+                        Type = "Lani duart",
+                        From = DateTime.Now.AddMonths(-2),
+                        Until = DateTime.Now.AddMonths(-2)
+                    },
+                     new CovidRestriction
+                    {
+                        Type = "Rrini larg grupimeve",
+                        From = DateTime.Now.AddMonths(-2),
+                        Until = DateTime.Now.AddMonths(-2)
+                    },
+                };
+                await context.CovidRestrictions.AddRangeAsync(covidRestrictions);
+
+            }
+
+
             if (!context.Variations.Any())
             {
                 var varitatons = new List<Variation>

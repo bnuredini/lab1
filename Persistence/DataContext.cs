@@ -13,6 +13,7 @@ namespace Persistence
         public DbSet<Test> Tests { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<CovidRestriction> CovidRestrictions { get; set; }
         public DbSet<Variation> Variations { get; set; }
         public DbSet<Rezult> Rezults { get; set; }
         public DbSet<Drug> Drugs { get; set; }

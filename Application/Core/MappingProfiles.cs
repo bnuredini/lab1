@@ -13,6 +13,7 @@ namespace Application.Core
             CreateMap<Test, Test>();
             CreateMap<Patient, Patient>();
             CreateMap<Location, Location>();
+            CreateMap<CovidRestriction, CovidRestriction>();
             CreateMap<Private_Center, Private_Center>();
             CreateMap<Public_Center, Public_Center>();
             CreateMap<Rezult, Rezult>();
