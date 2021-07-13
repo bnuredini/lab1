@@ -17,10 +17,7 @@ export default class AdminDashboard extends Component {
   render() {
     const { activeItem } = this.state;
     const panes = [
-      {
-        menuItem: "Semundjet Kronike",
-        render: () => <ChronicDiseaseDashboard />,
-      },
+      { menuItem: "Semundjet Kronike", render: () => <ChronicDiseaseDashboard />, },
       { menuItem: "Qendrat Private", render: () => <PrivateCenterDashboard /> },
       { menuItem: "Qendrat Publike", render: () => <PublicCenterDashboard /> },
       { menuItem: "Vaksinat", render: () => <VaccineDashboard /> },
