@@ -28,7 +28,7 @@ export default observer(function ProfileChronicDiseases() {
         <Tab.Pane loading={loadingChronicDiseases}>
             <Grid>
                 <Grid.Column width={16}>
-                    <Header floated='left' icon='clipboard outline' content={'Semundjet Kronike'} />
+                    <Header floated='left' icon='stethoscope' content={'Semundjet Kronike'} />
                 </Grid.Column>
                 <Grid.Column width={16}>
                 <Tab

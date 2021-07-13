@@ -27,7 +27,7 @@ export default observer(function ProfileVaccines() {
         <Tab.Pane loading={loadingVaccines}>
             <Grid>
                 <Grid.Column width={16}>
-                    <Header floated='left' icon='clipboard outline' content={'Vaksinat'} />
+                    <Header floated='left' icon='syringe' content={'Vaksinat'} />
                 </Grid.Column>
                 <Grid.Column width={16}>
                 <Tab
