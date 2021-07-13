@@ -46,6 +46,21 @@ export default class AdminDashboard extends Component {
               as={NavLink} to="/allergies"
             />
             <Menu.Item
+              name="Restrictions"
+              active={activeItem === "Restrictions"}
+              as={NavLink} to="/covidrestrictions"
+            />
+             <Menu.Item
+              name="Doctors"
+              active={activeItem === "Doctors"}
+              as={NavLink} to="/doctors"
+            />
+            <Menu.Item
+              name="Locations"
+              active={activeItem === "Locations"}
+              as={NavLink} to="/locations"
+            />
+            <Menu.Item
               name="Users"
               active={activeItem === "Users"}
               onClick={this.handleItemClick}
