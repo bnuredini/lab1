@@ -314,10 +314,34 @@ namespace Persistence
 
             }
 
+            if(!context.Doctors.Any())
+            {
+                var doctors = new List<Doctor>
+                {
+                    new Doctor
+                    {
+                        Type = "Doktori i pergjithshem"
+                    },
+                     new Doctor
+                    {
+                        Type = "Infektolog"
+                    },
+                     new Doctor
+                    {
+                        Type = "Imunolog"
+                    },
+                     new Doctor
+                    {
+                        Type = "Pulmolog"
+                    },
+                };
+                await context.Doctors.AddRangeAsync(doctors);
+            }
+
 
             if (!context.Variations.Any())
             {
-                var varitatons = new List<Variation>
+                var variations = new List<Variation>
                 {
                     new Variation
                     {
@@ -345,7 +369,7 @@ namespace Persistence
                     }
                 };
 
-                await context.Variations.AddRangeAsync(varitatons);
+                await context.Variations.AddRangeAsync(variations);
             }
 
             if (!context.Vaccines.Any())
