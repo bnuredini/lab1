@@ -16,6 +16,9 @@ import { Drug } from "../models/drug";
 import { Treatment } from "../models/treatment";
 import { VaccineApplication } from "../models/vaccineApplication";
 import { Allergy } from "../models/allergy";
+import { CovidRestriction } from "../models/covidRestriction";
+import { Doctor } from "../models/doctor";
+import { Location } from "../models/location";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -199,6 +202,33 @@ const Allergies = {
   delete: (id: string) => axios.delete<void>(`/allergies/${id}`),
 };
 
+const CovidRestrictions = {
+  list: () => requests.get<CovidRestriction[]>("/covidrestrictions"),
+  details: (id: string) => requests.get<CovidRestriction>(`/covidrestrictions/${id}`),
+  create: (covidRestriction: CovidRestriction) => axios.post<void>("/covidrestrictions", covidRestriction),
+  update: (covidRestriction: CovidRestriction) =>
+    axios.put<void>(`/covidrestrictions/${covidRestriction.id}`, covidRestriction),
+  delete: (id: string) => axios.delete<void>(`/covidrestrictions/${id}`),
+};
+
+const Doctors = {
+  list: () => requests.get<Doctor[]>("/doctors"),
+  details: (id: string) => requests.get<Doctor>(`/doctors/${id}`),
+  create: (doctor: Doctor) => axios.post<void>("/doctors", doctor),
+  update: (doctor: Doctor) =>
+    axios.put<void>(`/doctors/${doctor.id}`, doctor),
+  delete: (id: string) => axios.delete<void>(`/doctors/${id}`),
+};
+
+const Locations = {
+  list: () => requests.get<Location[]>("/doctors"),
+  details: (id: string) => requests.get<Location>(`/doctors/${id}`),
+  create: (location: Location) => axios.post<void>("/doctors", location),
+  update: (location: Location) =>
+    axios.put<void>(`/doctors/${location.id}`, location),
+  delete: (id: string) => axios.delete<void>(`/doctors/${id}`),
+};
+
 const agent = {
   Tests,
   Countries,
@@ -214,6 +244,9 @@ const agent = {
   Treatments,
   VaccineApplications,
   Allergies,
+  CovidRestrictions,
+  Doctors,
+  Locations,
 };
 
 export default agent;
