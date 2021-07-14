@@ -19,6 +19,7 @@ import { Allergy } from "../models/allergy";
 import { CovidRestriction } from "../models/covidRestriction";
 import { Doctor } from "../models/doctor";
 import { Location } from "../models/location";
+import { Result } from "../models/results";
 import { Profile, UserAllergy, UserChronicDisease, UserVaccine } from "../models/profile";
 
 const sleep = (delay: number) => {
@@ -244,6 +245,14 @@ const Locations = {
   delete: (id: string) => axios.delete<void>(`/locations/${id}`),
 };
 
+const Results = {
+  list: () => requests.get<Result[]>("/results"),
+  details: (id: string) => requests.get<Result>(`/results/${id}`),
+  create: (result: Result) => axios.post<void>("/results", result),
+  update: (result: Result) =>
+    axios.put<void>(`/vaccines/${result.id}`, result),
+  delete: (id: string) => axios.delete<void>(`/results/${id}`),
+};
 const agent = {
   Tests,
   Countries,
@@ -262,7 +271,8 @@ const agent = {
   CovidRestrictions,
   Doctors,
   Locations,
-  Profiles
+  Profiles,
+  Results
 };
 
 export default agent;
