@@ -1,6 +1,12 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import { Grid, Menu} from "semantic-ui-react";
+import { Tab } from "semantic-ui-react";
+import AllergyDashboard from "../allergies/dashboard/AllergyDashboard";
+import ChronicDiseaseDashboard from "../chronicDiseases/dashboard/ChronicDiseaseDashboard";
+import PatientDashboard from "../patients/dashboard/PatientDashboard";
+import PrivateCenterDashboard from "../privateCenters/dashboard/PrivateCenterDashboard";
+import PublicCenterDashboard from "../publicCenters/dashboard/PublicCenterDashboard";
+import VaccineDashboard from "../vaccines/dashboard/VaccineDashboard";
+import VariationDashboard from "../vatiations/dashboard/VariationDashboard";
 
 export default class AdminDashboard extends Component {
   state = { activeItem: "privateCenters" };
@@ -10,70 +16,25 @@ export default class AdminDashboard extends Component {
 
   render() {
     const { activeItem } = this.state;
-
-    return (
-      <Grid columns={2}>
-        <Grid.Column width="4">
-          <Menu fluid vertical tabular>
-            <Menu.Item
-              name="Private Centers"
-              active={activeItem === "Private Centers"}
-              as={NavLink} to="/privateCenters"
-            />
-            <Menu.Item
-              name="Public Centers"
-              active={activeItem === "Public Centers"}
-              as={NavLink} to="/publicCenters"
-            />
-            <Menu.Item
-              name="Vaccines"
-              active={activeItem === "Vaccines"}
-              as={NavLink} to="/vaccines"
-            />
-            <Menu.Item
-              name="Variations"
-              active={activeItem === "Variations"}
-              as={NavLink} to="/variations"
-            />
-             <Menu.Item
-              name="Chronic Diseases"
-              active={activeItem === "Chronic Disease"}
-              as={NavLink} to="/chronicDiseases"
-            />
-             <Menu.Item
-              name="Allergies"
-              active={activeItem === "Allergies"}
-              as={NavLink} to="/allergies"
-            />
-            <Menu.Item
-              name="Restrictions"
-              active={activeItem === "Restrictions"}
-              as={NavLink} to="/covidrestrictions"
-            />
-             <Menu.Item
-              name="Doctors"
-              active={activeItem === "Doctors"}
-              as={NavLink} to="/doctors"
-            />
-            <Menu.Item
-              name="Locations"
-              active={activeItem === "Locations"}
-              as={NavLink} to="/locations"
-            />
-            <Menu.Item
-              name="Users"
-              active={activeItem === "Users"}
-              onClick={this.handleItemClick}
-            />
-          </Menu>
-        </Grid.Column>
-        <Grid.Column>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui
-          explicabo itaque aperiam magni at. Laudantium ipsam ab, voluptatem
-          voluptas veniam sed. Consequuntur quis non aliquam id ipsum porro
-          vitae perferendis.
-        </Grid.Column>
-      </Grid>
+    const panes = [
+      { menuItem: "Semundjet Kronike", render: () => <ChronicDiseaseDashboard />, },
+      { menuItem: "Qendrat Private", render: () => <PrivateCenterDashboard /> },
+      { menuItem: "Qendrat Publike", render: () => <PublicCenterDashboard /> },
+      { menuItem: "Vaksinat", render: () => <VaccineDashboard /> },
+      { menuItem: "Variantet", render: () => <VariationDashboard /> },
+      { menuItem: "Alergjite", render: () => <AllergyDashboard /> },
+      { menuItem: "Pacientet", render: () => <PatientDashboard /> },
+    ];
+ return (
+      <Tab
+        menu={{ fluid: true, vertical: true }}
+        active={activeItem}
+        menuPosition="left"
+        panes={panes}
+        //  onTabChange={(e, data) => profileStore.setActiveTab(data.activeIndex)}
+      />
     );
   }
 }
+
+   

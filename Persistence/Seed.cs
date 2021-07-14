@@ -140,7 +140,7 @@ namespace Persistence
                 {
                     new Allergy
                     {
-                        Type = "Alegji ne ushqim",
+                        Type = "Alergji ne ushqim",
                         Causes = "Shkaqet jane kur trupi juaj formon antitrupa kunder ndonje ushqimi te veqant",
                          Patients = new List<PatientAllergy> {
                             new PatientAllergy {
@@ -166,7 +166,7 @@ namespace Persistence
                     },
                     new Allergy
                     {
-                        Type = "Alegji ne kafshe",
+                        Type = "Alergji ne kafshe",
                         Causes = "Shkaqet jane proteinat ne lekuren e kafsheve",
                         Patients = new List<PatientAllergy> {
                             new PatientAllergy {

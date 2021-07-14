@@ -24,7 +24,7 @@ export default observer(function PatientDashboard() {
 <Button
         onClick={() => patientStore.openForm()}
         primary
-        content="Regjistohu"
+        content="Shto pacient"
         style={{ marginBottom: "1.4rem" }}
       />
       <Grid>
