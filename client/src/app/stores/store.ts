@@ -18,6 +18,7 @@ import CovidRestrictionStore from "./covidRestrictionsStore";
 import DoctorStore from "./doctorStore";
 import LocationStore from "./locationStore";
 import ProfileStore from "./profileStore";
+import ResultStore from "./resultStore";
 
 interface Store {
   testStore: TestStore;
@@ -39,6 +40,7 @@ interface Store {
   doctorStore: DoctorStore;
   locationStore: LocationStore;
   profileStore: ProfileStore;
+  resultStore: ResultStore;
 }
 
 export const store: Store = {
@@ -61,6 +63,7 @@ export const store: Store = {
   doctorStore: new DoctorStore(),
   locationStore: new LocationStore(),
   profileStore: new ProfileStore(),
+  resultStore:new ResultStore(),
 };
 
 export const StoreContext = createContext(store);
