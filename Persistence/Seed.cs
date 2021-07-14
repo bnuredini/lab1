@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -279,6 +279,65 @@ namespace Persistence
                 };
 
                 await context.Locations.AddRangeAsync(locations);
+            }
+            if(!context.TestConfirmations.Any())
+            {
+                var testConfirmations = new List<TestConfirmation>
+                { 
+                    new TestConfirmation
+                    {
+                        Email = "test@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        TestName = "Test 2 months ago",
+                        Location = "Prishtine"
+                    },
+                    new TestConfirmation
+                    {
+                        Email = "test2@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        TestName = "Test 2 months ago",
+                        Location = "Prizren"
+                    },
+                    new TestConfirmation
+                    {
+                        Email = "test3@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        TestName = "Test 2 months ago",
+                        Location = "Peje"
+                    },
+
+                };
+                await context.TestConfirmations.AddRangeAsync(testConfirmations);
+            }
+
+             if(!context.VaccineConfirmations.Any())
+            {
+                var vaccineConfirmations = new List<VaccineConfirmation>
+                { 
+                    new VaccineConfirmation
+                    {
+                        Email = "test@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        VaccineName = "Pfizer doza e pare",
+                        Location = "Prishtine"
+                    },
+                    new VaccineConfirmation
+                    {
+                        Email = "test2@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        VaccineName = "AstraZeneca doza e dyte",
+                        Location = "Prizren"
+                    },
+                    new VaccineConfirmation
+                    {
+                        Email = "test3@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        VaccineName = "Pfizer doza e dyte",
+                        Location = "Peje"
+                    },
+
+                };
+                await context.VaccineConfirmations.AddRangeAsync(vaccineConfirmations);
             }
 
             if (!context.CovidRestrictions.Any())
