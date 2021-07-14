@@ -19,6 +19,8 @@ import { Allergy } from "../models/allergy";
 import { CovidRestriction } from "../models/covidRestriction";
 import { Doctor } from "../models/doctor";
 import { Location } from "../models/location";
+import { TestConfirmation } from "../models/testConfirmation";
+import { VaccineConfirmation } from "../models/vaccineConfirmation";
 import { Profile, UserAllergy, UserChronicDisease, UserVaccine } from "../models/profile";
 
 const sleep = (delay: number) => {
@@ -244,6 +246,24 @@ const Locations = {
   delete: (id: string) => axios.delete<void>(`/locations/${id}`),
 };
 
+const TestConfirmations = {
+  list: () => requests.get<TestConfirmation[]>("/testConfirmations"),
+  details: (id: string) => requests.get<TestConfirmation>(`/testConfirmations/${id}`),
+  create: (testConfirmation: TestConfirmation) => axios.post<void>("/testConfirmations", testConfirmation),
+  update: (testConfirmation: TestConfirmation) =>
+    axios.put<void>(`/testConfirmations/${testConfirmation.id}`, testConfirmation),
+  delete: (id: string) => axios.delete<void>(`/testConfirmations/${id}`),
+};
+
+const VaccineConfirmations = {
+  list: () => requests.get<VaccineConfirmation[]>("/vaccineConfirmations"),
+  details: (id: string) => requests.get<VaccineConfirmation>(`/vaccineConfirmations/${id}`),
+  create: (vaccineConfirmation: VaccineConfirmation) => axios.post<void>("/vaccineConfirmations", vaccineConfirmation),
+  update: (vaccineConfirmation: VaccineConfirmation) =>
+    axios.put<void>(`/vaccineConfirmations/${vaccineConfirmation.id}`, vaccineConfirmation),
+  delete: (id: string) => axios.delete<void>(`/vaccineConfirmations/${id}`),
+};
+
 const agent = {
   Tests,
   Countries,
@@ -262,7 +282,9 @@ const agent = {
   CovidRestrictions,
   Doctors,
   Locations,
-  Profiles
+  Profiles,
+  TestConfirmations,
+  VaccineConfirmations,
 };
 
 export default agent;
