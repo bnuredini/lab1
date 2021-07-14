@@ -33,6 +33,7 @@ import AllergyDashboard from "../../features/allergies/dashboard/AllergyDashboar
 import CovidRestrictions from "../../features/covidRestrictions/covidRestrictions";
 import Doctor from "../../features/doctor/doctor";
 import Location from "../../features/location/location";
+import ResultDashboard from "../../features/result/dashboard/ResultDashboard";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -81,6 +82,7 @@ function App() {
           <Route path="/doctors" component={Doctor}/>
           <Route path="/covidrestrictions" component={CovidRestrictions} />
           <Route path="/locations" component={Location}/>
+          <Route path="/results" component={ResultDashboard} />
           <Route exact path="/loginpage" component={HomePage} />
           <Route component={NotFound} />
         </Switch>
