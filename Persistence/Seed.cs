@@ -12,7 +12,8 @@ namespace Persistence
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
             if(!userManager.Users.Any() && !context.Vaccines.Any()
-             && !context.Chronic_Diseases.Any() && !context.Allergies.Any())
+             && !context.Chronic_Diseases.Any() && !context.Allergies.Any()  
+             && !context.Rezults.Any())
             {
                 var users = new List<AppUser>
                 {
@@ -66,6 +67,35 @@ namespace Persistence
                 };
 
                 await context.Vaccines.AddRangeAsync(vaccines);
+
+                 
+                var testResults = new List<Rezult>
+                {
+                    new Rezult
+                    {
+                        Result = "Pozitiv",
+                        TestName = "Testi me siptomat temperature dhe kokedhimbje",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Patients = new List<PatientResult> {
+                            new PatientResult {
+                                AppUser = users[1]
+                            }
+                        }
+                    },
+                     new Rezult
+                    {
+                        Result = "Negativ",
+                        TestName = "Testi me siptomat dhimbje fyti",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Patients = new List<PatientResult> {
+                            new PatientResult {
+                                AppUser = users[2]
+                            }
+                        }
+                    },
+                };
+                await context.Rezults.AddRangeAsync(testResults);
+            
 
 
                 var chronicDiseases = new List<Chronic_Disease>
@@ -436,22 +466,7 @@ namespace Persistence
               
             }
 
-            if (!context.Rezults.Any())
-            {
-                var testResults = new List<Rezult>
-                {
-                    new Rezult
-                    {
-                        Result = "Pozitiv"
-                    },
-                    new Rezult
-                    {
-                        Result = "Negativ"
-                    }
-                };
-
-                await context.Rezults.AddRangeAsync(testResults);
-            }
+           
 
             if (!context.Private_Centers.Any())
             {
