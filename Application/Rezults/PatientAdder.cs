@@ -1,28 +1,20 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
 using Application.Interfaces;
 using Domain;
-using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Rezults
 {
-    public class Create
+    public class PatientAdder
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Rezult Rezult { get; set; }
-        }
-
-        public class CommandValidator : AbstractValidator<Command>
-        {
-            public CommandValidator()
-            {
-                RuleFor(x => x.Rezult).SetValidator(new RezultValidator());
-            }
+            public Guid Id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -32,20 +24,32 @@ namespace Application.Rezults
 
             public Handler(DataContext context, IUserAccessor userAccessor)
             {
-                _context = context;
                 _userAccessor = userAccessor;
+                _context = context;
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-               
-                _context.Rezults.Add(request.Rezult);
+                var user = await _context.Users.FirstOrDefaultAsync(x =>
+                    x.UserName == _userAccessor.GetUsername());
+
+                var result = await _context.Rezults.FirstOrDefaultAsync(x =>
+                    x.Id == request.Id);
+                if (result == null) return null;
+
+                var patient = new PatientResult
+                {
+                    AppUser = user,
+                    Result = result
+                };
+                
+                result.Patients.Add(patient);
 
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
-                    return Result<Unit>.Failure("Failed during result creation");
+                    return Result<Unit>.Failure("Failed during result updation");
                 }
-
+                
                 return Result<Unit>.Success(Unit.Value);
             }
         }

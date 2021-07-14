@@ -35,10 +35,10 @@ namespace Application.Rezults
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var rezult = await _context.Rezults.FindAsync(request.Rezult.Id);
-                if (rezult == null) return null;
+                var result = await _context.Rezults.FindAsync(request.Rezult.Id);
+                if (result == null) return null;
 
-                _mapper.Map(request.Rezult, rezult);
+                _mapper.Map(request.Rezult, result);
 
                 if (!(await _context.SaveChangesAsync() > 0))
                 {

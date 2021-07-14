@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Application.Profiles;
 
-namespace Domain
+namespace Application.Rezults
 {
-    public class Rezult
+    public class ResultDto
     {
         public Guid Id { get; set; }
         public string Result { get; set; }
         public string TestName { get; set; }
         public DateTime Date { get; set; }
-        public ICollection<Variation> Variations { get; set; }
-        public ICollection<PatientResult> Patients { get; set; } = new List<PatientResult>();
+        public ICollection<Profile> Patients { get; set; }
     }
 }
