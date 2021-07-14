@@ -236,12 +236,12 @@ const Doctors = {
 };
 
 const Locations = {
-  list: () => requests.get<Location[]>("/doctors"),
-  details: (id: string) => requests.get<Location>(`/doctors/${id}`),
-  create: (location: Location) => axios.post<void>("/doctors", location),
+  list: () => requests.get<Location[]>("/locations"),
+  details: (id: string) => requests.get<Location>(`/locations/${id}`),
+  create: (location: Location) => axios.post<void>("/locations", location),
   update: (location: Location) =>
-    axios.put<void>(`/doctors/${location.id}`, location),
-  delete: (id: string) => axios.delete<void>(`/doctors/${id}`),
+    axios.put<void>(`/locations/${location.id}`, location),
+  delete: (id: string) => axios.delete<void>(`/locations/${id}`),
 };
 
 const agent = {
