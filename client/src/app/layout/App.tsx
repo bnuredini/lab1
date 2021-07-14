@@ -27,7 +27,7 @@ import ChronicDiseaseDashboard from "../../features/chronicDiseases/dashboard/Ch
 import Article from "../../features/articles/Article";
 import ProfilePage from "../../features/profiles/ProfilePage";
 import DrugDashboard from "../../features/drugs/dashboard/DrugDashboard";
-import TreatmentDashboard from "../../features/treatments/dashboard/TreatmentDashboard";
+import Treatment from "../../features/treatment/Treatment";
 import VaccineApplications from "../../features/vaccineApplications/vaccineApplications";
 import AllergyDashboard from "../../features/allergies/dashboard/AllergyDashboard";
 import CovidRestrictions from "../../features/covidRestrictions/covidRestrictions";
@@ -64,7 +64,7 @@ function App() {
           <Route path="/patients" component={PatientDashboard} />
           <Route path="/newPatient" component={PatientForm} />
           <Route path="/vaccines" component={VaccineDashboard} />
-          <Route path="/treatment" component={TreatmentDashboard} />
+          <Route path="/treatments" component={Treatment}/>
           <Route path="/publicCenters" component={PublicCenterDashboard} />
           <Route path="/drugs" component={DrugDashboard} />
           <Route path="/privateCenters" component={PrivateCenterDashboard} />
