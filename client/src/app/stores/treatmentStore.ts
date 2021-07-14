@@ -8,19 +8,13 @@ export default class TreatmentStore {
   selectedTreatment: Treatment | undefined = undefined;
   editMode = false;
   loading = false;
-  loadingInitial = true;
+  loadingIntial = true;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  get treatmentsByDate() {
-    return Array.from(this.treatmentRegistry.values()).sort(
-      (a, b) => a.date!.getTime() - b.date!.getTime()
-    );
-  }
-
-  get treatmentsByPatient() {
+  get treatments() {
     return Array.from(this.treatmentRegistry.values());
   }
 
@@ -29,7 +23,6 @@ export default class TreatmentStore {
       const treatments = await agent.Treatments.list();
 
       treatments.forEach((treatment) => {
-        treatment.date = new Date(treatment.date!);
         this.treatmentRegistry.set(treatment.id, treatment);
       });
       this.setLoadingInitial(false);
@@ -40,7 +33,7 @@ export default class TreatmentStore {
   };
 
   setLoadingInitial = (state: boolean) => {
-    this.loadingInitial = state;
+    this.loadingIntial = state;
   };
 
   selectTreatment = (id: string) => {
