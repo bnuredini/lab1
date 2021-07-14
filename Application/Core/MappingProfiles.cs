@@ -23,6 +23,8 @@ namespace Application.Core
             CreateMap<Article, Article>();
             CreateMap<Variation, Variation>();
             CreateMap<Allergy, Allergy>();
+            CreateMap<TestConfirmation, TestConfirmation>();
+            CreateMap<VaccineConfirmation, VaccineConfirmation>();
             CreateMap<Chronic_Disease, Chronic_Disease>();
             CreateMap<Chronic_Disease, ChronicDiseaseDto>();
             CreateMap<AppUser, Profiles.Profile>();

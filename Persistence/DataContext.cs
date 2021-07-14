@@ -22,12 +22,12 @@ namespace Persistence
         public DbSet<Chronic_Disease> Chronic_Diseases { get; set; }
         public DbSet<Private_Center> Private_Centers { get; set; }
         public DbSet<Public_Center> Public_Centers { get; set; }
+        public DbSet<TestConfirmation> TestConfirmations { get; set; }
+        public DbSet<VaccineConfirmation> VaccineConfirmations { get; set; }
         public DbSet<Vaccine> Vaccines { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Allergy> Allergies { get; set; }
         public DbSet<VaccineApplication> VaccineApplications { get; set; }
-
-
         public DbSet<TestingCenter> TestingCenters { get; set; }
         public DbSet<PatientVaccine> PatientVaccines { get; set; }
         public DbSet<PatientChronicDisease> PatientChronicDisease { get; set; }
