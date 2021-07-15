@@ -60,7 +60,7 @@ namespace API.Controllers
                 return ValidationProblem();
             }
 
-            var user =new AppUser
+            var user = new AppUser
             {
                 DisplayName = registerDto.DisplayName,
                 Email = registerDto.Email,
@@ -68,7 +68,7 @@ namespace API.Controllers
                 // Role = registerDto.Role
             };
 
-            var result= await _userManager.CreateAsync(user, registerDto.Password);
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (result.Succeeded)
             {
@@ -89,14 +89,16 @@ namespace API.Controllers
             return CreateUserObject(user);
         }
 
-         private UserDto CreateUserObject (AppUser user)
+        private UserDto CreateUserObject (AppUser user)
         {
             return new UserDto
                 {
+                    Id = user.Id,
                     DisplayName = user.DisplayName,
                     Token = _tokenService.CreateToken(user),
                     Image = null,
                     Username = user.UserName,
+                    Tests = user.Tests 
                     // Role = user.Role
                 };
         }

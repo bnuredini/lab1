@@ -18,17 +18,20 @@ export default observer(function TestList() {
     deleteTest(id);
   }
 
-  // axios
-  //   .get(`/tests/${test.id}`)
-  //   .then((res) => {
-  //     // if (res.data.appUser.id === userStore.user!.id) {}
-  //     // console.log(res.data.id + "\t" + res.data.appUser.id);
-  //     setTestPatientID(res.data.appUser.id);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // console.log(test.id + "\t" + test.appUser.id);
+  testsByDate.map((test: any) => {
+    axios
+      .get(`/tests/${test.id}`)
+      .then((res) => {
+        // if (res.data.appUser.id === userStore.user!.id) {}
+        // console.log(res.data.id + "\t" + res.data.appUser.id);
+        // setTestPatientID(res.data.appUser.id);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+
   {
     /* {testPatientID === userStore.user!.id ?? ( */
   }
@@ -36,7 +39,10 @@ export default observer(function TestList() {
   return (
     <Segment>
       <Item.Group divided>
-        {testsByPatient.map((test: any) => {
+        {testsByDate.map((test: any) => {
+          // console.log(test.id);
+          // console.log(test.appUserID);
+
           return (
             <Item key={test.id}>
               <Item.Content>
@@ -44,6 +50,7 @@ export default observer(function TestList() {
                 <Item.Meta>
                   {format(test.date!, "dd.MM.yyyy, (h:mm aa)")}
                 </Item.Meta>
+                <Item.Description>{test.result}</Item.Description>
                 <Item.Extra>
                   <Button
                     onClick={() => testStore.selectTest(test.id)}

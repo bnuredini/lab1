@@ -39,7 +39,6 @@ namespace Application.ChronicDiseases
                     .FirstOrDefaultAsync(x => x.Id == request.Id);
 
                 return Result<ChronicDiseaseDto>.Success(chronic_Disease);
-
             }
         }
     }

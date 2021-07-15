@@ -32,9 +32,9 @@ namespace Application.Vaccines
             {
                 var user = await _context.Users.FirstOrDefaultAsync(x =>
                     x.UserName == _userAccessor.GetUsername());
-
                 var vaccine = await _context.Vaccines.FirstOrDefaultAsync(x =>
                     x.Id == request.Id);
+
                 if (vaccine == null) return null;
 
                 var patient = new PatientVaccine

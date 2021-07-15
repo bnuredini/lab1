@@ -12,6 +12,8 @@ import { createBrowserHistory } from "history";
 
 export const history = createBrowserHistory();
 
+document.title = "lab1";
+
 ReactDOM.render(
   <StoreContext.Provider value={store}>
     <Router history={history}>

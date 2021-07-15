@@ -27,7 +27,6 @@ namespace Persistence
         public DbSet<Allergy> Allergies { get; set; }
         public DbSet<VaccineApplication> VaccineApplications { get; set; }
 
-
         public DbSet<TestingCenter> TestingCenters { get; set; }
         public DbSet<PatientVaccine> PatientVaccines { get; set; }
         public DbSet<PatientChronicDisease> PatientChronicDisease { get; set; }
@@ -47,6 +46,7 @@ namespace Persistence
                 .WithMany(s => s.Private_Center)
                 .HasForeignKey(tc => tc.Public_CenterId);
 
+            // Defie a composite PK for PatientVaccine.
             builder.Entity<PatientVaccine>(x => x.HasKey(pv => new {pv.AppUserId, pv.VaccineId}));
             builder.Entity<PatientVaccine>()
                 .HasOne(u => u.AppUser)
@@ -77,7 +77,9 @@ namespace Persistence
                 .WithMany(u => u.Patients)
                 .HasForeignKey(pa => pa.AllergyId);
 
-              
+            builder.Entity<Test>()
+                .HasOne(t => t.AppUser)
+                .WithMany(au => au.Tests);
         }
     }
 }

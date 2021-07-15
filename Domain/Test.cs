@@ -9,6 +9,7 @@ namespace Domain
         public DateTime Date { get; set; }
         public string Description { get; set; }
         public String Result { get; set; }
+
         public AppUser AppUser { get; set; }
     }
 }

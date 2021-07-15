@@ -45,27 +45,9 @@ namespace Application.Tests
                     return Result<Unit>.Failure("User is null");
                 }
 
-                // var user = new AppUser() {
-                //     DisplayName = "Isuf",
-                //     Bio = "Doktor nga Shqiperia",
-                //     Role = "Doktor",
-                //     Tests = null,
-                //     ChronicDisease = null,
-                //     Articles = null,
-                //     Vaccines = null,
-                //     Allergies = null
-                // };
-
+                user.Tests.Add(request.Test);
                 request.Test.AppUser = user;
-                var testToReturn =  new Test() {
-                    Id = request.Test.Id,
-                    Date = request.Test.Date,
-                    Description = request.Test.Description,
-                    Result = request.Test.Result,
-                    AppUser = user
-                };
-
-                _context.Tests.Add(testToReturn);
+                _context.Tests.Add(request.Test);
 
                 if (!(await _context.SaveChangesAsync() > 0))
                 {

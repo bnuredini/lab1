@@ -64,8 +64,8 @@ namespace Persistence
                         }
                     }
                 };
-                await context.Vaccines.AddRangeAsync(vaccines);
 
+                await context.Vaccines.AddRangeAsync(vaccines);
 
                 var chronicDiseases = new List<Chronic_Disease>
                 {
@@ -131,9 +131,9 @@ namespace Persistence
                         Name = "HIV-AIDS"
                     },
                 };
+
                 await context.Chronic_Diseases.AddRangeAsync(chronicDiseases);
 
-            
                 var allergies = new List<Allergy>
                 {
                     new Allergy
@@ -173,6 +173,7 @@ namespace Persistence
                          }
                     }
                 };
+                
                 await context.Allergies.AddRangeAsync(allergies);
             }
 
@@ -218,8 +219,9 @@ namespace Persistence
                 {
                     new Test
                     {
-                        Date = DateTime.Now.AddMonths(-2),
+                        Date = DateTime.Now.AddMonths(-9),
                         Description = "Lorem borem hababaus",
+                        AppUser = new AppUser { DisplayName="Test4", UserName="test4", Email="test4@test.com" }
                     },
                     new Test
                     {
