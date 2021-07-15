@@ -51,7 +51,12 @@ namespace Persistence
                         Name = "AstraZeneca", 
                         Efficacy = "mbi 81.3%",
                         Creator = "Oxford",
-                        Type = "Viral vector" 
+                        Type = "Viral vector",
+                        Patients = new List<PatientVaccine> {
+                            new PatientVaccine {
+                                AppUser = users[2]
+                            }
+                        } 
                     },
                     new Vaccine
                     {

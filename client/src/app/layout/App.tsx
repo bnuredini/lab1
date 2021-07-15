@@ -31,7 +31,7 @@ import Treatment from "../../features/treatment/Treatment";
 import VaccineApplications from "../../features/vaccineApplications/vaccineApplications";
 import AllergyDashboard from "../../features/allergies/dashboard/AllergyDashboard";
 import CovidRestrictions from "../../features/covidRestrictions/covidRestrictions";
-// import Doctor from "../../features/doctor/Doctor";
+import Doctor from "../../features/doctor/doctor";
 import Location from "../../features/location/location";
 import ResultDashboard from "../../features/result/dashboard/ResultDashboard";
 import TestConfirmation from "../../features/testConfirmation/testConfirmation";
@@ -75,7 +75,7 @@ function App() {
           <Route path="/patients" component={PatientDashboard} />
           <Route path="/newPatient" component={PatientForm} />
           <Route path="/vaccines" component={VaccineDashboard} />
-          {/* <Route path="/treatments" component={Treatment}/> */}
+          <Route path="/treatments" component={Treatment}/>
           <Route path="/treatments" component={TreatmentDashboard}/>
           <Route path="/publicCenters" component={PublicCenterDashboard} />
           <Route path="/drugs" component={DrugDashboard} />
@@ -90,7 +90,7 @@ function App() {
           <Route path="/articles" component={Article} />
           <Route path="/applications" component={VaccineApplications} />
           <Route path="/allergies" component={AllergyDashboard}/>
-          {/* <Route path="/doctors" component={Doctor}/> */}
+          <Route path="/doctors" component={Doctor}/>
           <Route path="/doctors" component={doctorDashboard}/>
           <Route path="/covidrestrictions" component={CovidRestrictions} />
           <Route path="/covidrestrictions" component={covidRestrictionDashboard} />

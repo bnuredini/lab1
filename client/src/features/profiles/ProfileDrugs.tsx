@@ -2,27 +2,27 @@ import React, { SyntheticEvent, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { Tab, Grid, Header, Card, TabProps } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { UserAllergy } from "../../app/models/profile";
+import { UserDrug } from "../../app/models/profile";
 import { useStore } from "../../app/stores/store";
 
-export default observer(function ProfileAllergies() {
+export default observer(function ProfileDrugs() {
   const { profileStore } = useStore();
-  const { loadUserAllergies, profile, loadingAllergies, userAllergies } =
+  const { loadUserDrugs, profile, loadingDrugs, userDrugs } =
     profileStore;
 
   useEffect(() => {
-    loadUserAllergies(profile!.username);
-  }, [loadUserAllergies, profile]);
+    loadUserDrugs(profile!.username);
+  }, [loadUserDrugs, profile]);
 
   const handleTabChange = (e: SyntheticEvent, data: TabProps) => {
-    loadUserAllergies(profile!.username);
+    loadUserDrugs(profile!.username);
   };
 
   return (
-    <Tab.Pane loading={loadingAllergies}>
+    <Tab.Pane loading={loadingDrugs}>
       <Grid>
         <Grid.Column width={16}>
-          <Header floated="left" icon="plus square outline" content={"Alergjite"} />
+          <Header floated="left" icon="pills" content={"Ilaqet"} />
         </Grid.Column>
         <Grid.Column width={16}>
           <Tab
@@ -31,15 +31,15 @@ export default observer(function ProfileAllergies() {
           />
           <br />
           <Card.Group itemsPerRow={4}>
-            {userAllergies.map((allergies: UserAllergy) => (
-              <Card
-                as={Link}
-                to={`/allergies/${allergies.id}`}
-                key={allergies.id}
-              >
+            {userDrugs.map((drugs: UserDrug) => (
+              <Card as={Link} to={`/drugs/${drugs.id}`} key={drugs.id}>
                 <Card.Content>
-                  <Card.Header textAlign="center">{allergies.type}</Card.Header>
-                  <Card.Meta textAlign="center">{allergies.causes} </Card.Meta>
+                  <Card.Header textAlign="center">{drugs.name}</Card.Header>
+                  <Card.Meta textAlign="center">
+                    <div>{drugs.sideEffects}</div>
+                    <div>{drugs.description}</div>
+                    <div>{drugs.type}</div>
+                  </Card.Meta>
                 </Card.Content>
               </Card>
             ))}

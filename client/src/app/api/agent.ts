@@ -20,7 +20,7 @@ import { CovidRestriction } from "../models/covidRestriction";
 import { Doctor } from "../models/doctor";
 import { Location } from "../models/location";
 import { Result } from "../models/results";
-import { Profile, UserAllergy, UserChronicDisease, UserResult, UserVaccine } from "../models/profile";
+import { Profile, UserAllergy, UserChronicDisease, UserDoctor, UserDrug, UserResult, UserTreatment, UserVaccine, UserVaccineApplication } from "../models/profile";
 import { VaccineConfirmation } from "../models/vaccineConfirmation";
 import { TestConfirmation } from "../models/testConfirmation";
 
@@ -221,7 +221,15 @@ const Profiles = {
   listChronicDisease:(username: string, predicate: string) =>
   requests.get<UserChronicDisease[]>(`/profiles/${username}/chronicDiseases?predicate=${predicate}`),
   listResults: (username: string, predicate: string) =>
-      requests.get<UserResult[]>(`/profiles/${username}/results?predicate=${predicate}`)
+      requests.get<UserResult[]>(`/profiles/${username}/results?predicate=${predicate}`),
+  listDoctors: (username: string, predicate: string) =>
+      requests.get<UserDoctor[]>(`/profiles/${username}/doctors?predicate=${predicate}`),
+  listDrugs: (username: string, predicate: string) =>
+      requests.get<UserDrug[]>(`/profiles/${username}/drugs?predicate=${predicate}`),
+  listTreatments: (username: string, predicate: string) =>
+      requests.get<UserTreatment[]>(`/profiles/${username}/treatment?predicate=${predicate}`),
+  listVaccineApplications: (username: string, predicate: string) =>
+      requests.get<UserVaccineApplication[]>(`/profiles/${username}/vaccineapplications?predicate=${predicate}`)
 };
 
 const CovidRestrictions = {

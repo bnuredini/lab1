@@ -13,7 +13,7 @@ namespace Application.Doctors
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Doctor Doctor { get; set; }
+            public Doctor Doctor{ get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -42,7 +42,7 @@ namespace Application.Doctors
 
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
-                    return Result<Unit>.Failure("Failed during Doctor updation");
+                    return Result<Unit>.Failure("Failed during doctor updation");
                 }
 
                 return Result<Unit>.Success(Unit.Value);

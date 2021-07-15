@@ -1,6 +1,6 @@
 import { makeAutoObservable, reaction, runInAction } from "mobx";
 import agent from "../api/agent";
-import { Profile, UserAllergy, UserChronicDisease, UserResult, UserVaccine } from "../models/profile";
+import { Profile, UserAllergy, UserVaccineApplication, UserChronicDisease, UserDoctor, UserDrug, UserResult, UserTreatment, UserVaccine } from "../models/profile";
 import { store } from "./store";
 
 export default class ProfileStore {
@@ -14,10 +14,18 @@ export default class ProfileStore {
     userVaccines: UserVaccine[] = [];
     userChronicDiseases: UserChronicDisease[] = [];
     userResults: UserResult[] = [];
+    userDoctors: UserDoctor[] = [];
+    userDrugs: UserDrug[] = [];
+    userTreatments: UserTreatment[] = [];
+    userVaccineApplications: UserVaccineApplication[] = [];
     loadingAllergies = false;
     loadingVaccines = false;
     loadingChronicDiseases = false;
     loadingResults = false;
+    loadingDoctors = false;
+    loadingDrugs = false;
+    loadingTreatments = false;
+    loadingVaccineApplications = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -136,6 +144,66 @@ export default class ProfileStore {
             console.log(error);
             runInAction(() => {
                 this.loadingResults = false;
+            })
+        }
+    }
+    loadUserVaccineApplications = async (username: string, predicate?: string) => {
+        this.loadingVaccineApplications = true;
+        try {
+            const applications = await agent.Profiles.listVaccineApplications(username, predicate!);
+            runInAction(() => {
+                this.userVaccineApplications = applications;
+                this.loadingVaccineApplications = false;
+            })
+        } catch (error) {
+            console.log(error);
+            runInAction(() => {
+                this.loadingVaccineApplications = false;
+            })
+        }
+    }
+    loadUserTreatments = async (username: string, predicate?: string) => {
+        this.loadingTreatments = true;
+        try {
+            const treatment = await agent.Profiles.listTreatments(username, predicate!);
+            runInAction(() => {
+                this.userTreatments = treatment;
+                this.loadingTreatments = false;
+            })
+        } catch (error) {
+            console.log(error);
+            runInAction(() => {
+                this.loadingTreatments = false;
+            })
+        }
+    }
+    loadUserDrugs = async (username: string, predicate?: string) => {
+        this.loadingResults = true;
+        try {
+            const drugs = await agent.Profiles.listDrugs(username, predicate!);
+            runInAction(() => {
+                this.userDrugs = drugs;
+                this.loadingDrugs = false;
+            })
+        } catch (error) {
+            console.log(error);
+            runInAction(() => {
+                this.loadingDrugs = false;
+            })
+        }
+    }
+    loadUserDoctors = async (username: string, predicate?: string) => {
+        this.loadingDoctors = true;
+        try {
+            const doctors = await agent.Profiles.listDoctors(username, predicate!);
+            runInAction(() => {
+                this.userDoctors = doctors;
+                this.loadingDoctors = false;
+            })
+        } catch (error) {
+            console.log(error);
+            runInAction(() => {
+                this.loadingDrugs = false;
             })
         }
     }

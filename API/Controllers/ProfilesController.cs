@@ -42,5 +42,29 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new ListResults.Query
             { Username = username, Predicate = predicate }));
         }
+        [HttpGet("{username}/doctors")]
+        public async Task<IActionResult> GetPatientDoctors(string username, string predicate)
+        {
+            return HandleResult(await Mediator.Send(new ListResults.Query
+            { Username = username, Predicate = predicate }));
+        }
+        [HttpGet("{username}/drugs")]
+        public async Task<IActionResult> GetPatientDrugs(string username, string predicate)
+        {
+            return HandleResult(await Mediator.Send(new ListResults.Query
+            { Username = username, Predicate = predicate }));
+        }
+        [HttpGet("{username}/treatments")]
+        public async Task<IActionResult> GetPatientTreatments(string username, string predicate)
+        {
+            return HandleResult(await Mediator.Send(new ListResults.Query
+            { Username = username, Predicate = predicate }));
+        }
+        [HttpGet("{username}/vaccineApplications")]
+        public async Task<IActionResult> GetPatientApplications(string username, string predicate)
+        {
+            return HandleResult(await Mediator.Send(new ListResults.Query
+            { Username = username, Predicate = predicate }));
+        }
     }
 }

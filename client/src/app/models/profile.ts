@@ -37,3 +37,32 @@ export interface UserResult {
   testName: string;
   date: Date | null;
 }
+export interface UserDrug {
+  id: string;
+  name: string;
+  type: string;
+  sideEffects: string;
+  description: string;
+
+}
+export interface UserDoctor {
+  id: string;
+  type: string;
+
+}
+export interface UserTreatment {
+  id: string;
+  description: string;
+  patient: string;
+  doctor: string;
+  date: Date | null;
+
+}
+export interface UserVaccineApplication {
+  id: string;
+  type: string;
+  date: Date | null;
+  email: string;
+  location: string;
+
+}
