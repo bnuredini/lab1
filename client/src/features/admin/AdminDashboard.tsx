@@ -17,7 +17,10 @@ export default class AdminDashboard extends Component {
   render() {
     const { activeItem } = this.state;
     const panes = [
-      { menuItem: "Semundjet Kronike", render: () => <ChronicDiseaseDashboard />, },
+      {
+        menuItem: "Semundjet Kronike",
+        render: () => <ChronicDiseaseDashboard />,
+      },
       { menuItem: "Qendrat Private", render: () => <PrivateCenterDashboard /> },
       { menuItem: "Qendrat Publike", render: () => <PublicCenterDashboard /> },
       { menuItem: "Vaksinat", render: () => <VaccineDashboard /> },
@@ -25,8 +28,9 @@ export default class AdminDashboard extends Component {
       { menuItem: "Alergjite", render: () => <AllergyDashboard /> },
       { menuItem: "Pacientet", render: () => <PatientDashboard /> },
     ];
- return (
+    return (
       <Tab
+        className="admin-tab"
         menu={{ fluid: true, vertical: true }}
         active={activeItem}
         menuPosition="left"
@@ -36,5 +40,3 @@ export default class AdminDashboard extends Component {
     );
   }
 }
-
-   
