@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
+using Application.Profiles;
 
-namespace Domain
+namespace Application.VaccineApplications
 {
-    public class VaccineApplication
+    public class ApplicationDto
     {
+         
         public Guid Id { get; set; }
         public string Type { get; set; }
         public DateTime Date { get; set; }
         public string Email { get; set; }
         public string Location { get; set; }
-        public ICollection<PatientApplication> Patients { get; set; } = new List<PatientApplication>();
+        public ICollection<Profile> Patients { get; set; }
     }
 }

@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Application.Profiles;
 
-namespace Domain
+namespace Application.Treatments
 {
-    public class Treatment
+    public class TreatmentDto
     {
         public Guid Id { get; set; }
         public string Description {get; set;}
         public DateTime Date { get; set; }
         public string Patient { get; set; }
         public string Doctor { get; set; }
-        public ICollection<PatientTreatment> Patients { get; set; } = new List<PatientTreatment>();
+        public ICollection<Profile> Patients { get; set; }
     }
 }

@@ -13,7 +13,8 @@ namespace Persistence
         {
             if(!userManager.Users.Any() && !context.Vaccines.Any()
              && !context.Chronic_Diseases.Any() && !context.Allergies.Any()  
-             && !context.Rezults.Any())
+             && !context.Rezults.Any() && !context.VaccineApplications.Any()
+             && !context.Drugs.Any() && !context.Treatments.Any() && !context.Doctors.Any())
             {
                 var users = new List<AppUser>
                 {
@@ -206,6 +207,187 @@ namespace Persistence
                     }
                 };
                 await context.Allergies.AddRangeAsync(allergies);
+
+        
+                var drugs = new List<Drug>
+                {
+                    new Drug
+                    {
+                        Name="Remdesivir",
+                        SideEffects = "Presion i ulët ose i lartë i gjakut, rrahje të ngadalta, të vjella",
+                        Type = "Antiviral",
+                        Description = "Mund te percjellet edhe me inflamacione te melqise",
+                        Patients = new List<PatientDrug> {
+                            new PatientDrug {
+                                AppUser = users[1]
+                            }
+                        }
+                    },
+                     new Drug
+                    {
+                        Name="Deksametazon",
+                        SideEffects = "Irritim i stomakut, të vjella, kokedhimbje, marramendje",
+                        Type = "Glukokortikosteroide",
+                        Description = "Trajtimi me Deksametazon mund te percjellet edhe me depresion ",
+                        Patients = new List<PatientDrug> {
+                            new PatientDrug {
+                                AppUser = users[2]
+                            }
+                        }
+                    },
+                     new Drug
+                    {
+                        Name="Azitromicin",
+                        SideEffects = "Dhimbje stomaku dhe diarre ne forme te ujit ose te gjakut",
+                        Type = "Antibiotik Makrolid",
+                        Description = "Mund te percjellet edhe me rrahje te shpejta te zemres dhe marramendje",
+                        Patients = new List<PatientDrug> {
+                            new PatientDrug {
+                                AppUser = users[0]
+                            }
+                        }
+                    },
+                };
+
+                await context.Drugs.AddRangeAsync(drugs);
+            
+          
+                        
+                var treatments = new List<Treatment>
+                {
+                    new Treatment
+                    {
+                        Description="Shtepiak",
+                        Patient ="UK",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Doctor = "Mjeku i pergjithshem",
+                        Patients = new List<PatientTreatment> {
+                            new PatientTreatment 
+                            {
+                                AppUser = users[1]
+                            }
+                        }
+                    },
+                    new Treatment
+                    {
+                        Description="Ambulantiv",
+                        Patient ="UK",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Doctor = "Infektologu",
+                        Patients = new List<PatientTreatment> {
+                            new PatientTreatment 
+                            {
+                                AppUser = users[2]
+                            }
+                        }
+                    },
+                    new Treatment
+                    {
+                        Description="Intensiv",
+                        Patient ="UK",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Doctor = "Imunologu",
+                        Patients = new List<PatientTreatment> {
+                            new PatientTreatment 
+                            {
+                                AppUser = users[3]
+                            }
+                        }
+                    },
+                };
+
+                await context.Treatments.AddRangeAsync(treatments);
+            
+ 
+                var doctors = new List<Doctor>
+                {
+                    new Doctor
+                    {
+                        Type = "Doktori i pergjithshem",
+                        Patients = new List<PatientDoctor> {
+                            new PatientDoctor 
+                            {
+                                AppUser = users[0]
+                            }
+                        }
+                    },
+                     new Doctor
+                    {
+                        Type = "Infektolog",
+                        Patients = new List<PatientDoctor> {
+                            new PatientDoctor 
+                            {
+                                AppUser = users[2]
+                            }
+                        }
+                    },
+                     new Doctor
+                    {
+                        Type = "Imunolog",
+                        Patients = new List<PatientDoctor> {
+                            new PatientDoctor 
+                            {
+                                AppUser = users[1]
+                            }
+                        }
+                    },
+                     new Doctor
+                    {
+                        Type = "Pulmolog",
+                        Patients = new List<PatientDoctor> {
+                            new PatientDoctor 
+                            {
+                                AppUser = users[3]
+                            }
+                        }
+                    },
+                };
+                await context.Doctors.AddRangeAsync(doctors);
+            
+                var vaccineApplication = new List<VaccineApplication>
+                {
+                    new VaccineApplication
+                    {
+                        Type = "Pfizer",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Email = "test@test.com",
+                        Location = "Prishtine",
+                        Patients = new List<PatientApplication> {
+                            new PatientApplication 
+                            {
+                                AppUser = users[0]
+                            }
+                        }
+                    },
+                    new VaccineApplication
+                    {
+                        Type = "Moderna",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Email = "test1@test.com",
+                        Location = "Prishtine",
+                        Patients = new List<PatientApplication> {
+                            new PatientApplication 
+                            {
+                                AppUser = users[2]
+                            }
+                        }
+                    },
+                    new VaccineApplication
+                    {
+                        Type = "AstraZeneca",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Email = "test2@test.com",
+                        Location = "Prishtine",
+                        Patients = new List<PatientApplication> {
+                            new PatientApplication 
+                            {
+                                AppUser = users[3]
+                            }
+                        }
+
+                    }
+                };
+                await context.VaccineApplications.AddRangeAsync(vaccineApplication);
 
             }
 
@@ -403,29 +585,7 @@ namespace Persistence
 
             }
 
-            if(!context.Doctors.Any())
-            {
-                var doctors = new List<Doctor>
-                {
-                    new Doctor
-                    {
-                        Type = "Doktori i pergjithshem"
-                    },
-                     new Doctor
-                    {
-                        Type = "Infektolog"
-                    },
-                     new Doctor
-                    {
-                        Type = "Imunolog"
-                    },
-                     new Doctor
-                    {
-                        Type = "Pulmolog"
-                    },
-                };
-                await context.Doctors.AddRangeAsync(doctors);
-            }
+           
 
 
             if (!context.Variations.Any())
@@ -531,69 +691,7 @@ namespace Persistence
                 await context.Public_Centers.AddRangeAsync(publicCenters);
             }
 
-            if (!context.Drugs.Any())
-            {
-                var drugs = new List<Drug>
-                {
-                    new Drug
-                    {
-                        Name="Sintrom",
-                        SideEffects = "Blood Thinning",
-                        Type = "Blood Thinner",
-                        Description = "Twice a day",
-                    },
-                };
-
-                await context.Drugs.AddRangeAsync(drugs);
-            }
-          
-            if (!context.Treatments.Any())
-            {
-                var treatments = new List<Treatment>
-                {
-                    new Treatment
-                    {
-                        Description="Yada yada yada",
-                        Patient ="UK",
-                        Date = DateTime.Now.AddMonths(-2),
-                        Doctor = "Twice a day",
-                    },
-                };
-
-                await context.Treatments.AddRangeAsync(treatments);
-            }
-
-            if (!context.VaccineApplications.Any())
-            {
-                var vaccineApplication = new List<VaccineApplication>
-                {
-                    new VaccineApplication
-                    {
-                        Type = "Pfizer",
-                        Date = DateTime.Now.AddMonths(-2),
-                        Email = "test@test.com",
-                        Location = "Prishtine"
-                    },
-                    new VaccineApplication
-                    {
-                        Type = "Moderna",
-                        Date = DateTime.Now.AddMonths(-2),
-                        Email = "test1@test.com",
-                        Location = "Prishtine"
-                    },
-                    new VaccineApplication
-                    {
-                        Type = "AstraZeneca",
-                        Date = DateTime.Now.AddMonths(-2),
-                        Email = "test2@test.com",
-                        Location = "Prishtine"
-
-                    }
-                };
-                await context.VaccineApplications.AddRangeAsync(vaccineApplication);
-
-            }
-
+           
             await context.SaveChangesAsync();
         }
     }

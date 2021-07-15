@@ -35,6 +35,11 @@ namespace API.Controllers
             vaccineApplication.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command{VaccineApplication = vaccineApplication}));
         }
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateResult(Guid id)
+        {
+            return HandleResult(await Mediator.Send(new PatientAdder.Command{Id = id}));
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVaccineApplication(Guid id)

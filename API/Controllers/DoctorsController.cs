@@ -34,6 +34,11 @@ namespace API.Controllers
             doctor.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command{Doctor = doctor}));
         }
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateResult(Guid id)
+        {
+            return HandleResult(await Mediator.Send(new PatientAdder.Command{Id = id}));
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDoctor(Guid id)

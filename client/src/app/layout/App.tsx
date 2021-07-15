@@ -31,11 +31,15 @@ import Treatment from "../../features/treatment/Treatment";
 import VaccineApplications from "../../features/vaccineApplications/vaccineApplications";
 import AllergyDashboard from "../../features/allergies/dashboard/AllergyDashboard";
 import CovidRestrictions from "../../features/covidRestrictions/covidRestrictions";
-import Doctor from "../../features/doctor/doctor";
+// import Doctor from "../../features/doctor/Doctor";
 import Location from "../../features/location/location";
 import ResultDashboard from "../../features/result/dashboard/ResultDashboard";
 import TestConfirmation from "../../features/testConfirmation/testConfirmation";
 import VaccineConfirmation from "../../features/vaccineConfirmation/vaccineConfirmation";
+import covidRestrictionDashboard from "../../features/covidRestrictions/dashboard/covidRestrictionDashboard";
+import locationDashboard from "../../features/location/dashboard/locationDashboard";
+import doctorDashboard from "../../features/doctor/dashboard/doctorDashboard";
+import TreatmentDashboard from "../../features/treatment/dashboard/TreatmentDashboard";
         
         
         
@@ -71,7 +75,8 @@ function App() {
           <Route path="/patients" component={PatientDashboard} />
           <Route path="/newPatient" component={PatientForm} />
           <Route path="/vaccines" component={VaccineDashboard} />
-          <Route path="/treatments" component={Treatment}/>
+          {/* <Route path="/treatments" component={Treatment}/> */}
+          <Route path="/treatments" component={TreatmentDashboard}/>
           <Route path="/publicCenters" component={PublicCenterDashboard} />
           <Route path="/drugs" component={DrugDashboard} />
           <Route path="/privateCenters" component={PrivateCenterDashboard} />
@@ -85,9 +90,12 @@ function App() {
           <Route path="/articles" component={Article} />
           <Route path="/applications" component={VaccineApplications} />
           <Route path="/allergies" component={AllergyDashboard}/>
-          <Route path="/doctors" component={Doctor}/>
+          {/* <Route path="/doctors" component={Doctor}/> */}
+          <Route path="/doctors" component={doctorDashboard}/>
           <Route path="/covidrestrictions" component={CovidRestrictions} />
+          <Route path="/covidrestrictions" component={covidRestrictionDashboard} />
           <Route path="/locations" component={Location}/>
+          <Route path="/locations" component={locationDashboard}/>
           <Route path="/results" component={ResultDashboard} />
          <Route path="/testconfirmation" component={TestConfirmation} />
           <Route path="/vaccineconfirmation" component={VaccineConfirmation} />
