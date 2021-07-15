@@ -1,6 +1,7 @@
 using Application.Allergies;
 using Application.ChronicDiseases;
 using Application.Profiles;
+using Application.Rezults;
 using Application.Vaccines;
 using AutoMapper;
 using Domain;
@@ -23,6 +24,8 @@ namespace Application.Core
             CreateMap<Article, Article>();
             CreateMap<Variation, Variation>();
             CreateMap<Allergy, Allergy>();
+            CreateMap<TestConfirmation, TestConfirmation>();
+            CreateMap<VaccineConfirmation, VaccineConfirmation>();
             CreateMap<Chronic_Disease, Chronic_Disease>();
             CreateMap<Chronic_Disease, ChronicDiseaseDto>();
             CreateMap<AppUser, Profiles.Profile>();
@@ -32,6 +35,11 @@ namespace Application.Core
                 .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
             CreateMap<Vaccine, VaccineDto>();
             CreateMap<PatientVaccine, Profiles.Profile>()
+                .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
+                .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName))
+                .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
+                CreateMap<Rezult, ResultDto>();
+            CreateMap<PatientResult, Profiles.Profile>()
                 .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
                 .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName))
                 .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
@@ -53,6 +61,10 @@ namespace Application.Core
                 .ForMember(d => d.Type, o => o.MapFrom(s => s.Vaccine.Type));
             CreateMap<PatientChronicDisease, PatientChronicDiseaseDto>()
                 .ForMember(d => d.Name, o => o.MapFrom(s => s.ChronicDisease.Name));
+                CreateMap<PatientResult, PatientResultDto>()
+                .ForMember(d => d.Result, o => o.MapFrom(s => s.Result.Result))
+                .ForMember(d => d.TestName, o => o.MapFrom(s => s.Result.TestName))
+                .ForMember(d => d.Date, o => o.MapFrom(s => s.Result.Date));
                             
 
 

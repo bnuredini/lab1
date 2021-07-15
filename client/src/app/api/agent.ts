@@ -19,12 +19,10 @@ import { Allergy } from "../models/allergy";
 import { CovidRestriction } from "../models/covidRestriction";
 import { Doctor } from "../models/doctor";
 import { Location } from "../models/location";
-import {
-  Profile,
-  UserAllergy,
-  UserChronicDisease,
-  UserVaccine,
-} from "../models/profile";
+import { Result } from "../models/results";
+import { Profile, UserAllergy, UserChronicDisease, UserResult, UserVaccine } from "../models/profile";
+import { VaccineConfirmation } from "../models/vaccineConfirmation";
+import { TestConfirmation } from "../models/testConfirmation";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -230,13 +228,11 @@ const Profiles = {
       `/profiles/${username}/allergies?predicate=${predicate}`
     ),
   listVaccines: (username: string, predicate: string) =>
-    requests.get<UserVaccine[]>(
-      `/profiles/${username}/vaccines?predicate=${predicate}`
-    ),
-  listChronicDisease: (username: string, predicate: string) =>
-    requests.get<UserChronicDisease[]>(
-      `/profiles/${username}/chronicDiseases?predicate=${predicate}`
-    ),
+      requests.get<UserVaccine[]>(`/profiles/${username}/vaccines?predicate=${predicate}`),
+  listChronicDisease:(username: string, predicate: string) =>
+  requests.get<UserChronicDisease[]>(`/profiles/${username}/chronicDiseases?predicate=${predicate}`),
+  listResults: (username: string, predicate: string) =>
+      requests.get<UserResult[]>(`/profiles/${username}/results?predicate=${predicate}`)
 };
 
 const CovidRestrictions = {
@@ -262,13 +258,40 @@ const Doctors = {
 };
 
 const Locations = {
-  list: () => requests.get<Location[]>("/doctors"),
-  details: (id: string) => requests.get<Location>(`/doctors/${id}`),
-  create: (location: Location) => axios.post<void>("/doctors", location),
+  list: () => requests.get<Location[]>("/locations"),
+  details: (id: string) => requests.get<Location>(`/locations/${id}`),
+  create: (location: Location) => axios.post<void>("/locations", location),
   update: (location: Location) =>
-    axios.put<void>(`/doctors/${location.id}`, location),
-  delete: (id: string) => axios.delete<void>(`/doctors/${id}`),
+    axios.put<void>(`/locations/${location.id}`, location),
+  delete: (id: string) => axios.delete<void>(`/locations/${id}`),
 };
+
+const Results = {
+  list: () => requests.get<Result[]>("/results"),
+  details: (id: string) => requests.get<Result>(`/results/${id}`),
+  create: (result: Result) => axios.post<void>("/results", result),
+  update: (result: Result) =>
+    axios.put<void>(`/results/${result.id}`, result),
+  delete: (id: string) => axios.delete<void>(`/results/${id}`),
+};
+const TestConfirmations = {
+  list: () => requests.get<TestConfirmation[]>("/testConfirmations"),
+  details: (id: string) => requests.get<TestConfirmation>(`/testConfirmations/${id}`),
+  create: (testConfirmation: TestConfirmation) => axios.post<void>("/testConfirmations", testConfirmation),
+  update: (testConfirmation: TestConfirmation) =>
+    axios.put<void>(`/testConfirmations/${testConfirmation.id}`, testConfirmation),
+  delete: (id: string) => axios.delete<void>(`/testConfirmations/${id}`),
+};
+
+const VaccineConfirmations = {
+  list: () => requests.get<VaccineConfirmation[]>("/vaccineConfirmations"),
+  details: (id: string) => requests.get<VaccineConfirmation>(`/vaccineConfirmations/${id}`),
+  create: (vaccineConfirmation: VaccineConfirmation) => axios.post<void>("/vaccineConfirmations", vaccineConfirmation),
+  update: (vaccineConfirmation: VaccineConfirmation) =>
+    axios.put<void>(`/vaccineConfirmations/${vaccineConfirmation.id}`, vaccineConfirmation),
+  delete: (id: string) => axios.delete<void>(`/vaccineConfirmations/${id}`),
+};
+
 
 const agent = {
   Tests,
@@ -289,6 +312,9 @@ const agent = {
   Doctors,
   Locations,
   Profiles,
+  Results,
+  TestConfirmations,
+  VaccineConfirmations
 };
 
 export default agent;

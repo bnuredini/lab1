@@ -38,12 +38,6 @@ namespace Application.Profiles
                     .ProjectTo<PatientChronicDiseaseDto>(_mapper.ConfigurationProvider)
                     .AsQueryable();
 
-                // query = request.Predicate switch
-                // {
-                //     "past" => query.Where(a => a.Date <= DateTime.Now),
-                //     "hosting" => query.Where(a => a.HostUsername == request.Username),
-                //     _ => query.Where(a => a.Date >= DateTime.Now)
-                // };
 
                 var chronicDiseases = await query.ToListAsync();
 

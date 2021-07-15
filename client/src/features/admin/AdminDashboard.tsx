@@ -1,6 +1,12 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Card, Grid, Header, Menu, Segment } from "semantic-ui-react";
+import { Tab } from "semantic-ui-react";
+import AllergyDashboard from "../allergies/dashboard/AllergyDashboard";
+import ChronicDiseaseDashboard from "../chronicDiseases/dashboard/ChronicDiseaseDashboard";
+import PatientDashboard from "../patients/dashboard/PatientDashboard";
+import PrivateCenterDashboard from "../privateCenters/dashboard/PrivateCenterDashboard";
+import PublicCenterDashboard from "../publicCenters/dashboard/PublicCenterDashboard";
+import VaccineDashboard from "../vaccines/dashboard/VaccineDashboard";
+import VariationDashboard from "../vatiations/dashboard/VariationDashboard";
 
 export default class AdminDashboard extends Component {
   state = { activeItem: "privateCenters" };
@@ -10,67 +16,25 @@ export default class AdminDashboard extends Component {
 
   render() {
     const { activeItem } = this.state;
-
-    return (
-      <>
-        <Segment>
-          <Header size="huge">Paneli i Adminit</Header>
-        </Segment>
-        <Segment>
-          <Card.Group itemsPerRow={4}>
-            <Card as={Link} to={"/chronicDiseases/"}>
-              <Card.Content>
-                <Card.Header textAlign="center">Semundjet Kronike</Card.Header>
-              </Card.Content>
-            </Card>
-            <Card as={Link} to={"/privateCenters"}>
-              <Card.Content>
-                <Card.Header textAlign="center">Qendrat Private</Card.Header>
-              </Card.Content>
-            </Card>
-            <Card as={Link} to={"/publicCenters"}>
-              <Card.Content>
-                <Card.Header textAlign="center">Qendrat Publike</Card.Header>
-              </Card.Content>
-            </Card>
-            <Card as={Link} to={"/vaccines"}>
-              <Card.Content>
-                <Card.Header textAlign="center">Vaksinat</Card.Header>
-              </Card.Content>
-            </Card>
-            <Card as={Link} to={"/variations"}>
-              <Card.Content>
-                <Card.Header textAlign="center">Variacionet</Card.Header>
-              </Card.Content>
-            </Card>
-            <Card as={Link} to={"/chronicDiseases"}>
-              <Card.Content>
-                <Card.Header textAlign="center">Semundjet Kronike</Card.Header>
-              </Card.Content>
-            </Card>
-            <Card as={Link} to={"/allergies"}>
-              <Card.Content>
-                <Card.Header textAlign="center">Alergjite</Card.Header>
-              </Card.Content>
-            </Card>
-            <Card as={Link} to={"/restrictions"}>
-              <Card.Content>
-                <Card.Header textAlign="center">Kufizimet</Card.Header>
-              </Card.Content>
-            </Card>
-            <Card as={Link} to={"/doctors"}>
-              <Card.Content>
-                <Card.Header textAlign="center">Doktoret</Card.Header>
-              </Card.Content>
-            </Card>
-            <Card as={Link} to={"/locations"}>
-              <Card.Content>
-                <Card.Header textAlign="center">Lokacionet</Card.Header>
-              </Card.Content>
-            </Card>
-          </Card.Group>
-        </Segment>
-      </>
+    const panes = [
+      { menuItem: "Semundjet Kronike", render: () => <ChronicDiseaseDashboard />, },
+      { menuItem: "Qendrat Private", render: () => <PrivateCenterDashboard /> },
+      { menuItem: "Qendrat Publike", render: () => <PublicCenterDashboard /> },
+      { menuItem: "Vaksinat", render: () => <VaccineDashboard /> },
+      { menuItem: "Variantet", render: () => <VariationDashboard /> },
+      { menuItem: "Alergjite", render: () => <AllergyDashboard /> },
+      { menuItem: "Pacientet", render: () => <PatientDashboard /> },
+    ];
+ return (
+      <Tab
+        menu={{ fluid: true, vertical: true }}
+        active={activeItem}
+        menuPosition="left"
+        panes={panes}
+        //  onTabChange={(e, data) => profileStore.setActiveTab(data.activeIndex)}
+      />
     );
   }
 }
+
+   

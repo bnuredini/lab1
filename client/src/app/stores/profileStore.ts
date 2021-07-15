@@ -1,6 +1,6 @@
 import { makeAutoObservable, reaction, runInAction } from "mobx";
 import agent from "../api/agent";
-import { Profile, UserAllergy, UserChronicDisease, UserVaccine } from "../models/profile";
+import { Profile, UserAllergy, UserChronicDisease, UserResult, UserVaccine } from "../models/profile";
 import { store } from "./store";
 
 export default class ProfileStore {
@@ -13,9 +13,11 @@ export default class ProfileStore {
     userAllergies: UserAllergy[] = [];
     userVaccines: UserVaccine[] = [];
     userChronicDiseases: UserChronicDisease[] = [];
+    userResults: UserResult[] = [];
     loadingAllergies = false;
     loadingVaccines = false;
     loadingChronicDiseases = false;
+    loadingResults = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -119,6 +121,21 @@ export default class ProfileStore {
             console.log(error);
             runInAction(() => {
                 this.loadingChronicDiseases = false;
+            })
+        }
+    }
+    loadUserResults = async (username: string, predicate?: string) => {
+        this.loadingResults = true;
+        try {
+            const results = await agent.Profiles.listResults(username, predicate!);
+            runInAction(() => {
+                this.userResults = results;
+                this.loadingResults = false;
+            })
+        } catch (error) {
+            console.log(error);
+            runInAction(() => {
+                this.loadingResults = false;
             })
         }
     }

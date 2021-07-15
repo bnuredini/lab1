@@ -11,10 +11,10 @@ export default observer(function LocationForm () {
     const initialState = selectedLocation ?? {
         id: '',
         name: '',
-        zipCode: '',
-        infections: '',
-        vaccinated: '',
-        tested: '',
+        zipCode: 0,
+        infections: 0,
+        vaccinated: 0,
+        tested: 0,
     }
 
     const [location, setLocation] = useState(initialState);

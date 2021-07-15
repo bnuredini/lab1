@@ -27,12 +27,19 @@ import ChronicDiseaseDashboard from "../../features/chronicDiseases/dashboard/Ch
 import Article from "../../features/articles/Article";
 import ProfilePage from "../../features/profiles/ProfilePage";
 import DrugDashboard from "../../features/drugs/dashboard/DrugDashboard";
-import TreatmentDashboard from "../../features/treatments/dashboard/TreatmentDashboard";
+import Treatment from "../../features/treatment/Treatment";
 import VaccineApplications from "../../features/vaccineApplications/vaccineApplications";
 import AllergyDashboard from "../../features/allergies/dashboard/AllergyDashboard";
 import CovidRestrictions from "../../features/covidRestrictions/covidRestrictions";
 import Doctor from "../../features/doctor/doctor";
 import Location from "../../features/location/location";
+import ResultDashboard from "../../features/result/dashboard/ResultDashboard";
+import TestConfirmation from "../../features/testConfirmation/testConfirmation";
+import VaccineConfirmation from "../../features/vaccineConfirmation/vaccineConfirmation";
+        
+        
+        
+
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -64,7 +71,7 @@ function App() {
           <Route path="/patients" component={PatientDashboard} />
           <Route path="/newPatient" component={PatientForm} />
           <Route path="/vaccines" component={VaccineDashboard} />
-          <Route path="/treatment" component={TreatmentDashboard} />
+          <Route path="/treatments" component={Treatment}/>
           <Route path="/publicCenters" component={PublicCenterDashboard} />
           <Route path="/drugs" component={DrugDashboard} />
           <Route path="/privateCenters" component={PrivateCenterDashboard} />
@@ -81,6 +88,9 @@ function App() {
           <Route path="/doctors" component={Doctor}/>
           <Route path="/covidrestrictions" component={CovidRestrictions} />
           <Route path="/locations" component={Location}/>
+          <Route path="/results" component={ResultDashboard} />
+         <Route path="/testconfirmation" component={TestConfirmation} />
+          <Route path="/vaccineconfirmation" component={VaccineConfirmation} />
           <Route exact path="/loginpage" component={HomePage} />
           <Route component={NotFound} />
         </Switch>

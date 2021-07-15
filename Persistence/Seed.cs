@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,8 +11,9 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
-            if(!userManager.Users.Any() && !context.Vaccines.Any()
-                && !context.Chronic_Diseases.Any() && !context.Allergies.Any())
+            if (!userManager.Users.Any() && !context.Vaccines.Any()
+              && !context.Chronic_Diseases.Any() && !context.Allergies.Any()  
+              && !context.Rezults.Any())
             {
                 var users = new List<AppUser>
                 {
@@ -66,7 +67,35 @@ namespace Persistence
                 };
 
                 await context.Vaccines.AddRangeAsync(vaccines);
-
+                 
+                var testResults = new List<Rezult>
+                {
+                    new Rezult
+                    {
+                        Result = "Pozitiv",
+                        TestName = "Testi me siptomat temperature dhe kokedhimbje",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Patients = new List<PatientResult> {
+                            new PatientResult {
+                                AppUser = users[1]
+                            }
+                        }
+                    },
+                     new Rezult
+                    {
+                        Result = "Negativ",
+                        TestName = "Testi me siptomat dhimbje fyti",
+                        Date = DateTime.Now.AddMonths(-2),
+                        Patients = new List<PatientResult> {
+                            new PatientResult {
+                                AppUser = users[2]
+                            }
+                        }
+                    },
+                };
+              
+                await context.Rezults.AddRangeAsync(testResults);
+            
                 var chronicDiseases = new List<Chronic_Disease>
                 {
                     new Chronic_Disease
@@ -138,7 +167,7 @@ namespace Persistence
                 {
                     new Allergy
                     {
-                        Type = "Alegji ne ushqim",
+                        Type = "Alergji ne ushqim",
                         Causes = "Shkaqet jane kur trupi juaj formon antitrupa kunder ndonje ushqimi te veqant",
                          Patients = new List<PatientAllergy> {
                             new PatientAllergy {
@@ -164,7 +193,7 @@ namespace Persistence
                     },
                     new Allergy
                     {
-                        Type = "Alegji ne kafshe",
+                        Type = "Alergji ne kafshe",
                         Causes = "Shkaqet jane proteinat ne lekuren e kafsheve",
                         Patients = new List<PatientAllergy> {
                             new PatientAllergy {
@@ -267,6 +296,65 @@ namespace Persistence
                 
                 await context.Locations.AddRangeAsync(locations);
             }
+            if(!context.TestConfirmations.Any())
+            {
+                var testConfirmations = new List<TestConfirmation>
+                { 
+                    new TestConfirmation
+                    {
+                        Email = "test@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        TestName = "Test 2 months ago",
+                        Location = "Prishtine"
+                    },
+                    new TestConfirmation
+                    {
+                        Email = "test2@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        TestName = "Test 2 months ago",
+                        Location = "Prizren"
+                    },
+                    new TestConfirmation
+                    {
+                        Email = "test3@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        TestName = "Test 2 months ago",
+                        Location = "Peje"
+                    },
+
+                };
+                await context.TestConfirmations.AddRangeAsync(testConfirmations);
+            }
+
+            if (!context.VaccineConfirmations.Any())
+            {
+                var vaccineConfirmations = new List<VaccineConfirmation>
+                { 
+                    new VaccineConfirmation
+                    {
+                        Email = "test@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        VaccineName = "Pfizer doza e pare",
+                        Location = "Prishtine"
+                    },
+                    new VaccineConfirmation
+                    {
+                        Email = "test2@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        VaccineName = "AstraZeneca doza e dyte",
+                        Location = "Prizren"
+                    },
+                    new VaccineConfirmation
+                    {
+                        Email = "test3@test.com",
+                        Date = DateTime.Now.AddMonths(-2),
+                        VaccineName = "Pfizer doza e dyte",
+                        Location = "Peje"
+                    },
+
+                };
+                await context.VaccineConfirmations.AddRangeAsync(vaccineConfirmations);
+            }
 
             if (!context.CovidRestrictions.Any())
             {
@@ -357,23 +445,6 @@ namespace Persistence
                 };
 
                 await context.Variations.AddRangeAsync(variations);
-            }
-
-            if (!context.Rezults.Any())
-            {
-                var testResults = new List<Rezult>
-                {
-                    new Rezult
-                    {
-                        Result = "Pozitiv"
-                    },
-                    new Rezult
-                    {
-                        Result = "Negativ"
-                    }
-                };
-
-                await context.Rezults.AddRangeAsync(testResults);
             }
 
             if (!context.Private_Centers.Any())

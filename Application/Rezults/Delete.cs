@@ -25,9 +25,9 @@ namespace Application.Rezults
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var rezult = await _context.Rezults.FindAsync(request.Id);
+                var result = await _context.Rezults.FindAsync(request.Id);
 
-                _context.Remove(rezult);
+                _context.Remove(result);
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
                     return Result<Unit>.Failure("Failed to delete the result");
