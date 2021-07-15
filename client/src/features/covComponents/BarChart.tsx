@@ -32,7 +32,7 @@ const BarChart: React.FunctionComponent<Props> = ({ countries }) => {
     const labels: string[] = [];
 
     countries.forEach((country) => {
-      data.push(country.NewConfirmed);
+      data.push(country.TotalConfirmed);
       labels.push(country.Country);
     });
 
@@ -40,7 +40,7 @@ const BarChart: React.FunctionComponent<Props> = ({ countries }) => {
       labels,
       datasets: [
         {
-          label: "New Confirmed",
+          label: "Total Confirmed",
           data,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",

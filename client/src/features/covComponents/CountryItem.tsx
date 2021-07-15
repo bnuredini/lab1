@@ -43,9 +43,9 @@ const CountryItem: React.FunctionComponent<Props> = ({
     <ListItem key={country.ID} onClick={() => handleOnClick(country)}>
       <ListContent isActive={isActive}>
         <h4>{country.Country}</h4>
-        <div>New Confirmed: {country.NewConfirmed}</div>
-        <div>New Deaths: {country.NewDeaths}</div>
-        <div>New Recovered: {country.NewRecovered}</div>
+        <div>Total Confirmed: {country.TotalConfirmed}</div>
+        <div>Total Deaths: {country.TotalDeaths}</div>
+        <div>Total Recovered: {country.TotalRecovered}</div>
       </ListContent>
     </ListItem>
   );
