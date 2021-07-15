@@ -42,18 +42,19 @@ export default observer(function NavBar() {
           name="Artikujt"
           className="navitem"
         />
-        <Menu.Item
-          as={NavLink}
-          to="/applications"
-          name="Apliko"
-          className="navitem"
-        />
         {userStore.isLoggedIn ? (
           <>
             <Menu.Item
               as={NavLink}
               to="/tests"
               name="Testet"
+              exact
+              className="navitem"
+            />
+            <Menu.Item
+              as={NavLink}
+              to="/applications"
+              name="Apliko"
               exact
               className="navitem"
             />
