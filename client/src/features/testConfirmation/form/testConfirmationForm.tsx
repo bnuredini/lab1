@@ -10,7 +10,7 @@ export default observer(function TestConfirmationForm () {
     
     const initialState = selectedTestConfirmation ?? {
         id: '',
-        email: '',
+        email:'',
         date: null,
         testName: '',
         location:'',

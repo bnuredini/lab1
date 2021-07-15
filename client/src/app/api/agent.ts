@@ -21,9 +21,8 @@ import { Doctor } from "../models/doctor";
 import { Location } from "../models/location";
 import { Result } from "../models/results";
 import { Profile, UserAllergy, UserChronicDisease, UserResult, UserVaccine } from "../models/profile";
-import { TestConfirmation } from "../models/testConfirmation";
 import { VaccineConfirmation } from "../models/vaccineConfirmation";
-import { Profile, UserAllergy, UserChronicDisease, UserVaccine } from "../models/profile";
+import { TestConfirmation } from "../models/testConfirmation";
 
 
 
