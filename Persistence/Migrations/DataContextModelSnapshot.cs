@@ -433,15 +433,10 @@ namespace Persistence.Migrations
                     b.Property<string>("Result")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("TestId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("TestName")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TestId");
 
                     b.ToTable("Rezults");
                 });
@@ -464,9 +459,6 @@ namespace Persistence.Migrations
                     b.Property<string>("Result")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("RezultId")
-                        .HasColumnType("TEXT");
-
                     b.Property<Guid?>("TestingCenterPrivate_CenterId")
                         .HasColumnType("TEXT");
 
@@ -476,8 +468,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
-
-                    b.HasIndex("RezultId");
 
                     b.HasIndex("TestingCenterPublic_CenterId", "TestingCenterPrivate_CenterId");
 
@@ -938,12 +928,17 @@ namespace Persistence.Migrations
                     b.Navigation("Vaccine");
                 });
 
-
-            modelBuilder.Entity("Domain.Rezult", b =>
+            modelBuilder.Entity("Domain.Test", b =>
                 {
-                    b.HasOne("Domain.Test", null)
-                        .WithMany("Results")
-                        .HasForeignKey("TestId");
+                    b.HasOne("Domain.AppUser", "AppUser")
+                        .WithMany("Tests")
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("Domain.TestingCenter", null)
+                        .WithMany("Tests")
+                        .HasForeignKey("TestingCenterPublic_CenterId", "TestingCenterPrivate_CenterId");
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Domain.TestingCenter", b =>
@@ -1050,6 +1045,8 @@ namespace Persistence.Migrations
 
                     b.Navigation("Results");
 
+                    b.Navigation("Tests");
+
                     b.Navigation("Treatments");
 
                     b.Navigation("Vaccines");
@@ -1085,9 +1082,9 @@ namespace Persistence.Migrations
                     b.Navigation("Patients");
                 });
 
-            modelBuilder.Entity("Domain.Test", b =>
+            modelBuilder.Entity("Domain.TestingCenter", b =>
                 {
-                    b.Navigation("Results");
+                    b.Navigation("Tests");
                 });
 
             modelBuilder.Entity("Domain.Treatment", b =>
