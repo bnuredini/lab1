@@ -27,6 +27,7 @@ namespace Persistence
         public DbSet<Vaccine> Vaccines { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Allergy> Allergies { get; set; }
+        public DbSet<Position> Positions { get; set; }
         public DbSet<VaccineApplication> VaccineApplications { get; set; }
         public DbSet<TestingCenter> TestingCenters { get; set; }
         public DbSet<PatientVaccine> PatientVaccines { get; set; }
@@ -37,6 +38,7 @@ namespace Persistence
         public DbSet<PatientDoctor> PatientDoctors { get; set; }
         public DbSet<PatientDrug> PatientDrugs { get; set; }
         public DbSet<PatientTreatment> PatientTreatments { get; set; }
+        public DbSet<UserPosition> UserPostions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -131,6 +133,16 @@ namespace Persistence
                 .HasOne(v => v.Treatment)
                 .WithMany(u => u.Patients)
                 .HasForeignKey(pr => pr.TreatmentId);
+
+            builder.Entity<UserPosition>(x => x.HasKey(ur => new {ur.AppUserId, ur.RoleId}));
+            builder.Entity<UserPosition>()
+                .HasOne(u => u.AppUser)
+                .WithMany(r => r.Positions)
+                .HasForeignKey(ur => ur.AppUserId);
+            builder.Entity<UserPosition>()
+                .HasOne(r => r.Position)
+                .WithMany(u => u.Users)
+                .HasForeignKey(ur => ur.RoleId);
 
               
             builder.Entity<Test>()
