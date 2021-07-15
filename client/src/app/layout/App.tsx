@@ -34,6 +34,12 @@ import CovidRestrictions from "../../features/covidRestrictions/covidRestriction
 import Doctor from "../../features/doctor/doctor";
 import Location from "../../features/location/location";
 import ResultDashboard from "../../features/result/dashboard/ResultDashboard";
+import TestConfirmation from "../../features/testConfirmation/testConfirmation";
+import VaccineConfirmation from "../../features/vaccineConfirmation/vaccineConfirmation";
+        
+        
+        
+
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -83,6 +89,8 @@ function App() {
           <Route path="/covidrestrictions" component={CovidRestrictions} />
           <Route path="/locations" component={Location}/>
           <Route path="/results" component={ResultDashboard} />
+         <Route path="/testconfirmation" component={TestConfirmation} />
+          <Route path="/vaccineconfirmation" component={VaccineConfirmation} />
           <Route exact path="/loginpage" component={HomePage} />
           <Route component={NotFound} />
         </Switch>

@@ -19,6 +19,9 @@ import DoctorStore from "./doctorStore";
 import LocationStore from "./locationStore";
 import ProfileStore from "./profileStore";
 import ResultStore from "./resultStore";
+import TestConfirmationStore from "./testConfirmationStore";
+import VaccineConfirmationStore from "./vaccineConfirmationStore";
+
 
 interface Store {
   testStore: TestStore;
@@ -41,6 +44,9 @@ interface Store {
   locationStore: LocationStore;
   profileStore: ProfileStore;
   resultStore: ResultStore;
+testConfirmationStore: TestConfirmationStore;
+  vaccineConfirmationStore: VaccineConfirmationStore;
+
 }
 
 export const store: Store = {
@@ -64,6 +70,9 @@ export const store: Store = {
   locationStore: new LocationStore(),
   profileStore: new ProfileStore(),
   resultStore:new ResultStore(),
+    testConfirmationStore: new TestConfirmationStore(),
+  vaccineConfirmationStore :new VaccineConfirmationStore(),
+
 };
 
 export const StoreContext = createContext(store);
