@@ -61,6 +61,10 @@ namespace Application.Core
                 .ForMember(d => d.Type, o => o.MapFrom(s => s.Vaccine.Type));
             CreateMap<PatientChronicDisease, PatientChronicDiseaseDto>()
                 .ForMember(d => d.Name, o => o.MapFrom(s => s.ChronicDisease.Name));
+                CreateMap<PatientResult, PatientResultDto>()
+                .ForMember(d => d.Result, o => o.MapFrom(s => s.Result.Result))
+                .ForMember(d => d.TestName, o => o.MapFrom(s => s.Result.TestName))
+                .ForMember(d => d.Date, o => o.MapFrom(s => s.Result.Date));
                             
 
 

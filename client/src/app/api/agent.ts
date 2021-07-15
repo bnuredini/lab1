@@ -19,9 +19,13 @@ import { Allergy } from "../models/allergy";
 import { CovidRestriction } from "../models/covidRestriction";
 import { Doctor } from "../models/doctor";
 import { Location } from "../models/location";
+import { Result } from "../models/results";
+import { Profile, UserAllergy, UserChronicDisease, UserResult, UserVaccine } from "../models/profile";
 import { TestConfirmation } from "../models/testConfirmation";
 import { VaccineConfirmation } from "../models/vaccineConfirmation";
 import { Profile, UserAllergy, UserChronicDisease, UserVaccine } from "../models/profile";
+
+
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -216,7 +220,9 @@ const Profiles = {
   listVaccines: (username: string, predicate: string) =>
       requests.get<UserVaccine[]>(`/profiles/${username}/vaccines?predicate=${predicate}`),
   listChronicDisease:(username: string, predicate: string) =>
-  requests.get<UserChronicDisease[]>(`/profiles/${username}/chronicDiseases?predicate=${predicate}`)
+  requests.get<UserChronicDisease[]>(`/profiles/${username}/chronicDiseases?predicate=${predicate}`),
+  listResults: (username: string, predicate: string) =>
+      requests.get<UserResult[]>(`/profiles/${username}/results?predicate=${predicate}`)
 };
 
 const CovidRestrictions = {
@@ -246,6 +252,14 @@ const Locations = {
   delete: (id: string) => axios.delete<void>(`/locations/${id}`),
 };
 
+const Results = {
+  list: () => requests.get<Result[]>("/results"),
+  details: (id: string) => requests.get<Result>(`/results/${id}`),
+  create: (result: Result) => axios.post<void>("/results", result),
+  update: (result: Result) =>
+    axios.put<void>(`/results/${result.id}`, result),
+  delete: (id: string) => axios.delete<void>(`/results/${id}`),
+};
 const TestConfirmations = {
   list: () => requests.get<TestConfirmation[]>("/testConfirmations"),
   details: (id: string) => requests.get<TestConfirmation>(`/testConfirmations/${id}`),
@@ -263,6 +277,7 @@ const VaccineConfirmations = {
     axios.put<void>(`/vaccineConfirmations/${vaccineConfirmation.id}`, vaccineConfirmation),
   delete: (id: string) => axios.delete<void>(`/vaccineConfirmations/${id}`),
 };
+
 
 const agent = {
   Tests,
@@ -283,8 +298,11 @@ const agent = {
   Doctors,
   Locations,
   Profiles,
+  Results,
   TestConfirmations,
   VaccineConfirmations,
+  
+
 };
 
 export default agent;
