@@ -33,6 +33,10 @@ namespace Persistence
         public DbSet<PatientChronicDisease> PatientChronicDisease { get; set; }
         public DbSet<PatientAllergy> PatientAllergy { get; set; }
         public DbSet<PatientResult> PatientResults { get; set; }
+        public DbSet<PatientApplication> PatientApplications { get; set; }
+        public DbSet<PatientDoctor> PatientDoctors { get; set; }
+        public DbSet<PatientDrug> PatientDrugs { get; set; }
+        public DbSet<PatientTreatment> PatientTreatments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -88,10 +92,51 @@ namespace Persistence
                 .HasOne(v => v.Result)
                 .WithMany(u => u.Patients)
                 .HasForeignKey(pr => pr.ResultId);
+            builder.Entity<PatientApplication>(x => x.HasKey(pa => new {pa.AppUserId, pa.ApplicationId}));
+            builder.Entity<PatientApplication>()
+                .HasOne(u => u.AppUser)
+                .WithMany(a => a.Applications)
+                .HasForeignKey(pa => pa.AppUserId);
+            builder.Entity<PatientApplication>()
+                .HasOne(a => a.Application)
+                .WithMany(u => u.Patients)
+                .HasForeignKey(pa => pa.ApplicationId);
 
+            builder.Entity<PatientDoctor>(x => x.HasKey(pr => new {pr.AppUserId, pr.DoctorId}));
+            builder.Entity<PatientDoctor>()
+                .HasOne(u => u.AppUser)
+                .WithMany(r => r.Doctors)
+                .HasForeignKey(pr => pr.AppUserId);
+            builder.Entity<PatientDoctor>()
+                .HasOne(v => v.Doctor)
+                .WithMany(u => u.Patients)
+                .HasForeignKey(pr => pr.DoctorId);
+
+            builder.Entity<PatientDrug>(x => x.HasKey(pr => new {pr.AppUserId, pr.DrugId}));
+            builder.Entity<PatientDrug>()
+                .HasOne(u => u.AppUser)
+                .WithMany(r => r.Drugs)
+                .HasForeignKey(pr => pr.AppUserId);
+            builder.Entity<PatientDrug>()
+                .HasOne(v => v.Drug)
+                .WithMany(u => u.Patients)
+                .HasForeignKey(pr => pr.DrugId);
+
+            builder.Entity<PatientTreatment>(x => x.HasKey(pr => new {pr.AppUserId, pr.TreatmentId}));
+            builder.Entity<PatientTreatment>()
+                .HasOne(u => u.AppUser)
+                .WithMany(r => r.Treatments)
+                .HasForeignKey(pr => pr.AppUserId);
+            builder.Entity<PatientTreatment>()
+                .HasOne(v => v.Treatment)
+                .WithMany(u => u.Patients)
+                .HasForeignKey(pr => pr.TreatmentId);
+
+              
             builder.Entity<Test>()
                 .HasOne(t => t.AppUser)
                 .WithMany(au => au.Tests);
+
         }
     }
 }

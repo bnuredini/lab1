@@ -30,7 +30,7 @@ namespace Application.VaccineApplications
                 _context.Remove(vaccineApplication);
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
-                    return Result<Unit>.Failure("Failed to delete the Vaccine Application");
+                    return Result<Unit>.Failure("Failed to delete the application");
                 }
 
                return (Result<Unit>.Success(Unit.Value));

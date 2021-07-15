@@ -30,7 +30,7 @@ namespace Application.Doctors
                 _context.Remove(doctor);
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
-                    return Result<Unit>.Failure("Failed to delete the Doctor");
+                    return Result<Unit>.Failure("Failed to delete the doctor");
                 }
 
                return (Result<Unit>.Success(Unit.Value));

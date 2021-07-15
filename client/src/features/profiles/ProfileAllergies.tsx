@@ -22,7 +22,7 @@ export default observer(function ProfileAllergies() {
     <Tab.Pane loading={loadingAllergies}>
       <Grid>
         <Grid.Column width={16}>
-          <Header floated="left" icon="user md" content={"Alergjite"} />
+          <Header floated="left" icon="plus square outline" content={"Alergjite"} />
         </Grid.Column>
         <Grid.Column width={16}>
           <Tab

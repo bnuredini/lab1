@@ -42,7 +42,7 @@ namespace Application.VaccineApplications
 
                 if (!(await _context.SaveChangesAsync() > 0))
                 {
-                    return Result<Unit>.Failure("Failed during Vaccine Application updation");
+                    return Result<Unit>.Failure("Failed during application updation");
                 }
 
                 return Result<Unit>.Success(Unit.Value);

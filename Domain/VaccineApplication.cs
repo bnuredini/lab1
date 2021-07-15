@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -9,5 +10,6 @@ namespace Domain
         public DateTime Date { get; set; }
         public string Email { get; set; }
         public string Location { get; set; }
+        public ICollection<PatientApplication> Patients { get; set; } = new List<PatientApplication>();
     }
 }

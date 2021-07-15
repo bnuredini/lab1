@@ -282,6 +282,21 @@ namespace Persistence.Migrations
                     b.ToTable("PatientAllergy");
                 });
 
+            modelBuilder.Entity("Domain.PatientApplication", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ApplicationId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AppUserId", "ApplicationId");
+
+                    b.HasIndex("ApplicationId");
+
+                    b.ToTable("PatientApplications");
+                });
+
             modelBuilder.Entity("Domain.PatientChronicDisease", b =>
                 {
                     b.Property<string>("AppUserId")
@@ -297,6 +312,36 @@ namespace Persistence.Migrations
                     b.ToTable("PatientChronicDisease");
                 });
 
+            modelBuilder.Entity("Domain.PatientDoctor", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("DoctorId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AppUserId", "DoctorId");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("PatientDoctors");
+                });
+
+            modelBuilder.Entity("Domain.PatientDrug", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("DrugId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AppUserId", "DrugId");
+
+                    b.HasIndex("DrugId");
+
+                    b.ToTable("PatientDrugs");
+                });
+
             modelBuilder.Entity("Domain.PatientResult", b =>
                 {
                     b.Property<string>("AppUserId")
@@ -310,6 +355,21 @@ namespace Persistence.Migrations
                     b.HasIndex("ResultId");
 
                     b.ToTable("PatientResults");
+                });
+
+            modelBuilder.Entity("Domain.PatientTreatment", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("TreatmentId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AppUserId", "TreatmentId");
+
+                    b.HasIndex("TreatmentId");
+
+                    b.ToTable("PatientTreatments");
                 });
 
             modelBuilder.Entity("Domain.PatientVaccine", b =>
@@ -745,6 +805,25 @@ namespace Persistence.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("Domain.PatientApplication", b =>
+                {
+                    b.HasOne("Domain.AppUser", "AppUser")
+                        .WithMany("Applications")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.VaccineApplication", "Application")
+                        .WithMany("Patients")
+                        .HasForeignKey("ApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Domain.PatientChronicDisease", b =>
                 {
                     b.HasOne("Domain.AppUser", "AppUser")
@@ -764,6 +843,44 @@ namespace Persistence.Migrations
                     b.Navigation("ChronicDisease");
                 });
 
+            modelBuilder.Entity("Domain.PatientDoctor", b =>
+                {
+                    b.HasOne("Domain.AppUser", "AppUser")
+                        .WithMany("Doctors")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Doctor", "Doctor")
+                        .WithMany("Patients")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("Domain.PatientDrug", b =>
+                {
+                    b.HasOne("Domain.AppUser", "AppUser")
+                        .WithMany("Drugs")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Drug", "Drug")
+                        .WithMany("Patients")
+                        .HasForeignKey("DrugId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Drug");
+                });
+
             modelBuilder.Entity("Domain.PatientResult", b =>
                 {
                     b.HasOne("Domain.AppUser", "AppUser")
@@ -781,6 +898,25 @@ namespace Persistence.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Result");
+                });
+
+            modelBuilder.Entity("Domain.PatientTreatment", b =>
+                {
+                    b.HasOne("Domain.AppUser", "AppUser")
+                        .WithMany("Treatments")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Treatment", "Treatment")
+                        .WithMany("Patients")
+                        .HasForeignKey("TreatmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Treatment");
                 });
 
             modelBuilder.Entity("Domain.PatientVaccine", b =>
@@ -904,14 +1040,32 @@ namespace Persistence.Migrations
                 {
                     b.Navigation("Allergies");
 
+                    b.Navigation("Applications");
+
                     b.Navigation("ChronicDisease");
 
+                    b.Navigation("Doctors");
+
+                    b.Navigation("Drugs");
+
                     b.Navigation("Results");
+
+                    b.Navigation("Treatments");
 
                     b.Navigation("Vaccines");
                 });
 
             modelBuilder.Entity("Domain.Chronic_Disease", b =>
+                {
+                    b.Navigation("Patients");
+                });
+
+            modelBuilder.Entity("Domain.Doctor", b =>
+                {
+                    b.Navigation("Patients");
+                });
+
+            modelBuilder.Entity("Domain.Drug", b =>
                 {
                     b.Navigation("Patients");
                 });
@@ -936,7 +1090,17 @@ namespace Persistence.Migrations
                     b.Navigation("Results");
                 });
 
+            modelBuilder.Entity("Domain.Treatment", b =>
+                {
+                    b.Navigation("Patients");
+                });
+
             modelBuilder.Entity("Domain.Vaccine", b =>
+                {
+                    b.Navigation("Patients");
+                });
+
+            modelBuilder.Entity("Domain.VaccineApplication", b =>
                 {
                     b.Navigation("Patients");
                 });

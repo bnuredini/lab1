@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -6,6 +7,6 @@ namespace Domain
     {
         public Guid Id { get; set; }
         public string Type { get; set; }
-        
+        public ICollection<PatientDoctor> Patients { get; set; } = new List<PatientDoctor>();
     }
 }
