@@ -8,7 +8,8 @@ namespace Domain
         public string DisplayName {get; set;}
         public string Bio {get; set;}
         public string Role { get; set; }
-        public ICollection<Test> Tests { get; set; }
+
+        public List<Test> Tests { get; set; } = new List<Test>();
         public ICollection<PatientChronicDisease> ChronicDisease { get; set; }
         public ICollection<Article> Articles { get; set; }
         public ICollection<PatientVaccine> Vaccines { get; set; }

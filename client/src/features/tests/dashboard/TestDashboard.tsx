@@ -18,10 +18,6 @@ export default observer(function TestDashboard() {
   if (testStore.loadingIntial)
     return <LoadingComponent content="Loading app" />;
 
-  // set the app's title
-  // TODO: find a better way to do this
-  document.title = "lab1";
-
   return (
     <>
       <Button

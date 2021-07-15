@@ -25,7 +25,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTest(Test test)
         {
-            return HandleResult(await Mediator.Send(new Create.Command {Test = test}));
+            return HandleResult(await Mediator.Send(new Create.Command{Test = test}));
         }
 
         [HttpPut("{id}")]

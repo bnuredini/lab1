@@ -13,7 +13,6 @@ export default function TestDetails() {
 
   return (
     <Card fluid>
-      <Image src={`/assets/categoryImages/${test.variation}.jpg`} />
       <Card.Content>
         <Card.Header>{test.description}</Card.Header>
         <Card.Meta>

@@ -48,6 +48,7 @@ namespace Persistence
                 .WithMany(s => s.Private_Center)
                 .HasForeignKey(tc => tc.Public_CenterId);
 
+            // Defie a composite PK for PatientVaccine.
             builder.Entity<PatientVaccine>(x => x.HasKey(pv => new {pv.AppUserId, pv.VaccineId}));
             builder.Entity<PatientVaccine>()
                 .HasOne(u => u.AppUser)
@@ -88,7 +89,9 @@ namespace Persistence
                 .WithMany(u => u.Patients)
                 .HasForeignKey(pr => pr.ResultId);
 
-              
+            builder.Entity<Test>()
+                .HasOne(t => t.AppUser)
+                .WithMany(au => au.Tests);
         }
     }
 }
