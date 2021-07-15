@@ -4,6 +4,7 @@ using Application.Doctors;
 using Application.Drugs;
 using Application.Profiles;
 using Application.Rezults;
+using Application.Roles;
 using Application.Treatments;
 using Application.VaccineApplications;
 using Application.Vaccines;
@@ -23,6 +24,7 @@ namespace Application.Core
             CreateMap<Doctor, Doctor>();
             CreateMap<Private_Center, Private_Center>();
             CreateMap<Public_Center, Public_Center>();
+            CreateMap<Position, Position>();
             CreateMap<Rezult, Rezult>();
             CreateMap<Vaccine, Vaccine>();
             CreateMap<Article, Article>();
@@ -34,6 +36,11 @@ namespace Application.Core
             CreateMap<Chronic_Disease, ChronicDiseaseDto>();
             CreateMap<AppUser, Profiles.Profile>();
             CreateMap<PatientChronicDisease, Profiles.Profile>()
+                .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
+                .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName))
+                .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
+            CreateMap<Position, RoleDto>();
+            CreateMap<UserPosition, Profiles.Profile>()
                 .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
                 .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName))
                 .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));

@@ -15,7 +15,8 @@ namespace Persistence
             if(!userManager.Users.Any() && !context.Vaccines.Any()
              && !context.Chronic_Diseases.Any() && !context.Allergies.Any()  
              && !context.Rezults.Any() && !context.VaccineApplications.Any()
-             && !context.Drugs.Any() && !context.Treatments.Any() && !context.Doctors.Any())
+             && !context.Drugs.Any() && !context.Treatments.Any() && !context.Doctors.Any() 
+             && !context.Positions.Any())
 
             if (!userManager.Users.Any() && !context.Vaccines.Any()
               && !context.Chronic_Diseases.Any() && !context.Allergies.Any()  
@@ -33,6 +34,48 @@ namespace Persistence
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
+
+                  var roles = new List<Position>
+                 {
+                     new Position
+                     {
+                         RoleName = "Admin",
+                         Responsibility = "Administrator",
+                         Users = new List<UserPosition> {
+                            new UserPosition {
+                                AppUser = users[2],
+                                IsAdmin = true
+                            },
+                            new UserPosition{
+                                AppUser = users[3],
+                                IsAdmin = true
+                                
+                            }
+                     }
+                     },
+                     new Position
+                     {
+                         RoleName = "User",
+                         Responsibility = "Pacient",
+                         Users = new List<UserPosition> {
+                            new UserPosition {
+                                AppUser = users[3],
+                                IsAdmin = true
+                            },
+                            new UserPosition {
+                                AppUser = users[1],
+                                IsAdmin = false
+                            },
+                             new UserPosition {
+                                AppUser = users[0],
+                                IsAdmin = false
+                            }
+
+                     }
+
+                     }
+            };
+             await context.Positions.AddRangeAsync(roles);
 
                 var vaccines = new List<Vaccine>
                 {

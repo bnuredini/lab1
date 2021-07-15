@@ -23,6 +23,7 @@ import { Result } from "../models/results";
 import { Profile, UserAllergy, UserChronicDisease, UserDoctor, UserDrug, UserResult, UserTreatment, UserVaccine, UserVaccineApplication } from "../models/profile";
 import { VaccineConfirmation } from "../models/vaccineConfirmation";
 import { TestConfirmation } from "../models/testConfirmation";
+import { Role } from "../models/role";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -219,6 +220,16 @@ const Allergies = {
   delete: (id: string) => axios.delete<void>(`/allergies/${id}`),
 };
 
+const Roles = {
+  list: () => requests.get<Role[]>("/roles"),
+  details: (id: string) => requests.get<Role>(`/roles/${id}`),
+  create: (treatment: Role) => axios.post<void>("/roles", treatment),
+  update: (treatment: Role) =>
+    axios.put<void>(`/roles/${treatment.id}`, treatment),
+  delete: (id: string) => axios.delete<void>(`/roles/${id}`),
+};
+
+
 const Profiles = {
   get: (username: string) => requests.get<Profile>(`/profiles/${username}`),
   updateProfile: (profile: Partial<Profile>) =>
@@ -322,7 +333,8 @@ const agent = {
   Profiles,
   Results,
   TestConfirmations,
-  VaccineConfirmations
+  VaccineConfirmations,
+  Roles
 };
 
 export default agent;

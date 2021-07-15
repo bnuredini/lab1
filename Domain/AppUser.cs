@@ -19,5 +19,6 @@ namespace Domain
         public ICollection<PatientDoctor> Doctors { get; set; }
         public ICollection<PatientDrug> Drugs { get; set; }
         public ICollection<PatientTreatment> Treatments { get; set; }
+        public ICollection<UserPosition> Positions { get; set; }
     }
 }

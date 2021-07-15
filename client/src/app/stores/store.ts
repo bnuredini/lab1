@@ -21,6 +21,7 @@ import ProfileStore from "./profileStore";
 import ResultStore from "./resultStore";
 import TestConfirmationStore from "./testConfirmationStore";
 import VaccineConfirmationStore from "./vaccineConfirmationStore";
+import RoleStore from "./roleStore";
 
 
 interface Store {
@@ -46,6 +47,7 @@ interface Store {
   resultStore: ResultStore;
 testConfirmationStore: TestConfirmationStore;
   vaccineConfirmationStore: VaccineConfirmationStore;
+  roleStore: RoleStore;
 
 }
 
@@ -72,6 +74,7 @@ export const store: Store = {
   resultStore:new ResultStore(),
     testConfirmationStore: new TestConfirmationStore(),
   vaccineConfirmationStore :new VaccineConfirmationStore(),
+  roleStore: new RoleStore(),
 
 };
 

@@ -40,6 +40,7 @@ import covidRestrictionDashboard from "../../features/covidRestrictions/dashboar
 import locationDashboard from "../../features/location/dashboard/locationDashboard";
 import doctorDashboard from "../../features/doctor/dashboard/doctorDashboard";
 import TreatmentDashboard from "../../features/treatment/dashboard/TreatmentDashboard";
+import RoleDashboard from "../../features/roles/dashboard/RoleDashboard";
         
         
         
@@ -82,6 +83,7 @@ function App() {
           <Route path="/privateCenters" component={PrivateCenterDashboard} />
           <Route path="/chronicDiseases" component={ChronicDiseaseDashboard} />
           <Route path="/variations" component={VariationDashboard} />
+          <Route path="/roles" component={RoleDashboard}/>
           <Route path="/errors" component={TestErrors} />
           <Route path="/profiles/:username" component={ProfilePage} />
           <Route path="/server-error" component={ServerError} />
