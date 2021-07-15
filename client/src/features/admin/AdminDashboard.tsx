@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import { Grid, Menu} from "semantic-ui-react";
+import { Link, NavLink } from "react-router-dom";
+import { Card, Grid, Header, Menu, Segment } from "semantic-ui-react";
 
 export default class AdminDashboard extends Component {
   state = { activeItem: "privateCenters" };
@@ -12,68 +12,65 @@ export default class AdminDashboard extends Component {
     const { activeItem } = this.state;
 
     return (
-      <Grid columns={2}>
-        <Grid.Column width="4">
-          <Menu fluid vertical tabular>
-            <Menu.Item
-              name="Private Centers"
-              active={activeItem === "Private Centers"}
-              as={NavLink} to="/privateCenters"
-            />
-            <Menu.Item
-              name="Public Centers"
-              active={activeItem === "Public Centers"}
-              as={NavLink} to="/publicCenters"
-            />
-            <Menu.Item
-              name="Vaccines"
-              active={activeItem === "Vaccines"}
-              as={NavLink} to="/vaccines"
-            />
-            <Menu.Item
-              name="Variations"
-              active={activeItem === "Variations"}
-              as={NavLink} to="/variations"
-            />
-             <Menu.Item
-              name="Chronic Diseases"
-              active={activeItem === "Chronic Disease"}
-              as={NavLink} to="/chronicDiseases"
-            />
-             <Menu.Item
-              name="Allergies"
-              active={activeItem === "Allergies"}
-              as={NavLink} to="/allergies"
-            />
-            <Menu.Item
-              name="Restrictions"
-              active={activeItem === "Restrictions"}
-              as={NavLink} to="/covidrestrictions"
-            />
-             <Menu.Item
-              name="Doctors"
-              active={activeItem === "Doctors"}
-              as={NavLink} to="/doctors"
-            />
-            <Menu.Item
-              name="Locations"
-              active={activeItem === "Locations"}
-              as={NavLink} to="/locations"
-            />
-            <Menu.Item
-              name="Users"
-              active={activeItem === "Users"}
-              onClick={this.handleItemClick}
-            />
-          </Menu>
-        </Grid.Column>
-        <Grid.Column>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui
-          explicabo itaque aperiam magni at. Laudantium ipsam ab, voluptatem
-          voluptas veniam sed. Consequuntur quis non aliquam id ipsum porro
-          vitae perferendis.
-        </Grid.Column>
-      </Grid>
+      <>
+        <Segment>
+          <Header size="huge">Paneli i Adminit</Header>
+        </Segment>
+        <Segment>
+          <Card.Group itemsPerRow={4}>
+            <Card as={Link} to={"/chronicDiseases/"}>
+              <Card.Content>
+                <Card.Header textAlign="center">Semundjet Kronike</Card.Header>
+              </Card.Content>
+            </Card>
+            <Card as={Link} to={"/privateCenters"}>
+              <Card.Content>
+                <Card.Header textAlign="center">Qendrat Private</Card.Header>
+              </Card.Content>
+            </Card>
+            <Card as={Link} to={"/publicCenters"}>
+              <Card.Content>
+                <Card.Header textAlign="center">Qendrat Publike</Card.Header>
+              </Card.Content>
+            </Card>
+            <Card as={Link} to={"/vaccines"}>
+              <Card.Content>
+                <Card.Header textAlign="center">Vaksinat</Card.Header>
+              </Card.Content>
+            </Card>
+            <Card as={Link} to={"/variations"}>
+              <Card.Content>
+                <Card.Header textAlign="center">Variacionet</Card.Header>
+              </Card.Content>
+            </Card>
+            <Card as={Link} to={"/chronicDiseases"}>
+              <Card.Content>
+                <Card.Header textAlign="center">Semundjet Kronike</Card.Header>
+              </Card.Content>
+            </Card>
+            <Card as={Link} to={"/allergies"}>
+              <Card.Content>
+                <Card.Header textAlign="center">Alergjite</Card.Header>
+              </Card.Content>
+            </Card>
+            <Card as={Link} to={"/restrictions"}>
+              <Card.Content>
+                <Card.Header textAlign="center">Kufizimet</Card.Header>
+              </Card.Content>
+            </Card>
+            <Card as={Link} to={"/doctors"}>
+              <Card.Content>
+                <Card.Header textAlign="center">Doktoret</Card.Header>
+              </Card.Content>
+            </Card>
+            <Card as={Link} to={"/locations"}>
+              <Card.Content>
+                <Card.Header textAlign="center">Lokacionet</Card.Header>
+              </Card.Content>
+            </Card>
+          </Card.Group>
+        </Segment>
+      </>
     );
   }
 }
