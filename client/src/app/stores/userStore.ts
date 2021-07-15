@@ -11,9 +11,11 @@ export default class UserStore {
   constructor() {
     makeAutoObservable(this);
   }
+
   get isLoggedIn() {
     return !!this.user;
   }
+
   login = async (creds: UserFormValues) => {
     try {
       const user = await agent.Account.login(creds);
@@ -42,9 +44,18 @@ export default class UserStore {
     }
   };
 
+  getUserID = async () => {
+    try {
+      const user = await agent.Account.currnet();
+      return user.id;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   setDisplayName = (name: string) => {
     if (this.user) this.user.displayName = name;
-}
+  };
 
   register = async (creds: UserFormValues) => {
     try {

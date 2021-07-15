@@ -18,22 +18,18 @@ export default observer(function TestForm() {
 
   const initialState = selectedTest ?? {
     id: "",
-    patientId: 0,
     date: null,
     description: "",
-    hospitalId: 0,
-    vaccineId: 0,
-    variation: "",
+    result: "",
+    patient: null,
   };
 
   const validationSchema = Yup.object({
-    patientId: Yup.number().required(),
+    // patientId: Yup.number().required(),
     date: Yup.string().required("Ju lutem vendosni nje date").nullable(),
     description: Yup.string().required(),
-    hospitalId: Yup.number().required(),
-    vaccineId: Yup.number().required(),
-    variation: Yup.string().required(),
   });
+
   const [test] = useState(initialState);
 
   function handleFormSubmit(test: Test) {
@@ -50,7 +46,7 @@ export default observer(function TestForm() {
       >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
           <Form className="ui form" onSubmit={handleSubmit}>
-            <MyTextInput name="patientId" placeholder="ID e Pacientit" />
+            {/* <MyTextInput name="patientId" placeholder="ID e Pacientit" /> */}
             <MyDateInput
               placeholderText="Data"
               name="date"
@@ -58,16 +54,8 @@ export default observer(function TestForm() {
               timeCaption="time"
               dateFormat="dd.MM.yyyy, (h:mm aa)"
             />
-
             <MyTextArea rows={3} placeholder="Pershkrimi" name="description" />
-
-            <MyTextInput placeholder="ID e Spitalit" name="hospitalId" />
-            <MyTextInput placeholder="ID e Vaksines" name="vaccineId" />
-            <MySelectInput
-              options={variationOptions}
-              placeholder="Varianti"
-              name="variation"
-            />
+            <MyTextArea rows={3} placeholder="Rezultati" name="result" />
             <Button
               disabled={isSubmitting || !dirty || !isValid}
               loading={loading}

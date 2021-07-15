@@ -9,8 +9,6 @@ namespace Application.Tests
        {
            RuleFor(x => x.Description).NotEmpty();
            RuleFor(x => x.Date).NotEmpty();
-           RuleFor(x => x.VaccineId).NotEmpty();
-           RuleFor(x => x.Variation).NotEmpty();
        } 
     }
 }

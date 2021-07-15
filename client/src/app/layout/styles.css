@@ -175,5 +175,9 @@ body {
 }
 
 .ui.fluid.vertical.menu {
-  min-height: 12rem;
+  min-height: 15rem;
+}
+
+.admin-tab .ui.fluid.vertical.menu {
+  min-height: 21rem;
 }
