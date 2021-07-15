@@ -31,3 +31,9 @@ export interface UserVaccine {
   creator: string;
   type: string;
 }
+export interface UserResult {
+  id: string;
+  result: string;
+  testName: string;
+  date: Date | null;
+}

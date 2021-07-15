@@ -36,5 +36,11 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new ListChronicDiseases.Query
             { Username = username, Predicate = predicate }));
         }
+        [HttpGet("{username}/results")]
+        public async Task<IActionResult> GetPatientResults(string username, string predicate)
+        {
+            return HandleResult(await Mediator.Send(new ListResults.Query
+            { Username = username, Predicate = predicate }));
+        }
     }
 }

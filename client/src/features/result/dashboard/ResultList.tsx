@@ -28,7 +28,7 @@ export default observer(function ResultList() {
                 <Item.Description>
                   <div>{result.testName}</div>
                   <div>
-                    {result.date}, {result.patients}
+                    {result.date}
                   </div>
                 </Item.Description>
                 <Item.Extra>

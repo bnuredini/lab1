@@ -6,6 +6,7 @@ import { useStore } from '../../app/stores/store';
 import ProfileAbout from './ProfileAbout';
 import ProfileAllergies from './ProfileAllergies';
 import ProfileChronicDiseases from './ProfileChronicDiseases';
+import ProfileResults from './ProfileResults';
 import ProfileVaccines from './ProfileVaccines';
 
 interface Props {
@@ -20,6 +21,7 @@ export default observer(function ProfileContent({profile}: Props) {
         {menuItem: 'Alergjite', render: () => <ProfileAllergies />},
         {menuItem: 'Semundjet Kronike', render: () => <ProfileChronicDiseases />},
         {menuItem: 'Vaksinat', render: () => <ProfileVaccines />},
+        {menuItem: 'Rezultatet', render: () => <ProfileResults />},
         ];
 
     return (

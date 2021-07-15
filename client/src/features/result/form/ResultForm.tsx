@@ -43,7 +43,6 @@ export default observer(function ResultForm() {
           <Form className="ui form" onSubmit={handleSubmit}>
             <MyTextInput name="result" placeholder="Rezultati" />
             <MyTextInput name="testName" placeholder="Emri Testit" />
-            <MyTextInput name="creator" placeholder="Krijuesi i vaksines" />
             <MyDateInput
               placeholderText="Data"
               name="date"
