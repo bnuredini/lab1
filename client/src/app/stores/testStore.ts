@@ -24,6 +24,15 @@ export default class TestStore {
     return Array.from(this.testRegistry.values());
   }
 
+  testPatientID = (test: Test) => {
+    try {
+      // const t =  agent.Tests.details(test.id);
+      // return t.
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   loadTests = async () => {
     try {
       const tests = await agent.Tests.list();

@@ -12,7 +12,7 @@ namespace Persistence
         public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
             if(!userManager.Users.Any() && !context.Vaccines.Any()
-             && !context.Chronic_Diseases.Any() && !context.Allergies.Any())
+                && !context.Chronic_Diseases.Any() && !context.Allergies.Any())
             {
                 var users = new List<AppUser>
                 {
@@ -64,7 +64,6 @@ namespace Persistence
                         }
                     }
                 };
-
                 await context.Vaccines.AddRangeAsync(vaccines);
 
 
@@ -132,7 +131,6 @@ namespace Persistence
                         Name = "HIV-AIDS"
                     },
                 };
-
                 await context.Chronic_Diseases.AddRangeAsync(chronicDiseases);
 
             
@@ -176,7 +174,6 @@ namespace Persistence
                     }
                 };
                 await context.Allergies.AddRangeAsync(allergies);
-
             }
 
             if (!context.Patients.Any())
@@ -215,36 +212,24 @@ namespace Persistence
                 await context.Patients.AddRangeAsync(patients);
             }
 
-            if (!context.Patients.Any())
+            if (!context.Tests.Any())
             {
                 var tests = new List<Test>
                 {
                     new Test
                     {
-                        PatientId = 2,
                         Date = DateTime.Now.AddMonths(-2),
-                        Description = "Test 2 months ago",
-                        HospitalId = 1,
-                        VaccineId = 2,
-                        Variation = "B.1.1.7"
+                        Description = "Lorem borem hababaus",
                     },
                     new Test
                     {
-                        PatientId = 2,
                         Date = DateTime.Now.AddMonths(-2),
-                        Description = "Test 2 months ago",
-                        HospitalId = 1,
-                        VaccineId = 3,
-                        Variation = "B.1.351"
+                        Description = "Lopus dopus",
                     },
                     new Test
                     {
-                        PatientId = 2,
                         Date = DateTime.Now.AddMonths(-2),
-                        Description = "Test 2 months ago",
-                        HospitalId = 1,
-                        VaccineId = 3,
-                        Variation = "P.1"
+                        Description = "Rropus roopus",
                     },
                 };
 
@@ -277,7 +262,7 @@ namespace Persistence
                         Tested = 10044
                     },
                 };
-
+                
                 await context.Locations.AddRangeAsync(locations);
             }
 
@@ -291,27 +276,27 @@ namespace Persistence
                         From = DateTime.Now.AddMonths(-2),
                         Until = DateTime.Now.AddMonths(-2)
                     },
-                     new CovidRestriction
+                    new CovidRestriction
                     {
                         Type = "Vendosni masken",
                         From = DateTime.Now.AddMonths(-2),
                         Until = DateTime.Now.AddMonths(-2)
                     },
-                     new CovidRestriction
+                    new CovidRestriction
                     {
                         Type = "Lani duart",
                         From = DateTime.Now.AddMonths(-2),
                         Until = DateTime.Now.AddMonths(-2)
                     },
-                     new CovidRestriction
+                    new CovidRestriction
                     {
                         Type = "Rrini larg grupimeve",
                         From = DateTime.Now.AddMonths(-2),
                         Until = DateTime.Now.AddMonths(-2)
                     },
                 };
-                await context.CovidRestrictions.AddRangeAsync(covidRestrictions);
 
+                await context.CovidRestrictions.AddRangeAsync(covidRestrictions);
             }
 
             if(!context.Doctors.Any())
@@ -335,9 +320,9 @@ namespace Persistence
                         Type = "Pulmolog"
                     },
                 };
+                
                 await context.Doctors.AddRangeAsync(doctors);
             }
-
 
             if (!context.Variations.Any())
             {
@@ -370,11 +355,6 @@ namespace Persistence
                 };
 
                 await context.Variations.AddRangeAsync(variations);
-            }
-
-            if (!context.Vaccines.Any())
-            {
-              
             }
 
             if (!context.Rezults.Any())
@@ -463,7 +443,7 @@ namespace Persistence
                 {
                     new Drug
                     {
-                        Name="Sintrom",
+                        Name = "Sintrom",
                         SideEffects = "Blood Thinning",
                         Type = "Blood Thinner",
                         Description = "Twice a day",
@@ -479,7 +459,7 @@ namespace Persistence
                 {
                     new Treatment
                     {
-                        Description="Yada yada yada",
+                        Description = "Yada yada yada",
                         Patient ="UK",
                         Date = DateTime.Now.AddMonths(-2),
                         Doctor = "Twice a day",
@@ -516,8 +496,8 @@ namespace Persistence
 
                     }
                 };
-                await context.VaccineApplications.AddRangeAsync(vaccineApplication);
 
+                await context.VaccineApplications.AddRangeAsync(vaccineApplication);
             }
 
             await context.SaveChangesAsync();
